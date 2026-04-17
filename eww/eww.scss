@@ -1,0 +1,258 @@
+// ╔═══════════════════════════════════════╗
+// ║         STR TERMINAL v3.0             ║
+// ║         eww.scss — skuwii             ║
+// ╚═══════════════════════════════════════╝
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  color: #8a8f98;
+}
+
+// ── Panels ──────────────────────────────
+
+.panel {
+  background-color: #0e0f11;
+  border: 1px solid #1c1e21;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+// ── Identity ────────────────────────────
+
+.identity-row {
+  margin-bottom: 10px;
+}
+
+.identity-s {
+  font-size: 30px;
+  font-weight: bold;
+  color: #2980d4;
+  padding: 5px;
+}
+
+.identity-dot {
+  color: #4a4e56;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.identity-handle {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
+  color: #2980d4;
+}
+
+.identity-badge {
+  border: 1px solid #4a4e56;
+  border-radius: 4px;
+  padding: 1px 2px;
+}
+
+.identity-badge-text {
+  font-size: 12px;
+  color: #4a4e56;
+  letter-spacing: 1px;
+  color: pink;
+}
+
+// ── Clock ───────────────────────────────
+
+.clock-section {
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+.clock-time {
+  font-size: 42px;
+  font-weight: bold;
+  color: #c8ccd4;
+}
+
+.clock-date {
+  font-size: 11px;
+  color: #4a4e56;
+  margin-top: -2px;
+}
+
+// ── Tagline ─────────────────────────────
+
+.tagline {
+  font-size: 10px;
+  color: #4a4e56;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+// ── Separator ───────────────────────────
+
+.separator {
+  min-height: 1px;
+  background-color: #1c1e21;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+// ── Section Headers ─────────────────────
+
+.section-header {
+  font-size: 11px;
+  font-weight: bold;
+  color: #2980d4;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.section-header-red {
+  font-size: 11px;
+  font-weight: bold;
+  color: #c0392b;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+// ── Stats ───────────────────────────────
+
+.stat-row {
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #4a4e56;
+  min-width: 36px;
+  font-weight: bold;
+}
+
+.stat-bar {
+  min-width: 110px;
+  min-height: 8px;
+  margin-left: 6px;
+  margin-right: 6px;
+
+  trough {
+    background-color: #1c1e21;
+    border-radius: 4px;
+    min-height: 8px;
+  }
+
+  progress {
+    background-color: #2980d4;
+    border-radius: 4px;
+    min-height: 8px;
+  }
+}
+
+.stat-value {
+  font-size: 11px;
+  color: #c8ccd4;
+  min-width: 32px;
+}
+
+// ── Info Lines ──────────────────────────
+
+.info-lines {
+  margin-top: 6px;
+}
+
+.info-line {
+  font-size: 11px;
+  color: #4a4e56;
+  margin-bottom: 2px;
+  letter-spacing: 1px;
+}
+
+// ── Workspaces ──────────────────────────
+
+.ws-row {
+  margin-bottom: 4px;
+}
+
+.ws-btn {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.ws-active {
+  color: #c8ccd4;
+  border: 1px solid #2980d4;
+  background-color: #1c1e21;
+}
+
+.ws-inactive {
+  color: #4a4e56;
+  border: 1px solid transparent;
+}
+
+.ws-inactive:hover {
+  color: #8a8f98;
+  background-color: #1c1e21;
+}
+
+// ── Network ─────────────────────────────
+
+.net-section {
+  margin-top: 2px;
+}
+
+.net-line {
+  font-size: 12px;
+  color: #c8ccd4;
+  margin-bottom: 2px;
+}
+
+// ── Power Button ────────────────────────
+
+.power-section {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.power-btn {
+  min-width: 52px;
+  min-height: 52px;
+  border: 5px solid #c0392b;
+  border-radius: 50px;
+  background-color: #0e0f11;
+}
+
+.power-btn:hover {
+  background-color: #1c1e21;
+}
+
+.power-icon {
+  font-size: 22px;
+  color: #c0392b;
+}
+
+.power-hint {
+  font-size: 9px;
+  color: #4a4e56;
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+
+// ── Bottom Bar ──────────────────────────
+
+.bottom-panel {
+  padding: 10px 20px;
+}
+
+.reactor-header {
+  font-size: 11px;
+  font-weight: bold;
+  color: #2980d4;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.visualizer-text {
+  font-size: 13px;
+  color: #2980d4;
+  letter-spacing: 1px;
+}

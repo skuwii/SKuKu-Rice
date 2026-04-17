@@ -1,0 +1,80 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 0,
+    "margin-top": 4,
+    "margin-left": 10,
+    "margin-right": 10,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "temperature", "battery", "tray"],
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "*": 4
+        }
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A, %B %d}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "left",
+            "format": {
+                "months": "<span color='#c8ccd4'><b>{}</b></span>",
+                "weeks": "<span color='#4a4e56'>{}</span>",
+                "weekdays": "<span color='#2980d4'><b>{}</b></span>",
+                "today": "<span color='#2980d4'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰝟  muted",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "tooltip-format": "{desc} · {volume}%"
+    },
+
+    "network": {
+        "format-wifi": "󰖩  {signalStrength}%",
+        "format-ethernet": "󰈀  {ifname}",
+        "format-disconnected": "󰖪  off",
+        "tooltip-format-wifi": "{essid} · {ipaddr}\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}",
+        "tooltip-format-ethernet": "{ifname} · {ipaddr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "temperature": {
+        "thermal-zone": 0,
+        "format": "  {temperatureC}°C",
+        "critical-threshold": 85,
+        "format-critical": "  {temperatureC}°C"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "format-plugged": "󰚥  {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}\n{power} W"
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 8
+    }
+}

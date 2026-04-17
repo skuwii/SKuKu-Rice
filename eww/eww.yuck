@@ -1,0 +1,148 @@
+;; ╔═══════════════════════════════════════╗
+;; ║         STR TERMINAL v3.0             ║
+;; ║         eww.yuck — skuwii             ║
+;; ╚═══════════════════════════════════════╝
+
+;; ── Polls ──────────────────────────────
+
+(defpoll clock_time :interval "1s" `date '+%H:%M'`)
+(defpoll clock_date :interval "10s" `date '+%A, %B %d'`)
+(defpoll cpu_usage :interval "2s" `~/.config/eww/scripts/cpu.sh`)
+(defpoll ram_usage :interval "3s" `free | awk '/Mem:/ {printf "%.0f", $3/$2*100}'`)
+(defpoll disk_usage :interval "30s" `df / | awk 'NR==2 {printf "%.0f", $5}'`)
+(defpoll cpu_temp :interval "5s" `cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null | awk '{printf "%.0f", $1/1000}' || echo "N/A"`)
+(defpoll uptime_str :interval "30s" `uptime -p | sed 's/up //'`)
+(defpoll active_ws :interval "0.3s" `hyprctl activeworkspace -j | jq '.id'`)
+(defpoll net_down :interval "2s" `~/.config/eww/scripts/network.sh rx`)
+(defpoll net_up :interval "2s" `~/.config/eww/scripts/network.sh tx`)
+(defpoll visualizer :interval "0.1s" `cat /tmp/visualizer.txt 2>/dev/null || echo '────────────────────────────────────────'`)
+
+;; ── Left Panel ─────────────────────────
+
+(defwidget left_panel []
+  (box :class "panel left-panel"
+       :orientation "v"
+       :space-evenly false
+    ;; Identity row
+    (box :class "identity-row"
+         :orientation "h"
+         :space-evenly false
+         :halign "start"
+      (label :class "identity-s" :text "S")
+      (label :class "identity-dot" :text " · ")
+      (label :class "identity-handle" :text "skuwii ")
+      (label :class "identity-dot" :text "  ")
+      (box :class "identity-badge"
+        (label :class "identity-badge-text" :text "M ♥️ Y")))
+    ;; Clock
+    (box :class "clock-section"
+         :orientation "v"
+         :space-evenly false
+         :halign "center"
+      (label :class "clock-time" :text clock_time)
+      (label :class "clock-date" :text clock_date))
+    ;; Tagline
+    (label :class "tagline" :text "STR TERMINAL v3.0" :halign "center")
+    ;; Separator
+    (box :class "separator")
+    ;; Diagnostics header
+    (label :class "section-header" :text "[ GRACE DIAGNOSTIC ]" :halign "start")
+    ;; CPU
+    (box :class "stat-row" :orientation "h" :space-evenly false
+      (label :class "stat-label" :text "CPU")
+      (progress :class "stat-bar" :value cpu_usage :orientation "h")
+      (label :class "stat-value" :text "${cpu_usage}%"))
+    ;; RAM
+    (box :class "stat-row" :orientation "h" :space-evenly false
+      (label :class "stat-label" :text "RAM")
+      (progress :class "stat-bar" :value ram_usage :orientation "h")
+      (label :class "stat-value" :text "${ram_usage}%"))
+    ;; Storage
+    (box :class "stat-row" :orientation "h" :space-evenly false
+      (label :class "stat-label" :text "SSD")
+      (progress :class "stat-bar" :value disk_usage :orientation "h")
+      (label :class "stat-value" :text "${disk_usage}%"))
+    ;; Temp and uptime
+    (box :class "info-lines"
+         :orientation "v"
+         :space-evenly false
+      (label :class "info-line" :text "TEMP  ${cpu_temp}°C" :halign "start")
+      (label :class "info-line" :text "UP    ${uptime_str}" :halign "start"))))
+
+(defwindow left-panel
+  :monitor 0
+  :geometry (geometry :x "10px" :y "40px" :width "220px" :anchor "top left")
+  :stacking "bg"
+  :exclusive false
+  :focusable false
+  (left_panel))
+
+;; ── Right Panel ────────────────────────
+
+(defwidget workspace_btn [id]
+  (button :class "ws-btn ${active_ws == id ? 'ws-active' : 'ws-inactive'}"
+          :onclick "hyprctl dispatch workspace ${id}"
+    (label :text "${id}")))
+
+(defwidget right_panel []
+  (box :class "panel right-panel"
+       :orientation "v"
+       :space-evenly false
+    ;; Workspaces
+    (label :class "section-header" :text "[ SECTOR ]" :halign "start")
+    (box :class "ws-row"
+         :orientation "h"
+         :space-evenly true
+      (workspace_btn :id 1)
+      (workspace_btn :id 2)
+      (workspace_btn :id 3)
+      (workspace_btn :id 4))
+    ;; Separator
+    (box :class "separator")
+    ;; Network
+    (label :class "section-header" :text "[ NET UPLINK ]" :halign "start")
+    (box :class "net-section"
+         :orientation "v"
+         :space-evenly false
+      (label :class "net-line" :text "↓ ${net_down}" :halign "start")
+      (label :class "net-line" :text "↑ ${net_up}" :halign "start"))
+    ;; Spacer
+    (box :vexpand true)
+    ;; Separator
+    (box :class "separator")
+    ;; Engine Control
+    (label :class "section-header-red" :text "[ ENGINE CTRL ]" :halign "start")
+    (box :class "power-section"
+         :orientation "v"
+         :space-evenly false
+         :halign "center"
+      (button :class "power-btn"
+              :onclick "systemctl suspend"
+        (label :class "power-icon" :text "⏻"))
+      (label :class "power-hint" :text "TAP · SLEEP"))))
+
+(defwindow right-panel
+  :monitor 0
+  :geometry (geometry :x "10px" :y "40px" :width "170px" :anchor "top right")
+  :stacking "bg"
+  :exclusive false
+  :focusable false
+  (right_panel))
+
+;; ── Bottom Bar ─────────────────────────
+
+(defwidget bottom_bar []
+  (box :class "panel bottom-panel"
+       :orientation "v"
+       :space-evenly false
+       :halign "center"
+    (label :class "reactor-header" :text "[ REACTOR PULSE   | | | | → ]" :halign "center")
+    (label :class "visualizer-text" :text visualizer :halign "center")))
+
+(defwindow bottom-bar
+  :monitor 0
+  :geometry (geometry :x "0px" :y "10px" :width "600px" :height "70px" :anchor "bottom center")
+  :stacking "bg"
+  :exclusive false
+  :focusable false
+  (bottom_bar))

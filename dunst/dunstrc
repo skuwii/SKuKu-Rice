@@ -1,0 +1,104 @@
+# ╔═══════════════════════════════════════╗
+# ║         STR TERMINAL v3.0             ║
+# ║         dunstrc — skuwii              ║
+# ╚═══════════════════════════════════════╝
+
+[global]
+    monitor = 0
+    follow = mouse
+    width = 340
+    height = 120
+    origin = top-right
+    offset = 16x50
+    notification_limit = 4
+    indicate_hidden = yes
+
+    # Appearance
+    padding = 14
+    horizontal_padding = 18
+    frame_width = 1
+    frame_color = "#1c1e21"
+    gap_size = 6
+    separator_height = 1
+    separator_color = "#1c1e21"
+    corner_radius = 8
+    transparency = 0
+
+    # Text
+    font = JetBrainsMono Nerd Font 11
+    line_height = 4
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    word_wrap = yes
+    ellipsize = end
+    show_age_threshold = 30
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+
+    # Icons
+    icon_position = left
+    min_icon_size = 24
+    max_icon_size = 32
+    icon_path = /usr/share/icons/Papirus-Dark/24x24/apps:/usr/share/icons/Papirus-Dark/24x24/status
+
+    # History
+    sticky_history = yes
+    history_length = 20
+
+    # Mouse actions
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+    # Progress bar
+    progress_bar = true
+    progress_bar_height = 6
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 200
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 3
+
+[urgency_low]
+    background = "#1c1e21"
+    foreground = "#8a8f98"
+    frame_color = "#1c1e21"
+    highlight = "#2980d4"
+    timeout = 5
+    default_icon = dialog-information
+
+[urgency_normal]
+    background = "#1c1e21"
+    foreground = "#c8ccd4"
+    frame_color = "#2980d4"
+    highlight = "#2980d4"
+    timeout = 8
+    default_icon = dialog-information
+
+[urgency_critical]
+    background = "#1c1e21"
+    foreground = "#c8ccd4"
+    frame_color = "#c0392b"
+    highlight = "#c0392b"
+    timeout = 0
+    default_icon = dialog-warning
+
+# ── App-specific rules ──
+
+[discord]
+    appname = "Discord"
+    format = "<b>[ DISCORD ]</b> %s\n%b"
+    urgency = normal
+
+[spotify]
+    appname = "Spotify"
+    format = "<b>[ MUSIC ]</b> %s\n%b"
+    urgency = low
+
+[screenshot]
+    appname = "grim"
+    format = "<b>[ CAPTURE ]</b>\n%b"
+    urgency = low
+    timeout = 3

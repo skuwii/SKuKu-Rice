@@ -1,0 +1,11 @@
+[SddmGreeterTheme]
+Name=STR
+Description=STR Terminal v3.0 — skuwii
+Author=skuwii
+Version=3.0
+Website=
+Screenshot=
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=
+Theme-Id=str-theme

@@ -1,0 +1,108 @@
+/* ╔═══════════════════════════════════════╗ */
+/* ║         STR TERMINAL v3.0             ║ */
+/* ║         rofi/config.rasi — skuwii     ║ */
+/* ╚═══════════════════════════════════════╝ */
+
+configuration {
+    modi:                "drun,run,window";
+    show-icons:          true;
+    icon-theme:          "Papirus-Dark";
+    display-drun:        "  LAUNCH";
+    display-run:         "  RUN";
+    display-window:      "  WINDOW";
+    drun-display-format: "{name}";
+    font:                "JetBrainsMono Nerd Font 12";
+}
+
+* {
+    bg:       #0e0f11;
+    surface:  #1c1e21;
+    fg:       #8a8f98;
+    bright:   #c8ccd4;
+    dim:      #4a4e56;
+    azure:    #2980d4;
+    red:      #c0392b;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    width:            420px;
+    padding:          0px;
+    border:           1px solid;
+    border-color:     @surface;
+    border-radius:    8px;
+    background-color: @bg;
+}
+
+mainbox {
+    padding:  0px;
+    children: [inputbar, listview];
+}
+
+inputbar {
+    padding:          12px 16px;
+    spacing:          8px;
+    background-color: @surface;
+    children:         [prompt, entry];
+}
+
+prompt {
+    text-color: @azure;
+    font:       "JetBrainsMono Nerd Font Bold 11";
+}
+
+entry {
+    placeholder:       "search...";
+    placeholder-color: @dim;
+    text-color:        @bright;
+}
+
+listview {
+    lines:            8;
+    padding:          4px 0px;
+    scrollbar:        false;
+    fixed-height:     true;
+    dynamic:          true;
+}
+
+element {
+    padding:       8px 16px;
+    spacing:       12px;
+    border-radius: 0px;
+}
+
+element normal.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+element alternate.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+element selected.normal {
+    background-color: @surface;
+    text-color:       @bright;
+    border:           0px 0px 0px 3px solid;
+    border-color:     @azure;
+}
+
+element-icon {
+    size: 20px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+
+element selected.active {
+    background-color: @surface;
+    text-color:       @azure;
+}
+
+element-text selected {
+    text-color: @bright;
+}
