@@ -1,80 +1,108 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 36,
-    "spacing": 0,
-    "margin-top": 4,
-    "margin-left": 10,
-    "margin-right": 10,
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "temperature", "battery", "tray"],
+    "margin-top": 15,
+    "margin-left": 20,
+    "margin-right": 20,
+    "spacing": 15,
 
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "network",
+        "battery",
+        "bluetooth",
+        "custom/power",
+        "custom/panel",
+    ],
+
+    /* --- MODULE CONFIGURATIONS --- */
+    "custom/launcher": {
+        "format": "<span color='#1a7fd4'>S</span>",
+        "on-click": "rofi -show drun",
+        "tooltip": false
+    },
+    
     "hyprland/workspaces": {
-        "format": "{id}",
-        "on-click": "activate",
-        "sort-by-number": true,
-        "persistent-workspaces": {
-            "*": 4
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}",
+        "format-icons": {
+            "default": "○",
+            "active": "●"
         }
     },
 
     "clock": {
         "format": "{:%H:%M}",
-        "format-alt": "{:%A, %B %d}",
-        "tooltip-format": "<tt>{calendar}</tt>",
-        "calendar": {
-            "mode": "month",
-            "weeks-pos": "left",
-            "format": {
-                "months": "<span color='#c8ccd4'><b>{}</b></span>",
-                "weeks": "<span color='#4a4e56'>{}</span>",
-                "weekdays": "<span color='#2980d4'><b>{}</b></span>",
-                "today": "<span color='#2980d4'><b><u>{}</u></b></span>"
-            }
-        }
+        "format-alt": "{:%A, %b %d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
     },
 
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "󰝟  muted",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 Muted",
         "format-icons": {
-            "default": ["󰕿", "󰖀", "󰕾"]
+
+            "default": ["", "", ""]
         },
-        "on-click": "pavucontrol",
-        "tooltip-format": "{desc} · {volume}%"
+        "on-click": "pavucontrol"
     },
 
     "network": {
-        "format-wifi": "󰖩  {signalStrength}%",
-        "format-ethernet": "󰈀  {ifname}",
-        "format-disconnected": "󰖪  off",
-        "tooltip-format-wifi": "{essid} · {ipaddr}\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}",
-        "tooltip-format-ethernet": "{ifname} · {ipaddr}",
-        "on-click": "nm-connection-editor"
+    "interval": 2,
+    "format-wifi": "󰤨 {essid} ↓{bandwidthDownBytes} ↑{bandwidthUpBytes}",
+    "format-ethernet": "󰈀 Wired ↓{bandwidthDownBytes} ↑{bandwidthUpBytes}",
+    "format-disconnected": "󰤭 Offline",
+    "tooltip-format": "{ifname} via {gwaddr}\nIP: {ipaddr}\nStrength: {signalStrength}%",
+    "on-click": "nm-connection-editor"
     },
 
-    "temperature": {
-        "thermal-zone": 0,
-        "format": "  {temperatureC}°C",
-        "critical-threshold": 85,
-        "format-critical": "  {temperatureC}°C"
-    },
-
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "󰂄  {capacity}%",
-        "format-plugged": "󰚥  {capacity}%",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip-format": "{timeTo}\n{power} W"
+    "custom/panel": {
+        "format": "",
+        "on-click": "eww open --toggle dionysus_panel",
+        "tooltip": false
     },
 
     "tray": {
-        "icon-size": 14,
-        "spacing": 8
-    }
+        "spacing": 10
+    },
+	
+    "battery": {
+    	"bat": "BAT1",
+    	"interval": 30,
+    	"states": {
+        	"warning": 25,
+        	"critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip": false
+    },
+    
+    "bluetooth": {
+    "format": "󰂯 {status}",
+    "format-connected": "󰂱 {device_alias}",
+    "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "blueman-manager",
+    "on-click-right": "rfkill toggle bluetooth"
+    },
+   
+    "custom/power": {
+    "format": "⏻",
+    "on-click": "~/.dotfiles/scripts/powermenu.sh",
+    "tooltip": false
+    },
+
 }

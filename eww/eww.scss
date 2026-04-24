@@ -1,258 +1,123 @@
 // ╔═══════════════════════════════════════╗
-// ║         STR TERMINAL v3.0             ║
+// ║         STR TERMINAL                  ║
 // ║         eww.scss — skuwii             ║
 // ╚═══════════════════════════════════════╝
 
+/* --- STR Theme Variables --- */
+$asphalt:   #0e0f11;
+$surface:   rgba(28, 30, 33, 0.65);
+$elevated:  rgba(37, 40, 48, 0.8);
+$deep-blue: #1e3a5c;
+$azure:     #1a7fd4;
+$sky:       #5baee0;
+$text:      #dde3ea;
+$muted:     #5b7a9a;
+$pink:      #ffb8c6;
+$radius:    18px;
+
 * {
   all: unset;
-  font-family: "JetBrainsMono Nerd Font";
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+}
+
+window {
+  background-color: transparent;
+}
+
+/* --- Global Card Style --- */
+.card {
+  background-color: $surface;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $radius;
+  padding: 20px;
+}
+
+/* --- 1. Profile --- */
+.avatar {
+  background-color: $azure;
+  color: $asphalt;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  border: 2px solid rgba(26, 127, 212, 0.4);
+}
+.username { color: $text; font-size: 16px; font-weight: bold; }
+.hostname { color: $muted; font-size: 11px; margin-top: 2px; }
+.easter-egg {
+  background-color: $elevated;
+  border: 1px solid rgba(255, 184, 198, 0.2);
+  border-radius: 10px;
+  padding: 6px 12px;
+  color: $text;
   font-size: 13px;
-  color: #8a8f98;
-}
-
-// ── Panels ──────────────────────────────
-
-.panel {
-  background-color: #0e0f11;
-  border: 1px solid #1c1e21;
-  border-radius: 8px;
-  padding: 14px;
-}
-
-// ── Identity ────────────────────────────
-
-.identity-row {
-  margin-bottom: 10px;
-}
-
-.identity-s {
-  font-size: 30px;
   font-weight: bold;
-  color: #2980d4;
-  padding: 5px;
 }
+.pink-heart { color: $pink; font-size: 12px; margin: 0 4px; }
 
-.identity-dot {
-  color: #4a4e56;
-  font-size: 16px;
-  padding: 5px;
-}
+/* --- 2. Time & Weather --- */
+.time { color: $text; font-size: 52px; font-weight: 900; }
+.date { color: $sky; font-size: 12px; font-weight: bold; margin-top: 5px; }
+.weather-icon { font-size: 32px; margin-bottom: 2px; }
+.weather-temp { color: $text; font-size: 14px; font-weight: bold; }
+.weather-loc { color: $muted; font-size: 11px; }
 
-.identity-handle {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 5px;
-  color: #2980d4;
-}
-
-.identity-badge {
-  border: 1px solid #4a4e56;
+/* --- 3. Sys Grid --- */
+.sys-label { color: $text; font-size: 12px; font-weight: bold; }
+.sys-val { color: $muted; font-size: 12px; }
+scale trough {
+  background-color: $elevated;
   border-radius: 4px;
-  padding: 1px 2px;
-}
-
-.identity-badge-text {
-  font-size: 12px;
-  color: #4a4e56;
-  letter-spacing: 1px;
-  color: pink;
-}
-
-// ── Clock ───────────────────────────────
-
-.clock-section {
-  margin-top: 6px;
-  margin-bottom: 4px;
-}
-
-.clock-time {
-  font-size: 42px;
-  font-weight: bold;
-  color: #c8ccd4;
-}
-
-.clock-date {
-  font-size: 11px;
-  color: #4a4e56;
-  margin-top: -2px;
-}
-
-// ── Tagline ─────────────────────────────
-
-.tagline {
-  font-size: 10px;
-  color: #4a4e56;
-  letter-spacing: 2px;
-  margin-top: 4px;
-  margin-bottom: 8px;
-}
-
-// ── Separator ───────────────────────────
-
-.separator {
-  min-height: 1px;
-  background-color: #1c1e21;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-// ── Section Headers ─────────────────────
-
-.section-header {
-  font-size: 11px;
-  font-weight: bold;
-  color: #2980d4;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-
-.section-header-red {
-  font-size: 11px;
-  font-weight: bold;
-  color: #c0392b;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-
-// ── Stats ───────────────────────────────
-
-.stat-row {
-  margin-bottom: 6px;
-}
-
-.stat-label {
-  font-size: 11px;
-  color: #4a4e56;
-  min-width: 36px;
-  font-weight: bold;
-}
-
-.stat-bar {
-  min-width: 110px;
   min-height: 8px;
-  margin-left: 6px;
-  margin-right: 6px;
+}
+scale highlight { border-radius: 4px; }
+.azure highlight { background-color: $azure; }
+.pink highlight { background-color: $pink; }
+scale slider { min-width: 0px; min-height: 0px; background-color: transparent; }
 
-  trough {
-    background-color: #1c1e21;
-    border-radius: 4px;
-    min-height: 8px;
-  }
+/* --- 4. Fetch Card --- */
+.fetch-header { color: $muted; font-size: 10px; letter-spacing: 2px; margin-bottom: 10px; font-weight: bold; }
+.fetch-icon { color: $sky; font-size: 16px; }
+.fetch-title { color: $muted; font-size: 12px; }
+.fetch-val { color: $text; font-size: 12px; }
 
-  progress {
-    background-color: #2980d4;
-    border-radius: 4px;
-    min-height: 8px;
-  }
+$sky: #5dbcd2;
+$muted: #6e738d;
+$bg: rgba(30, 32, 48, 0.9);
+
+.media-card {
+  background-color: $bg;
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 360px;
 }
 
-.stat-value {
-  font-size: 11px;
-  color: #c8ccd4;
-  min-width: 32px;
+.album-art {
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 8px;
+  background-size: cover;
 }
 
-// ── Info Lines ──────────────────────────
-
-.info-lines {
-  margin-top: 6px;
+.terminal-box {
+  border: 2px solid $sky;
+  border-radius: 6px;
+  padding: 10px 10px 0px 10px;
+  background-color: rgba(10, 14, 20, 0.9);
+  margin-top: 10px;
+  min-height: 100px;
 }
 
-.info-line {
-  font-size: 11px;
-  color: #4a4e56;
-  margin-bottom: 2px;
-  letter-spacing: 1px;
+.cava-viz {
+  color: $sky;
+  font-size: 45px;        /* Tall height */
+  letter-spacing: 4px;    /* Spaces the bars out so they look like distinct spikes */
 }
 
-// ── Workspaces ──────────────────────────
-
-.ws-row {
-  margin-bottom: 4px;
-}
-
-.ws-btn {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.ws-active {
-  color: #c8ccd4;
-  border: 1px solid #2980d4;
-  background-color: #1c1e21;
-}
-
-.ws-inactive {
-  color: #4a4e56;
-  border: 1px solid transparent;
-}
-
-.ws-inactive:hover {
-  color: #8a8f98;
-  background-color: #1c1e21;
-}
-
-// ── Network ─────────────────────────────
-
-.net-section {
-  margin-top: 2px;
-}
-
-.net-line {
-  font-size: 12px;
-  color: #c8ccd4;
-  margin-bottom: 2px;
-}
-
-// ── Power Button ────────────────────────
-
-.power-section {
-  margin-top: 8px;
-  margin-bottom: 4px;
-}
-
-.power-btn {
-  min-width: 52px;
-  min-height: 52px;
-  border: 5px solid #c0392b;
-  border-radius: 50px;
-  background-color: #0e0f11;
-}
-
-.power-btn:hover {
-  background-color: #1c1e21;
-}
-
-.power-icon {
-  font-size: 22px;
-  color: #c0392b;
-}
-
-.power-hint {
-  font-size: 9px;
-  color: #4a4e56;
-  letter-spacing: 2px;
-  margin-top: 6px;
-}
-
-// ── Bottom Bar ──────────────────────────
-
-.bottom-panel {
-  padding: 10px 20px;
-}
-
-.reactor-header {
-  font-size: 11px;
-  font-weight: bold;
-  color: #2980d4;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-
-.visualizer-text {
-  font-size: 13px;
-  color: #2980d4;
-  letter-spacing: 1px;
+.term-status {
+  color: $muted;
+  font-size: 10px;
+  font-family: monospace;
+  margin-bottom: 5px;     /* Gives some breathing room between the text and the bars */
 }

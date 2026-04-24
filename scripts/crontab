@@ -1,0 +1,1 @@
+*/5 * * * * /home/yousef/.dotfiles/scripts/battery-notify.sh

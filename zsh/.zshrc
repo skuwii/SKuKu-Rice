@@ -98,3 +98,5 @@ eval "$(zoxide init zsh)"
 
 # ── fzf ──
 source <(fzf --zsh)
+
+export PATH=$PATH:/home/yousef/.spicetify
