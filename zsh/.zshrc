@@ -21,7 +21,7 @@ fastfetch
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="kitty"
-export BROWSER="firefox"
+export BROWSER="brave"
 export PATH="$HOME/.local/bin:$PATH"
 
 # ── STR Prompt ──
@@ -96,7 +96,21 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # ── zoxide (smart cd) ──
 eval "$(zoxide init zsh)"
 
-# ── fzf ──
+# fzf
 source <(fzf --zsh)
 
+# zoxide (smart cd)
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+# eza (better ls)
+alias ls="eza --icons --group-directories-first"
+alias ll="eza -la --icons --group-directories-first"
+alias lt="eza --tree --icons --level=2"
+
+# bat (better cat)
+alias cat="bat --style=plain --paging=never"
+
+
 export PATH=$PATH:/home/yousef/.spicetify
+alias ai="cd ~/ai && source ~/ai/env/bin/activate && jupyter lab --notebook-dir=/home/yousef/ai/notebooks"
