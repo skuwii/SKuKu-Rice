@@ -1292,8 +1292,13 @@ Variants {
                                 color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.6) : Qt.rgba(mocha.surface0.r, mocha.surface0.g, mocha.surface0.b, 0.4)
                                 radius: barWindow.s(10); height: sysLayout.pillHeight;
                                 clip: true
-                                
-                                property real targetWidth: kbLayoutRow.implicitWidth + barWindow.s(24)
+
+                                // STR: only show the kb pill when the user is on a non-default
+                                // layout. With single-layout setups this stays out of the way;
+                                // appears on hyprctl switchxkblayout to a non-us layout.
+                                visible: barWindow.kbLayout !== "us" && barWindow.kbLayout !== "en"
+
+                                property real targetWidth: visible ? kbLayoutRow.implicitWidth + barWindow.s(24) : 0
                                 width: targetWidth
                                 Behavior on width { NumberAnimation { duration: 500; easing.type: Easing.OutQuint } }
                                 

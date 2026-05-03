@@ -1,0 +1,14 @@
+# STR — never commit secrets
+**/.env
+**/.env.*
+*.key
+*.pem
+**/credentials*
+**/*api_key*
+**/*token*
+
+# Local quickshell state / runtime caches
+**/qs_workspaces.json
+**/qs_widget_state
+**/qs_current_widget
+.cache/
