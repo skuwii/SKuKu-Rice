@@ -72,8 +72,8 @@ Variants {
             // =========================================================
             property var tabModules: [
                 "quickactions/DrawAction.qml",
-                "quickactions/SystemUsage.qml",
-                "quickactions/Todo.qml"
+                "quickactions/SystemUsage.qml"
+                // "quickactions/Todo.qml"  // STR: not shipped in this ilyamiro snapshot
             ]
 
             property int tabCount: Math.max(1, tabModules.length)

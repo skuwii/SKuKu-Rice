@@ -61,7 +61,7 @@ Item {
     property color textPrimary: cText
     property color textSecondary: cSubtext0
     property color bgSurface: cSurface0
-    property string iconFont: font.family 
+    property string iconFont: "JetBrainsMono Nerd Font"
 
     function alpha(color, a) { return Qt.rgba(color.r, color.g, color.b, a); }
 
