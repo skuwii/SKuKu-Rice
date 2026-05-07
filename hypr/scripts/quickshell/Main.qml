@@ -76,13 +76,28 @@ PanelWindow {
 
     Component.onCompleted: {
         Qt.callLater(() => {
+            // STR: ilyamiro's `comp` is a string path, not a Component
+            // instance, so the original `t.comp.incubateObject()` call always
+            // threw a TypeError. Resolve via Qt.createComponent and incubate
+            // once the Component is ready. Failure is silent — preload is an
+            // optimization, on-demand load still works.
             let widgetsToPreload = ["settings", "search", "help"];
             for (let i = 0; i < widgetsToPreload.length; i++) {
                 let t = getLayout(widgetsToPreload[i]);
-                if (t && t.comp) {
-                    t.comp.incubateObject(preloaderContainer, {
-                        "notifModel": masterWindow.notifModel
-                    }, Qt.Asynchronous);
+                if (!(t && t.comp)) continue;
+                let comp = Qt.createComponent(t.comp);
+                if (comp.status === Component.Ready) {
+                    comp.incubateObject(preloaderContainer,
+                        { "notifModel": masterWindow.notifModel },
+                        Qt.Asynchronous);
+                } else if (comp.status === Component.Loading) {
+                    comp.statusChanged.connect(() => {
+                        if (comp.status === Component.Ready) {
+                            comp.incubateObject(preloaderContainer,
+                                { "notifModel": masterWindow.notifModel },
+                                Qt.Asynchronous);
+                        }
+                    });
                 }
             }
         });
