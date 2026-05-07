@@ -645,36 +645,31 @@ Variants {
                             }
                         }
 
+                        // STR: Help (?) was removed per user — popup wasn't useful and
+                        // contributed clutter. Slot now hosts a Monitors toggle so the
+                        // monitors layout panel is one click away rather than keybind-only.
                         Rectangle {
-                            property bool isHovered: helpMouse.containsMouse
+                            property bool isHovered: monitorsMouse.containsMouse
                             color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.6) : "transparent"
                             radius: barWindow.s(10)
-                            
-                            property real targetWidth: barWindow.showHelpIcon ? barWindow.s(34) : 0
-                            width: targetWidth
-                            height: parent.pillHeight
-                            visible: targetWidth > 0 || opacity > 0
-                            opacity: barWindow.showHelpIcon ? 1.0 : 0.0
-                            clip: true
-                            
-                            Behavior on width { NumberAnimation { duration: 400; easing.type: Easing.OutQuint } }
-                            Behavior on opacity { NumberAnimation { duration: 300 } }
+                            height: parent.pillHeight; width: barWindow.s(34)
+
                             Behavior on color { ColorAnimation { duration: 200 } }
-                            
+
                             Text {
                                 anchors.centerIn: parent
-                                text: "󰋗"
-                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(22)
-                                color: parent.isHovered ? mocha.teal : mocha.text
+                                text: ""
+                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(20)
+                                color: parent.isHovered ? mocha.sapphire : mocha.text
                                 Behavior on color { ColorAnimation { duration: 200 } }
                                 scale: parent.isHovered ? 1.15 : 1.0
                                 Behavior on scale { NumberAnimation { duration: 250; easing.type: Easing.OutExpo } }
                             }
                             MouseArea {
-                                id: helpMouse
+                                id: monitorsMouse
                                 anchors.fill: parent
                                 hoverEnabled: true
-                                onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle guide"])
+                                onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle monitors"])
                             }
                         }
 
@@ -704,7 +699,10 @@ Variants {
                         }
 
                         Rectangle {
-                            property bool isHovered: settingsMouse.containsMouse
+                            // STR: Settings (gear) replaced with Stewart (system-info dashboard)
+                            // — original Settings popup wrote to ~/.config/hypr/settings.json which
+                            // doesn't drive the user's actual hyprland.conf, so it was a no-op.
+                            property bool isHovered: stewartMouse.containsMouse
                             color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.6) : "transparent"
                             radius: barWindow.s(10)
                             height: parent.pillHeight; width: barWindow.s(34)
@@ -713,7 +711,7 @@ Variants {
                             
                             Text {
                                 anchors.centerIn: parent
-                                text: ""
+                                text: ""
                                 font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(22)
                                 color: parent.isHovered ? mocha.blue : mocha.text
                                 Behavior on color { ColorAnimation { duration: 200 } }
@@ -721,10 +719,10 @@ Variants {
                                 Behavior on scale { NumberAnimation { duration: 250; easing.type: Easing.OutExpo } }
                             }
                             MouseArea {
-                                id: settingsMouse
+                                id: stewartMouse
                                 anchors.fill: parent
                                 hoverEnabled: true
-                                onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle settings"])
+                                onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle stewart"])
                             }
                         }
 

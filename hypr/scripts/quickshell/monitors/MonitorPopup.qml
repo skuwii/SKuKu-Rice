@@ -29,7 +29,7 @@ Item {
     // -------------------------------------------------------------------------
     // COLORS (Dynamic Matugen Palette)
     // -------------------------------------------------------------------------
-    MatugenColors { id: _theme }
+    //MatugenColors { id: root }
     readonly property color base: _theme.base
     readonly property color mantle: _theme.mantle
     readonly property color crust: _theme.crust

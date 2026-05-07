@@ -174,12 +174,14 @@ Item {
                     echo "[$(date +'%H:%M:%S.%3N')] APPLYING CACHED SEARCH: $DEST_FILE TO $TARGET_MONITORS" >> ${logFile}
                     
                     if [ "$TARGET_MONITORS" = "all" ]; then
-                        swww img "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
+                        awww img "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
                     else
-                        swww img -o "$TARGET_MONITORS" "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
+                        awww img -o "$TARGET_MONITORS" "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
                     fi
                     
-                    ( matugen image "$FINAL_THUMB" || true; bash "$RELOAD_SCRIPT" || true ) &
+                    # STR: pywal-driven retheme on every wallpaper apply.
+                    # -n skips wallpaper-set (awww already did it), -q stays quiet.
+                    ( wal -i "$DEST_FILE" -n -q || true; bash "$RELOAD_SCRIPT" || true ) &
                 `;
                 Quickshell.execDetached(["bash", "-c", applyScript]);
             } else {
@@ -216,12 +218,14 @@ Item {
                         echo "[$(date +'%H:%M:%S.%3N')] APPLYING NEW DOWNLOAD: $DEST_FILE TO $TARGET_MONITORS" >> ${logFile}
                         
                         if [ "$TARGET_MONITORS" = "all" ]; then
-                            swww img "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
+                            awww img "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
                         else
-                            swww img -o "$TARGET_MONITORS" "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
+                            awww img -o "$TARGET_MONITORS" "$DEST_FILE" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
                         fi
                         
-                        ( matugen image "$FINAL_THUMB" || true; bash "$RELOAD_SCRIPT" || true ) &
+                        # STR: pywal-driven retheme on every wallpaper apply.
+                    # -n skips wallpaper-set (awww already did it), -q stays quiet.
+                    ( wal -i "$DEST_FILE" -n -q || true; bash "$RELOAD_SCRIPT" || true ) &
                     fi
                 `;
                 Quickshell.execDetached(["bash", "-c", downloadScript]);
@@ -258,9 +262,9 @@ Item {
                 echo "[$(date +'%H:%M:%S.%3N')] APPLYING LOCAL IMAGE: ${escOriginal} TO ${escOutputs}" >> ${logFile}
                 
                 if [ "${escOutputs}" = "all" ]; then
-                    swww img "${escOriginal}" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
+                    awww img "${escOriginal}" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
                 else
-                    swww img -o "${escOutputs}" "${escOriginal}" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
+                    awww img -o "${escOutputs}" "${escOriginal}" --transition-type ${randomTransition} --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1 >> ${logFile} 2>&1 &
                 fi
             `;
         }
@@ -270,7 +274,8 @@ Item {
             pkill mpvpaper || true
             
             ${wallpaperCmd}
-            ( matugen image "${escThumb}" || true; bash "${escReload}" || true ) &
+            # STR: pywal-driven retheme on every wallpaper apply (local path).
+            ( wal -i "${escOriginal}" -n -q || true; bash "${escReload}" || true ) &
         `;
         Quickshell.execDetached(["bash", "-c", fullScript]);
     }
