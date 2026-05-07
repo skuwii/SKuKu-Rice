@@ -51,13 +51,17 @@ PanelWindow {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 48 
+        height: 48
 
-        anchors.leftMargin: (masterWindow.currentActive !== "hidden" && masterWindow.animX < 10) ? masterWindow.animW : 0
-        anchors.rightMargin: (masterWindow.currentActive !== "hidden" && (masterWindow.animX + masterWindow.animW) > (parent.width - 10)) ? masterWindow.animW : 0
-        
-        Behavior on anchors.leftMargin { NumberAnimation { duration: masterWindow.morphDuration; easing.type: Easing.InOutCubic } }
-        Behavior on anchors.rightMargin { NumberAnimation { duration: masterWindow.morphDuration; easing.type: Easing.InOutCubic } }
+        // STR: ilyamiro shrunk this hole when popups were anchored near the
+        // edges so that clicking the underlying topbar would route to
+        // masterWindow.MouseArea and close the popup. The side effect was that
+        // the leftmost/rightmost topbar BUTTONS were also outside the hole, so
+        // clicking a different topbar pill required two clicks (close current,
+        // then re-open new). Keeping the hole full-width: clicks on topbar
+        // pills always pass through to qs_manager.sh, which switches/toggles
+        // the active widget in one step. Click-outside-to-close still works
+        // because the rest of the screen sits outside this 48px band.
     }
 
     MouseArea {

@@ -594,8 +594,8 @@ Variants {
                     
                     property real targetX: (showLayout && !barWindow.isSettingsOpen) ? 0 : barWindow.s(-200)
                     x: targetX
-                    Behavior on x { NumberAnimation { duration: 600; easing.type: Easing.OutExpo } }
-                    Behavior on opacity { NumberAnimation { duration: 400; easing.type: Easing.OutCubic } }
+                    Behavior on x { NumberAnimation { duration: 250; easing.type: Easing.OutExpo } }
+                    Behavior on opacity { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
                     
                     Timer {
                         running: barWindow.isStartupReady
@@ -965,7 +965,7 @@ Variants {
                         opacity: barWindow.isMediaActive ? 1.0 : 0.0
                         transform: Translate { 
                             x: barWindow.isMediaActive ? 0 : barWindow.s(-20) 
-                            Behavior on x { NumberAnimation { duration: 700; easing.type: Easing.OutQuint } }
+                            Behavior on x { NumberAnimation { duration: 300; easing.type: Easing.OutQuint } }
                         }
                         Behavior on opacity { NumberAnimation { duration: 500; easing.type: Easing.OutCubic } }
 
@@ -1100,7 +1100,7 @@ Variants {
                     opacity: showLayout ? 1 : 0
                     transform: Translate {
                         y: centerBox.showLayout ? 0 : barWindow.s(-30)
-                        Behavior on y { NumberAnimation { duration: 800; easing.type: Easing.OutBack; easing.overshoot: 1.1 } }
+                        Behavior on y { NumberAnimation { duration: 350; easing.type: Easing.OutBack; easing.overshoot: 1.1 } }
                     }
 
                     Timer {
@@ -1109,7 +1109,7 @@ Variants {
                         onTriggered: centerBox.showLayout = true
                     }
 
-                    Behavior on opacity { NumberAnimation { duration: 600; easing.type: Easing.OutCubic } }
+                    Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutCubic } }
 
                     scale: isHovered ? 1.03 : 1.0
                     Behavior on scale { NumberAnimation { duration: 300; easing.type: Easing.OutExpo } }
@@ -1164,7 +1164,7 @@ Variants {
                     opacity: showLayout ? 1 : 0
                     transform: Translate {
                         x: rightContent.showLayout ? 0 : barWindow.s(30)
-                        Behavior on x { NumberAnimation { duration: 800; easing.type: Easing.OutBack; easing.overshoot: 1.1 } }
+                        Behavior on x { NumberAnimation { duration: 350; easing.type: Easing.OutBack; easing.overshoot: 1.1 } }
                     }
                     
                     Timer {
@@ -1173,7 +1173,7 @@ Variants {
                         onTriggered: rightContent.showLayout = true
                     }
 
-                    Behavior on opacity { NumberAnimation { duration: 600; easing.type: Easing.OutCubic } }
+                    Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutCubic } }
 
                     Rectangle {
                         height: barWindow.barHeight
