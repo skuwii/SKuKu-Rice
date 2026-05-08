@@ -48,6 +48,8 @@ Item {
     
     readonly property color mauve: _theme.mauve || "#cba6f7"
     readonly property color blue: _theme.blue || "#89b4fa"
+    readonly property color baseGlass:  _theme.baseGlass
+    readonly property color crustGlass: _theme.crustGlass
 
     // -------------------------------------------------------------------------
     // STATE & POLLING
@@ -273,7 +275,7 @@ except Exception as e:
         anchors.centerIn: parent 
         
         radius: window.s(16)
-        color: window.base
+        color: window.baseGlass
         border.color: window.surface1
         border.width: 1
         clip: true

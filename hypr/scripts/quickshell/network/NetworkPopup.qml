@@ -179,6 +179,8 @@ Item {
     readonly property color pink: _theme.pink
     readonly property color sapphire: _theme.sapphire
     readonly property color blue: _theme.blue
+    readonly property color baseGlass:  _theme.baseGlass
+    readonly property color crustGlass: _theme.crustGlass
     readonly property color red: _theme.red
     readonly property color maroon: _theme.maroon
     readonly property color peach: _theme.peach
@@ -839,7 +841,7 @@ Item {
         Rectangle {
             anchors.fill: parent
             radius: window.s(20)
-            color: window.base
+            color: window.baseGlass
             border.color: window.surface0
             border.width: 1
             clip: true

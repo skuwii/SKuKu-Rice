@@ -31,6 +31,8 @@ Item {
     readonly property color surface2: _theme.surface2
     readonly property color mauve: _theme.mauve || "#cba6f7"
     readonly property color blue: _theme.blue || "#89b4fa"
+    readonly property color baseGlass:  _theme.baseGlass
+    readonly property color crustGlass: _theme.crustGlass
     readonly property color green: _theme.green || "#a6e3a1"
     readonly property color red: _theme.red || "#f38ba8"
 
@@ -1581,7 +1583,7 @@ Item {
             width: window.s(480); height: window.s(600)
             anchors.centerIn: parent
             radius: window.s(14)
-            color: window.base
+            color: window.baseGlass
             border.color: window.surface2
             border.width: 1
             clip: true

@@ -114,3 +114,19 @@ alias cat="bat --style=plain --paging=never"
 
 export PATH=$PATH:/home/yousef/.spicetify
 alias ai="cd ~/ai && source ~/ai/env/bin/activate && jupyter lab --notebook-dir=/home/yousef/ai/notebooks"
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+# bun completions
+[ -s "/home/yousef/.bun/_bun" ] && source "/home/yousef/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# brain-sync aliases
+alias brain-pull='~/.dotfiles/scripts/sync-brain.sh pull'
+alias brain-push='~/.dotfiles/scripts/sync-brain.sh push'

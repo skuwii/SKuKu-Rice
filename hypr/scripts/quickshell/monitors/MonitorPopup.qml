@@ -29,7 +29,7 @@ Item {
     // -------------------------------------------------------------------------
     // COLORS (Dynamic Matugen Palette)
     // -------------------------------------------------------------------------
-    //MatugenColors { id: root }
+    MatugenColors { id: _theme }
     readonly property color base: _theme.base
     readonly property color mantle: _theme.mantle
     readonly property color crust: _theme.crust
@@ -42,6 +42,8 @@ Item {
     
     readonly property color mauve: _theme.mauve
     readonly property color blue: _theme.blue
+    readonly property color baseGlass:  _theme.baseGlass
+    readonly property color crustGlass: _theme.crustGlass
     readonly property color pink: _theme.pink
     readonly property color teal: _theme.teal
     readonly property color yellow: _theme.yellow
@@ -503,7 +505,7 @@ Item {
         Rectangle {
             anchors.fill: parent
             radius: window.s(30)
-            color: window.base
+            color: window.baseGlass
             border.color: window.surface0
             border.width: 1
             clip: true

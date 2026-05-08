@@ -658,7 +658,7 @@ Variants {
 
                             Text {
                                 anchors.centerIn: parent
-                                text: ""
+                                text: "󰍹"
                                 font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(20)
                                 color: parent.isHovered ? mocha.sapphire : mocha.text
                                 Behavior on color { ColorAnimation { duration: 200 } }
@@ -698,6 +698,8 @@ Variants {
                             }
                         }
 
+                        /* Stewart AI button — disabled (no AI)
+
                         Rectangle {
                             // STR: Settings (gear) replaced with Stewart (system-info dashboard)
                             // — original Settings popup wrote to ~/.config/hypr/settings.json which
@@ -725,6 +727,7 @@ Variants {
                                 onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle stewart"])
                             }
                         }
+                        */
 
                         Rectangle {
                             id: updateButton

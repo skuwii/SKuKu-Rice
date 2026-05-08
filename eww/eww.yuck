@@ -4,6 +4,7 @@
 ;; ╚═══════════════════════════════════════╝
 
 ;; --- VARIABLES & POLLING --- ;;
+(defpoll love_days :interval "1h" "echo $(( ($(date +%s) - $(date -d '2025-04-02' +%s)) / 86400 ))")
 (defpoll time :interval "1s" "date '+%H:%M'")
 (defpoll date :interval "1h" "date '+%A, %b %d' | tr '[:lower:]' '[:upper:]'")
 
@@ -20,9 +21,9 @@
 ;; --- THE MAIN WINDOW --- ;;
 (defwindow dionysus_panel
   :monitor 0
-  :geometry (geometry :x "20px" :y "20px" :width "360px" :anchor "top left")
-  :stacking "bg"      
-  :exclusive false    
+  :geometry (geometry :x "20px" :y "20px" :width "360px" :height "1040px" :anchor "top left")
+  :stacking "bg"
+  :exclusive false
   (widget_stack))
 
 ;; --- WIDGET LAYOUTS --- ;;
@@ -32,7 +33,8 @@
     (time_card)
     (sys_grid)
     (fetch_card)
-    (media_card)))
+    (media_card)
+    (love_card)))
 
 (defwidget profile_card []
   (box :class "card profile-card" :orientation "h" :space-evenly false
@@ -73,12 +75,11 @@
     (scale :class "progress-track ${color}" :value value :min 0 :max 101 :active false)))
 
 (defwidget fetch_card []
-  (box :class "card fetch-card" :orientation "v" :space-evenly false :spacing 10
+  (box :class "card fetch-card" :orientation "v" :space-evenly false :spacing 8
     (label :class "fetch-header" :text "STR TERMINAL INFO" :halign "start")
-    (fetch_row :icon "" :title "OS:" :val "Arch Linux")
-    (fetch_row :icon "" :title "WM:" :val "Hyprland")
-    (fetch_row :icon "󰄛" :title "Term:" :val "Kitty / ZSH")
-    (fetch_row :icon "" :title "Host:" :val "Civic Type R (FL5)")))
+    (fetch_row :icon "" :title "OS:" :val "Arch Linux")
+    (fetch_row :icon "" :title "WM:" :val "Hyprland")
+    (fetch_row :icon "󰄛" :title "Term:" :val "Kitty / ZSH")))
 
 (defwidget fetch_row [icon title val]
   (box :class "fetch-row" :orientation "h" :space-evenly false :spacing 15
@@ -101,3 +102,17 @@
     (box :class "terminal-box" :orientation "v" :space-evenly false
       (label :class "term-status" :text "[ CORE STATUS: ] Generating visuals." :halign "start")
       (label :class "cava-viz" :text cava_bars :halign "center" :valign "end" :vexpand true))))
+
+(defwidget love_card []
+  (box :class "love-card" :orientation "v" :space-evenly false :spacing 0
+    (box :orientation "h" :space-evenly false :hexpand true
+      (label :class "love-corner" :text "♥" :halign "start")
+      (box :hexpand true)
+      (label :class "love-corner" :text "♥" :halign "end"))
+    (box :orientation "v" :space-evenly false :spacing 3 :hexpand true
+      (label :class "love-count" :text love_days :halign "center")
+      (label :class "love-label" :text "DAYS TOGETHER" :halign "center"))
+    (box :orientation "h" :space-evenly false :hexpand true
+      (label :class "love-corner" :text "♥" :halign "start")
+      (box :hexpand true)
+      (label :class "love-ym" :text "M · Y" :halign "end"))))

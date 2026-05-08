@@ -53,6 +53,10 @@ Item {
     property color pink:     "#ffb8c6"
     property color green:    "#a6e3a1"
 
+    // Glassmorphism helpers — semi-transparent versions for blur-behind popups
+    property color crustGlass: "#d90e0f11"   // bg at 85% opacity
+    property color baseGlass:  "#d91c1e21"   // surface at 85% opacity
+
     // Kept for binding compatibility with the matugen reader pattern.
     property string rawJson: ""
 }

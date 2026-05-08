@@ -59,6 +59,8 @@ Item {
     readonly property color teal: _theme.teal
     readonly property color sapphire: _theme.sapphire
     readonly property color blue: _theme.blue
+    readonly property color baseGlass:  _theme.baseGlass
+    readonly property color crustGlass: _theme.crustGlass
 
     // -------------------------------------------------------------------------
     // STATE & CONFIG
@@ -238,7 +240,7 @@ Item {
         Rectangle {
             anchors.fill: parent
             radius: window.s(20)
-            color: window.base
+            color: window.baseGlass
             border.color: window.surface0
             border.width: 1
             clip: true
