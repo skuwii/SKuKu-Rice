@@ -110,20 +110,23 @@ PanelWindow {
     Timer { interval: 3000; repeat: true; running: true; onTriggered: { musicPoller.running = false; musicPoller.running = true; } }
 
     // ── CAVA BARS ────────────────────────────────────────────────────────
-    property string cavaBars: "▃▄▅▇█▆▄"
+    property var cavaBarsData: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     Process {
         id: cavaPoller
-        command: ["bash", "-c", "cat /tmp/qs_cava_bars.txt 2>/dev/null || echo '▃▄▅▇█▆▄'"]
+        command: ["bash", "-c", "cat /tmp/qs_cava_bars.txt 2>/dev/null"]
         stdout: StdioCollector {
             onStreamFinished: {
                 var t = this.text.trim();
-                if (t.length > 0) panel.cavaBars = t;
+                if (t.length > 0) {
+                    var vals = t.split(";").map(function(s) { return parseInt(s) || 0; });
+                    if (vals.length > 0) panel.cavaBarsData = vals;
+                }
             }
         }
     }
 
-    Timer { interval: 150; repeat: true; running: true; onTriggered: { cavaPoller.running = false; cavaPoller.running = true; } }
+    Timer { interval: 50; repeat: true; running: true; onTriggered: { cavaPoller.running = false; cavaPoller.running = true; } }
 
     // ── INLINE COMPONENTS ────────────────────────────────────────────────
 
@@ -378,7 +381,7 @@ PanelWindow {
             // ── 5. MEDIA ─────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                implicitHeight: 196
+                implicitHeight: 226
                 radius: 12
                 color: Qt.rgba(0.11, 0.12, 0.18, 0.90)
                 border { color: Qt.rgba(1, 1, 1, 0.06); width: 1 }
@@ -454,26 +457,34 @@ PanelWindow {
                     // Cava terminal box
                     Rectangle {
                         Layout.fillWidth: true
-                        implicitHeight: 60
+                        implicitHeight: 90
                         radius: 6
                         color: Qt.rgba(0.04, 0.05, 0.08, 0.92)
                         border { color: panel.clrAzureHi; width: 2 }
+                        clip: true
 
-                        ColumnLayout {
+                        Row {
                             anchors { fill: parent; margins: 8 }
                             spacing: 3
 
-                            Text {
-                                text: "[ CORE STATUS: ] Generating visuals."
-                                font { family: "JetBrains Mono"; pixelSize: 9 }
-                                color: panel.clrMute
-                            }
-                            Text {
-                                Layout.fillWidth: true
-                                text: panel.cavaBars
-                                font { family: "JetBrains Mono"; pixelSize: 22 }
-                                color: panel.clrAzureHi
-                                horizontalAlignment: Text.AlignHCenter
+                            Repeater {
+                                model: panel.cavaBarsData.length
+                                delegate: Item {
+                                    width: (parent.width - (panel.cavaBarsData.length - 1) * 3) / panel.cavaBarsData.length
+                                    height: parent.height
+
+                                    Rectangle {
+                                        width: parent.width
+                                        height: Math.max(2, parent.height * (panel.cavaBarsData[index] / 7))
+                                        anchors.bottom: parent.bottom
+                                        radius: 2
+                                        color: panel.clrAzureHi
+
+                                        Behavior on height {
+                                            NumberAnimation { duration: 80; easing.type: Easing.OutCubic }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
