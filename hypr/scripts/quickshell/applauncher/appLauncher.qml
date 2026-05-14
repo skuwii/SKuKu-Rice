@@ -221,8 +221,8 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
 
         radius: window.s(16)
-        color: Qt.rgba(window.base.r, window.base.g, window.base.b, 1.0)
-        border.color: window.surface1
+        color: Qt.rgba(window.crust.r, window.crust.g, window.crust.b, 0.85)
+        border.color: Qt.rgba(window.surface1.r, window.surface1.g, window.surface1.b, 0.6)
         border.width: 1
         clip: true
 
