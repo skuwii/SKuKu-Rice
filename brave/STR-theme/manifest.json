@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "STR",
+  "description": "SKuKu Terminal Rice — Brave theme",
+  "version": "1.0",
+  "theme": {
+    "colors": {
+      "frame":                  [14,  15,  17 ],
+      "frame_inactive":         [14,  15,  17 ],
+      "toolbar":                [28,  30,  33 ],
+      "tab_text":               [214, 216, 220],
+      "tab_background_text":    [138, 141, 146],
+      "bookmark_text":          [214, 216, 220],
+      "ntp_background":         [14,  15,  17 ],
+      "ntp_text":               [214, 216, 220],
+      "ntp_link":               [41,  128, 212],
+      "button_background":      [28,  30,  33 ],
+      "omnibox_background":     [28,  30,  33 ],
+      "omnibox_text":           [214, 216, 220]
+    },
+    "tints": {
+      "buttons": [0.58, 0.53, 0.9]
+    },
+    "properties": {
+      "ntp_logo_alternate": 1
+    }
+  }
+}
