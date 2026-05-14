@@ -2,19 +2,19 @@
 # sync-brain.sh — sync Obsidian vault context ↔ ~/.claude/context/
 # Usage: sync-brain.sh [pull|push]  (default: pull)
 
-VAULT="$HOME/notes/SKuKu Brain"
+VAULT="$HOME/notes/SKuKu-Brain"
 CTX="$HOME/.claude/context"
 CLAUDE_MD="$HOME/.claude/CLAUDE.md"
 
 pull() {
     echo "brain-pull: vault → ~/.claude/"
     mkdir -p "$CTX"
-    cp "$VAULT/STR/rice.md"        "$CTX/rice.md"
-    cp "$VAULT/brain/projects.md"  "$CTX/projects.md"
-    cp "$VAULT/AI/ai.md"           "$CTX/ai.md"
-    cp "$VAULT/cybersec/cybersec.md" "$CTX/cybersec.md"
-    cp "$VAULT/uni/uni.md"         "$CTX/uni.md"
-    cp "$VAULT/CLAUDE.md"          "$CLAUDE_MD"
+    cp "$VAULT/STR/rice.md"          "$CTX/rice.md"          2>/dev/null && echo "  rice.md" || echo "  rice.md [missing]"
+    cp "$VAULT/brain/projects.md"    "$CTX/projects.md"      2>/dev/null && echo "  projects.md" || echo "  projects.md [missing]"
+    cp "$VAULT/AI/ai.md"             "$CTX/ai.md"            2>/dev/null && echo "  ai.md" || echo "  ai.md [missing, skipped]"
+    cp "$VAULT/cybersec/cybersec.md" "$CTX/cybersec.md"      2>/dev/null && echo "  cybersec.md" || echo "  cybersec.md [missing]"
+    cp "$VAULT/uni/uni.md"           "$CTX/uni.md"           2>/dev/null && echo "  uni.md" || echo "  uni.md [missing]"
+    cp "$VAULT/CLAUDE.md"            "$CLAUDE_MD"            2>/dev/null && echo "  CLAUDE.md" || echo "  CLAUDE.md [missing]"
     echo "done."
 }
 
