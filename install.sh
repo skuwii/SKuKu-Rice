@@ -1,7 +1,7 @@
 #!/bin/bash
 # ╔═══════════════════════════════════════╗
-# ║         STR TERMINAL v3.0             ║
-# ║         install.sh — skuwii           ║
+# ║         STR TERMINAL — skuwii         ║
+# ║         install.sh                    ║
 # ╚═══════════════════════════════════════╝
 
 set -e
@@ -12,31 +12,13 @@ CONFIG="$HOME/.config"
 echo ""
 echo "  ███████╗"
 echo "  ██╔════╝"
-echo "  ███████╗  STR TERMINAL v3.0"
+echo "  ███████╗  STR TERMINAL"
 echo "  ╚════██║  installer"
 echo "  ███████║"
 echo "  ╚══════╝"
 echo ""
 
-# ── Dependencies ──
-echo "[ PACKAGES ] Required packages:"
-echo ""
-echo "  Core:      hyprland hyprpaper hyprlock hypridle waybar eww-git dunst rofi-wayland kitty"
-echo "  Shell:     zsh oh-my-zsh-git zsh-autosuggestions zsh-syntax-highlighting"
-echo "  Util:      fastfetch cava eza bat brightnessctl grim slurp wl-clipboard cliphist jq"
-echo "  Theme:     papirus-icon-theme bibata-cursor-theme-bin ttf-jetbrains-mono-nerd"
-echo "  GTK:       nwg-look (for applying GTK theme)"
-echo "  SDDM:      sddm qt5-quickcontrols2"
-echo "  Audio:     pipewire pipewire-pulse pavucontrol"
-echo ""
-echo "  Install with: yay -S <packages>"
-echo ""
-
-read -p "Continue with symlinks? [y/N] " -n 1 -r
-echo
-[[ ! $REPLY =~ ^[Yy]$ ]] && echo "Aborted." && exit 0
-
-# ── Backup existing configs ──
+# ── Symlink helper ──────────────────────────────────────────────────────────
 backup() {
     if [ -e "$1" ] && [ ! -L "$1" ]; then
         echo "  backup: $1 → $1.bak"
@@ -44,95 +26,103 @@ backup() {
     fi
 }
 
-# ── Symlink helper ──
 link() {
-    local src="$1"
-    local dst="$2"
+    local src="$1" dst="$2"
     mkdir -p "$(dirname "$dst")"
     backup "$dst"
     ln -sf "$src" "$dst"
-    echo "  link: $dst → $src"
+    echo "  link: $(basename "$dst")"
 }
 
-echo ""
+link_dir() {
+    local src="$1" dst="$2"
+    backup "$dst"
+    ln -sf "$src" "$dst"
+    echo "  link dir: $(basename "$dst")"
+}
+
+# ── Configs ──────────────────────────────────────────────────────────────────
 echo "[ LINKING ]"
+echo ""
 
 # Hyprland
-link "$DOTFILES/hypr/hyprland.conf"   "$CONFIG/hypr/hyprland.conf"
-link "$DOTFILES/hypr/hyprlock.conf"   "$CONFIG/hypr/hyprlock.conf"
-link "$DOTFILES/hypr/hypridle.conf"   "$CONFIG/hypr/hypridle.conf"
-link "$DOTFILES/hypr/hyprpaper.conf"  "$CONFIG/hypr/hyprpaper.conf"
+link "$DOTFILES/hypr/hyprland.conf"        "$CONFIG/hypr/hyprland.conf"
+link "$DOTFILES/hypr/hyprlock.conf"        "$CONFIG/hypr/hyprlock.conf"
+link "$DOTFILES/hypr/hypridle.conf"        "$CONFIG/hypr/hypridle.conf"
+link_dir "$DOTFILES/hypr/scripts"          "$CONFIG/hypr/scripts"
 
-# Waybar
-link "$DOTFILES/waybar/config.jsonc"  "$CONFIG/waybar/config.jsonc"
-link "$DOTFILES/waybar/style.css"     "$CONFIG/waybar/style.css"
-
-# eww
-link "$DOTFILES/eww/eww.yuck"        "$CONFIG/eww/eww.yuck"
-link "$DOTFILES/eww/eww.scss"        "$CONFIG/eww/eww.scss"
-mkdir -p "$CONFIG/eww/scripts"
-link "$DOTFILES/eww/scripts/cpu.sh"     "$CONFIG/eww/scripts/cpu.sh"
-link "$DOTFILES/eww/scripts/network.sh" "$CONFIG/eww/scripts/network.sh"
-chmod +x "$DOTFILES/eww/scripts/"*.sh
+# Quickshell (lives inside hypr/scripts/quickshell — symlinked above via scripts dir)
+# No separate link needed.
 
 # Kitty
-link "$DOTFILES/kitty/kitty.conf"     "$CONFIG/kitty/kitty.conf"
-
-# Rofi
-link "$DOTFILES/rofi/config.rasi"     "$CONFIG/rofi/config.rasi"
-
-# Dunst
-link "$DOTFILES/dunst/dunstrc"        "$CONFIG/dunst/dunstrc"
-
-# tmux
-link "$DOTFILES/tmux/tmux.conf"       "$CONFIG/tmux/tmux.conf"
-
-# Fastfetch
-link "$DOTFILES/fastfetch/config.jsonc" "$CONFIG/fastfetch/config.jsonc"
-
-# Cava
-link "$DOTFILES/cava/config"          "$CONFIG/cava/config"
-
-# GTK
-link "$DOTFILES/gtk-3.0/settings.ini" "$CONFIG/gtk-3.0/settings.ini"
-link "$DOTFILES/gtk-4.0/gtk.css"      "$CONFIG/gtk-4.0/gtk.css"
+link "$DOTFILES/kitty/kitty.conf"          "$CONFIG/kitty/kitty.conf"
 
 # ZSH
-link "$DOTFILES/zsh/.zshrc"           "$HOME/.zshrc"
+link "$DOTFILES/zsh/.zshrc"                "$HOME/.zshrc"
 
-# Pywal override
-mkdir -p "$HOME/.config/wal"
-link "$DOTFILES/wal/colors-str.json"  "$CONFIG/wal/colors-str.json"
+# tmux
+link "$DOTFILES/tmux/tmux.conf"            "$HOME/.tmux.conf"
+
+# Fastfetch
+link "$DOTFILES/fastfetch/config.jsonc"    "$CONFIG/fastfetch/config.jsonc"
+
+# Cava
+link "$DOTFILES/cava/config"               "$CONFIG/cava/config"
+
+# Rofi (legacy, kept)
+link "$DOTFILES/rofi/config.rasi"          "$CONFIG/rofi/config.rasi"
+
+# eww (legacy rollback)
+link "$DOTFILES/eww/eww.yuck"             "$CONFIG/eww/eww.yuck"
+link "$DOTFILES/eww/eww.scss"             "$CONFIG/eww/eww.scss"
+link_dir "$DOTFILES/eww/scripts"          "$CONFIG/eww/scripts"
+
+# wlogout
+link "$DOTFILES/wlogout/layout"            "$CONFIG/wlogout/layout"
+link "$DOTFILES/wlogout/style.css"         "$CONFIG/wlogout/style.css"
+
+# GTK
+link "$DOTFILES/gtk-3.0/settings.ini"     "$CONFIG/gtk-3.0/settings.ini"
+link "$DOTFILES/gtk-4.0/gtk.css"          "$CONFIG/gtk-4.0/gtk.css"
+
+# btop
+link "$DOTFILES/btop/btop.conf"           "$CONFIG/btop/btop.conf"
+
+# yazi
+link_dir "$DOTFILES/yazi"                 "$CONFIG/yazi"
+
+# zathura
+link "$DOTFILES/zathura/zathurarc"        "$CONFIG/zathura/zathurarc"
+
+# lazygit
+link "$DOTFILES/lazygit/config.yml"       "$CONFIG/lazygit/config.yml"
 
 echo ""
 echo "[ MANUAL STEPS ]"
 echo ""
-echo "  1. SDDM theme:"
-echo "     sudo cp -r $DOTFILES/sddm/str-theme /usr/share/sddm/themes/"
-echo "     sudo nano /etc/sddm.conf → set Current=str-theme under [Theme]"
+echo "  1. Hyprland plugins:"
+echo "     hyprpm add https://github.com/hyprwm/hyprland-plugins"
+echo "     hyprpm add https://github.com/VirtCode/hypr-dynamic-cursors"
+echo "     hyprpm enable hyprexpo"
+echo "     hyprpm enable dynamic-cursors"
 echo ""
-echo "  2. GRUB theme:"
+echo "  2. SDDM theme:"
+echo "     sudo cp -r $DOTFILES/sddm/str-theme /usr/share/sddm/themes/"
+echo "     # Set Current=str-theme in /etc/sddm.conf"
+echo ""
+echo "  3. GRUB theme:"
 echo "     sudo cp -r $DOTFILES/grub/str-theme /boot/grub/themes/"
-echo "     sudo nano /etc/default/grub → set GRUB_THEME=/boot/grub/themes/str-theme/theme.txt"
+echo "     # Set GRUB_THEME in /etc/default/grub, then:"
 echo "     sudo grub-mkconfig -o /boot/grub/grub.cfg"
 echo ""
-echo "  3. Cursor theme:"
-echo "     Run nwg-look and select Bibata-Modern-Classic"
-echo "     Or: gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic"
-echo ""
-echo "  4. Pywal:"
-echo "     wal --theme $CONFIG/wal/colors-str.json"
-echo "     Or generate from wallpaper: wal -i ~/wallpapers/current.jpg"
+echo "  4. Brave theme:"
+echo "     brave://extensions → Developer mode → Load unpacked → $DOTFILES/brave/STR-theme/"
 echo ""
 echo "  5. Wallpaper:"
-echo "     Place your wallpaper at ~/wallpapers/current.jpg"
-echo "     Hyprpaper will load it automatically"
+echo "     Place images in ~/media/wallpapers/ (default: firewatch.jpg)"
 echo ""
-echo "  6. Firefox:"
-echo "     Install 'Dark Reader' extension"
-echo "     In about:config set toolkit.legacyUserProfileCustomizations.stylesheets = true"
-echo "     Create chrome/userChrome.css in your Firefox profile for deeper theming"
+echo "  6. Cursor:"
+echo "     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic"
 echo ""
-echo "[ DONE ] STR v3.0 deployed. Log out and back in, or:"
-echo "  hyprctl reload && killall waybar; waybar & eww-reload"
+echo "[ DONE ] Log out and back in to apply."
 echo ""
