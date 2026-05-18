@@ -28,7 +28,10 @@ result = [
 print(json.dumps(result))
 ")
         COUNT=$(echo "$CLIENTS" | python3 -c "import json,sys; print(len(json.load(sys.stdin)))")
-        [ "$COUNT" -lt 2 ] && exit 0
+        if [ "$COUNT" -lt 2 ]; then
+            hyprctl dispatch submap reset &>/dev/null
+            exit 0
+        fi
         python3 -c "
 import json, sys
 clients = json.loads('''$CLIENTS'''.replace(\"'\", '\"'))
