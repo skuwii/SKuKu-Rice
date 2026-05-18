@@ -1,16 +1,28 @@
 #!/bin/bash
 # Toggle between locked STR palette and pywal-generated palette.
-# Default is STR. Wal mode is a party trick — run once to show off, again to restore.
+# Affects: Quickshell panels, kitty, all open terminals, tmux, rofi.
+# SUPER+SHIFT+T to trigger. Toggle again to restore STR.
 
 FLAG="/tmp/qs_theme_mode"
 QML="$HOME/.dotfiles/hypr/scripts/quickshell/MatugenColors.qml"
 STR_BACKUP="$HOME/.dotfiles/hypr/scripts/quickshell/MatugenColors-str.qml"
 KITTY_ACTIVE="$HOME/.config/kitty/colors-active.conf"
-KITTY_STR="$HOME/.dotfiles/kitty/colors-str.conf"
 WALLPAPER=$(awww query 2>/dev/null | grep -oP 'image: \K\S+' | head -1)
 [ -z "$WALLPAPER" ] && WALLPAPER="$HOME/media/wallpapers/firewatch.jpg"
 
 current=$(cat "$FLAG" 2>/dev/null || echo "str")
+
+apply_terminals() {
+    # Update all open terminal windows via escape sequences
+    cat ~/.cache/wal/sequences 2>/dev/null
+    # Reload all kitty instances
+    cp ~/.cache/wal/colors-kitty.conf "$KITTY_ACTIVE"
+    kill -SIGUSR1 $(pidof kitty) 2>/dev/null
+    # Reload all tmux sessions
+    tmux list-sessions -F '#S' 2>/dev/null | while read session; do
+        tmux source-file ~/.cache/wal/colors-tmux.conf -t "$session" 2>/dev/null
+    done
+}
 
 restart_quickshell() {
     pkill -f "quickshell" 2>/dev/null
@@ -42,20 +54,19 @@ def hex_to_rgb(h):
 def lerp_hex(h1, h2, t):
     r1, g1, b1 = hex_to_rgb(h1)
     r2, g2, b2 = hex_to_rgb(h2)
-    r = int(r1 + (r2 - r1) * t)
-    g = int(g1 + (g2 - g1) * t)
-    b = int(b1 + (b2 - b1) * t)
-    return f'#{r:02x}{g:02x}{b:02x}'
+    return '#{:02x}{:02x}{:02x}'.format(
+        int(r1 + (r2 - r1) * t),
+        int(g1 + (g2 - g1) * t),
+        int(b1 + (b2 - b1) * t)
+    )
 
 def alpha_hex(h, a):
-    aa = int(a * 255)
-    return f'#{aa:02x}{h.lstrip("#")}'
+    return '#{:02x}{}'.format(int(a * 255), h.lstrip('#'))
 
-bg   = sp['background']
-fg   = sp['foreground']
-mid  = c['color8']   # bright-black — the natural midpoint wal picks
+bg  = sp['background']
+fg  = sp['foreground']
+mid = c['color8']
 
-# Neutral scale: step from bg toward mid
 crust    = bg
 mantle   = lerp_hex(bg, mid, 0.12)
 base     = lerp_hex(bg, mid, 0.22)
@@ -69,23 +80,19 @@ subtext0 = lerp_hex(mid, fg, 0.78)
 subtext1 = lerp_hex(mid, fg, 0.90)
 text     = fg
 
-# Accent scale from wal — warm tones kept as STR (semantic icons)
 blue     = c['color4']
 sapphire = c['color6']
 teal     = c['color2']
 mauve    = c['color5']
 red      = c['color1']
 maroon   = c['color9']
-peach    = '#fab387'   # locked — sun / warm icons
-yellow   = '#f9e2af'   # locked — moon / idle icons
-pink     = '#ffb8c6'   # locked — hearts
-green    = '#a6e3a1'   # locked — charging / success
+peach    = '#fab387'
+yellow   = '#f9e2af'
+pink     = '#ffb8c6'
+green    = '#a6e3a1'
 
-crust_glass = alpha_hex(crust, 0.85)
-base_glass  = alpha_hex(base,  0.85)
-
-qml = f'''// WAL — pywal palette from firewatch.jpg
-// Toggle back: run toggle-theme.sh again
+with open(qml_path, 'w') as f:
+    f.write(f'''// WAL — pywal palette (toggle back with SUPER+SHIFT+T)
 import QtQuick
 
 Item {{
@@ -114,40 +121,29 @@ Item {{
     property color red:      "{red}"
     property color maroon:   "{maroon}"
 
-    // Semantic warm tones — locked regardless of wallpaper
     property color peach:    "{peach}"
     property color yellow:   "{yellow}"
     property color pink:     "{pink}"
     property color green:    "{green}"
 
-    property color crustGlass: "{crust_glass}"
-    property color baseGlass:  "{base_glass}"
+    property color crustGlass: "{alpha_hex(crust, 0.85)}"
+    property color baseGlass:  "{alpha_hex(base,  0.85)}"
 
     property string rawJson: ""
 }}
-'''
-
-with open(qml_path, 'w') as f:
-    f.write(qml)
-
-print(f"wal palette written → {qml_path}")
+''')
 PYEOF
 
-    cp ~/.cache/wal/colors-kitty.conf "$KITTY_ACTIVE"
-    kill -SIGUSR1 $(pidof kitty) 2>/dev/null
-
+    apply_terminals
     echo "wal" > "$FLAG"
-    notify-send -i ~/.config/hypr/scripts/quickshell/assets/icons/palette.png \
-        "Theme" "Switched to pywal palette" 2>/dev/null || \
-    notify-send "Theme" "Switched to pywal palette"
+    notify-send "Theme" "pywal palette active"
     restart_quickshell
 
 else
     # ── Restore STR ────────────────────────────────────────────
+    wal --theme "$HOME/.dotfiles/wal/colors-str.json" -n -q
     cp "$STR_BACKUP" "$QML"
-    cp "$KITTY_STR" "$KITTY_ACTIVE"
-    kill -SIGUSR1 $(pidof kitty) 2>/dev/null
-
+    apply_terminals
     echo "str" > "$FLAG"
     notify-send "Theme" "STR palette restored"
     restart_quickshell
