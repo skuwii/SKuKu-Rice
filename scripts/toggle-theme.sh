@@ -5,7 +5,8 @@
 FLAG="/tmp/qs_theme_mode"
 QML="$HOME/.dotfiles/hypr/scripts/quickshell/MatugenColors.qml"
 STR_BACKUP="$HOME/.dotfiles/hypr/scripts/quickshell/MatugenColors-str.qml"
-WALLPAPER="$HOME/media/wallpapers/firewatch.jpg"
+WALLPAPER=$(awww query 2>/dev/null | grep -oP 'image: \K\S+' | head -1)
+[ -z "$WALLPAPER" ] && WALLPAPER="$HOME/media/wallpapers/firewatch.jpg"
 
 current=$(cat "$FLAG" 2>/dev/null || echo "str")
 
