@@ -76,6 +76,31 @@ else
     TEMP=$TEMP_RAW
 fi
 
+# --- GPU (NVIDIA via nvidia-smi) ---
+GPU_DATA=$(nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,memory.used,memory.total \
+    --format=csv,noheader,nounits 2>/dev/null | head -1)
+if [ -n "$GPU_DATA" ]; then
+    IFS=',' read -r GPU_UTIL GPU_TEMP GPU_VRAM_USED GPU_VRAM_TOTAL <<< "$GPU_DATA"
+    GPU_UTIL=$(echo "$GPU_UTIL"       | tr -d ' ')
+    GPU_TEMP=$(echo "$GPU_TEMP"       | tr -d ' ')
+    GPU_VRAM_USED=$(echo "$GPU_VRAM_USED"   | tr -d ' ')
+    GPU_VRAM_TOTAL=$(echo "$GPU_VRAM_TOTAL" | tr -d ' ')
+else
+    GPU_UTIL=0; GPU_TEMP=0; GPU_VRAM_USED=0; GPU_VRAM_TOTAL=0
+fi
+
+# --- Disk I/O (first non-loop block device) ---
+DISK_DEV=$(lsblk -dno NAME,TYPE 2>/dev/null | awk '$2=="disk"{print $1; exit}')
+if [ -n "$DISK_DEV" ]; then
+    read -r _ _ _ _ _ _ _ DISK_R1 _ _ DISK_W1 _ < /sys/block/$DISK_DEV/stat 2>/dev/null || DISK_R1=0; DISK_W1=0
+    sleep 0.1
+    read -r _ _ _ _ _ _ _ DISK_R2 _ _ DISK_W2 _ < /sys/block/$DISK_DEV/stat 2>/dev/null || DISK_R2=0; DISK_W2=0
+    DISK_R=$(( (DISK_R2 - DISK_R1) * 512 * 10 ))
+    DISK_W=$(( (DISK_W2 - DISK_W1) * 512 * 10 ))
+else
+    DISK_R=0; DISK_W=0
+fi
+
 # --- Output formatted string ---
-# Format: CPU|RAM_PCT|RAM_GB|TEMP|RX_RATE|TX_RATE
-echo "$CPU_USAGE|$RAM_PCT|$RAM_GB|$TEMP|$RX_RATE|$TX_RATE"
+# Format: CPU|RAM_PCT|RAM_GB|TEMP|RX_RATE|TX_RATE|GPU_UTIL|GPU_TEMP|GPU_VRAM_USED|GPU_VRAM_TOTAL|DISK_R|DISK_W
+echo "$CPU_USAGE|$RAM_PCT|$RAM_GB|$TEMP|$RX_RATE|$TX_RATE|$GPU_UTIL|$GPU_TEMP|$GPU_VRAM_USED|$GPU_VRAM_TOTAL|$DISK_R|$DISK_W"

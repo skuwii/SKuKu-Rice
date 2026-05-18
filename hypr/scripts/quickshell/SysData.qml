@@ -13,6 +13,12 @@ Item {
     property int temp: 0
     property real netRx: 0
     property real netTx: 0
+    property int gpuUtil: 0
+    property int gpuTemp: 0
+    property int gpuVramUsed: 0
+    property int gpuVramTotal: 0
+    property real diskR: 0
+    property real diskW: 0
     
     // --- Lifecycle Management ---
     property int subscribers: 0
@@ -56,12 +62,20 @@ Item {
                 
                 let p = text.split("|");
                 if (p.length >= 6) {
-                    root.cpu = parseInt(p[0]);
+                    root.cpu        = parseInt(p[0]);
                     root.ramPercent = parseInt(p[1]);
-                    root.ramGb = parseFloat(p[2]);
-                    root.temp = parseInt(p[3]);
-                    root.netRx = parseFloat(p[4]);
-                    root.netTx = parseFloat(p[5]);
+                    root.ramGb      = parseFloat(p[2]);
+                    root.temp       = parseInt(p[3]);
+                    root.netRx      = parseFloat(p[4]);
+                    root.netTx      = parseFloat(p[5]);
+                }
+                if (p.length >= 12) {
+                    root.gpuUtil      = parseInt(p[6]);
+                    root.gpuTemp      = parseInt(p[7]);
+                    root.gpuVramUsed  = parseInt(p[8]);
+                    root.gpuVramTotal = parseInt(p[9]);
+                    root.diskR        = parseFloat(p[10]);
+                    root.diskW        = parseFloat(p[11]);
                 }
             }
         }

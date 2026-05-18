@@ -65,8 +65,11 @@ function getLayout(name, mx, my, mw, mh, userScale) {
         // --- Screen Spanning Panels ---
         "settings":  { w: s(450, scale), h: mh - s(0, scale), rx: s(0, scale), ry: s(0, scale), comp: "settings/SettingsPopup.qml" },
         
+        // --- System Monitor ---
+        "sysmon":    { w: s(700, scale), h: s(680, scale), rx: Math.floor((mw/2)-(s(700, scale)/2)), ry: Math.floor((mh/2)-(s(680, scale)/2)), comp: "sysmon/SysMonPopup.qml" },
+
         // --- Utility ---
-        "hidden":    { w: 1, h: 1, rx: -5000 - mx, ry: -5000 - my, comp: "" } 
+        "hidden":    { w: 1, h: 1, rx: -5000 - mx, ry: -5000 - my, comp: "" }
     };
 
     if (!base[name]) return null;
