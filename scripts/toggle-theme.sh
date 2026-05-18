@@ -5,6 +5,8 @@
 FLAG="/tmp/qs_theme_mode"
 QML="$HOME/.dotfiles/hypr/scripts/quickshell/MatugenColors.qml"
 STR_BACKUP="$HOME/.dotfiles/hypr/scripts/quickshell/MatugenColors-str.qml"
+KITTY_ACTIVE="$HOME/.config/kitty/colors-active.conf"
+KITTY_STR="$HOME/.dotfiles/kitty/colors-str.conf"
 WALLPAPER=$(awww query 2>/dev/null | grep -oP 'image: \K\S+' | head -1)
 [ -z "$WALLPAPER" ] && WALLPAPER="$HOME/media/wallpapers/firewatch.jpg"
 
@@ -131,6 +133,9 @@ with open(qml_path, 'w') as f:
 print(f"wal palette written → {qml_path}")
 PYEOF
 
+    cp ~/.cache/wal/colors-kitty.conf "$KITTY_ACTIVE"
+    kill -SIGUSR1 $(pidof kitty) 2>/dev/null
+
     echo "wal" > "$FLAG"
     notify-send -i ~/.config/hypr/scripts/quickshell/assets/icons/palette.png \
         "Theme" "Switched to pywal palette" 2>/dev/null || \
@@ -140,6 +145,9 @@ PYEOF
 else
     # ── Restore STR ────────────────────────────────────────────
     cp "$STR_BACKUP" "$QML"
+    cp "$KITTY_STR" "$KITTY_ACTIVE"
+    kill -SIGUSR1 $(pidof kitty) 2>/dev/null
+
     echo "str" > "$FLAG"
     notify-send "Theme" "STR palette restored"
     restart_quickshell

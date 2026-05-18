@@ -19,21 +19,22 @@ PanelWindow {
     color: "transparent"
     implicitWidth: 360
 
-    // ── STR PALETTE ──────────────────────────────────────────────────────
-    readonly property color clrCrust:   "#0e0f11"
-    readonly property color clrBase:    "#1c1e21"
-    readonly property color clrSurf0:   "#25272a"
-    readonly property color clrSurf1:   "#2e3136"
-    readonly property color clrText:    "#d6d8dc"
-    readonly property color clrDim:     "#8a8d92"
-    readonly property color clrMute:    "#4f5258"
-    readonly property color clrAzure:   "#2980d4"
-    readonly property color clrAzureHi: "#4ea0e8"
-    readonly property color clrPink:    "#ffb8c6"
-    readonly property color clrLove:    "#d4608a"
+    // ── PALETTE (via MatugenColors — updates with theme toggle) ─────────
+    MatugenColors { id: _theme }
 
-    // Shared card background — 0.82 opacity shows cleanly against dark Firewatch wallpaper
-    readonly property color cardBg: Qt.rgba(28/255, 30/255, 33/255, 0.82)
+    readonly property color clrCrust:   _theme.crust
+    readonly property color clrBase:    _theme.base
+    readonly property color clrSurf0:   _theme.surface0
+    readonly property color clrSurf1:   _theme.surface1
+    readonly property color clrText:    _theme.text
+    readonly property color clrDim:     _theme.overlay2
+    readonly property color clrMute:    _theme.overlay0
+    readonly property color clrAzure:   _theme.blue
+    readonly property color clrAzureHi: _theme.sapphire
+    readonly property color clrPink:    _theme.pink
+    readonly property color clrLove:    _theme.pink
+
+    readonly property color cardBg: _theme.baseGlass
 
     // ── CLOCK ────────────────────────────────────────────────────────────
     property string clockTime: Qt.formatTime(new Date(), "HH:mm")
