@@ -1,0 +1,9 @@
+* {{
+    bg:      {background};
+    surface: {color0};
+    fg:      {color8};
+    bright:  {foreground};
+    dim:     {color8};
+    azure:   {color4};
+    red:     {color1};
+}}
