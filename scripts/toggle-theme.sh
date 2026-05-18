@@ -1,6 +1,7 @@
 #!/bin/bash
 # Toggle between locked STR palette and pywal-generated palette.
-# Affects: Quickshell, kitty, all terminals, tmux, rofi, btop, zathura, dunst, wlogout.
+# Affects: Quickshell, kitty, all terminals, tmux, rofi, btop, zathura.
+# dunst retired — Quickshell NotificationServer owns D-Bus.
 # SUPER+SHIFT+T to trigger. Toggle again to restore STR.
 
 FLAG="/tmp/qs_theme_mode"
@@ -24,51 +25,9 @@ apply_all() {
     done
     # btop — write active theme
     cp ~/.cache/wal/colors-btop.theme ~/.config/btop/themes/wal-active.theme
-    # dunst — patch colors into a temp config and restart
-    python3 - <<'DUNST_EOF'
-import json, re
-
-with open('/home/yousef/.cache/wal/colors.json') as f:
-    wal = json.load(f)
-c, sp = wal['colors'], wal['special']
-
-with open('/home/yousef/.dotfiles/dunst/dunstrc') as f:
-    src = f.read()
-
-patches = {
-    # global frame
-    r'(\[global\].*?frame_color\s*=\s*")[^"]*(")',
-    # urgency_low
-    r'(\[urgency_low\].*?background\s*=\s*")[^"]*(")',
-}
-
-replacements = [
-    (r'(frame_color\s*=\s*")[^"]*(")',         f'\\g<1>{c["color0"]}\\2'),
-    (r'(separator_color\s*=\s*")[^"]*(")',      f'\\g<1>{c["color0"]}\\2'),
-    (r'(\[urgency_low\][^\[]*background\s*=\s*")[^"]*(")',   f'\\g<1>{c["color0"]}\\2'),
-    (r'(\[urgency_low\][^\[]*foreground\s*=\s*")[^"]*(")',   f'\\g<1>{c["color8"]}\\2'),
-    (r'(\[urgency_normal\][^\[]*background\s*=\s*")[^"]*(")',f'\\g<1>{c["color0"]}\\2'),
-    (r'(\[urgency_normal\][^\[]*foreground\s*=\s*")[^"]*(")',f'\\g<1>{sp["foreground"]}\\2'),
-    (r'(\[urgency_normal\][^\[]*frame_color\s*=\s*")[^"]*(")',f'\\g<1>{c["color4"]}\\2'),
-    (r'(\[urgency_normal\][^\[]*highlight\s*=\s*")[^"]*(")', f'\\g<1>{c["color4"]}\\2'),
-    (r'(\[urgency_critical\][^\[]*background\s*=\s*")[^"]*(")',f'\\g<1>{c["color0"]}\\2'),
-    (r'(\[urgency_critical\][^\[]*foreground\s*=\s*")[^"]*(")',f'\\g<1>{sp["foreground"]}\\2'),
-    (r'(\[urgency_critical\][^\[]*frame_color\s*=\s*")[^"]*(")',f'\\g<1>{c["color1"]}\\2'),
-    (r'(\[urgency_critical\][^\[]*highlight\s*=\s*")[^"]*(")', f'\\g<1>{c["color1"]}\\2'),
-]
-
-out = src
-for pattern, repl in replacements:
-    out = re.sub(pattern, repl, out, flags=re.DOTALL)
-
-with open('/tmp/dunstrc-active', 'w') as f:
-    f.write(out)
-DUNST_EOF
-    pkill dunst 2>/dev/null
-    sleep 0.1
-    dunst -conf /tmp/dunstrc-active &
     # rofi reads ~/.cache/wal/colors-rofi.rasi at runtime — nothing to do
     # zathura reads ~/.cache/wal/colors-zathura at open time — nothing to do
+    # dunst retired — Quickshell NotificationServer handles notifications
 }
 
 restart_quickshell() {
@@ -191,9 +150,6 @@ else
     wal --theme "$HOME/.dotfiles/wal/colors-str.json" -n -q
     cp "$STR_BACKUP" "$QML"
     apply_all
-    # dunst — restart from original STR config
-    pkill dunst 2>/dev/null; sleep 0.1
-    dunst -conf ~/.dotfiles/dunst/dunstrc &
     echo "str" > "$FLAG"
     notify-send "Theme" "STR palette restored"
     restart_quickshell
