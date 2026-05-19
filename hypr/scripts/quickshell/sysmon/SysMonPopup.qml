@@ -6,6 +6,11 @@ import "../"
 Item {
     id: window
 
+    // Required by Main.qml's StackView loader
+    property real layoutWidth:  width
+    property real layoutHeight: height
+    property var  notifModel:   null
+
     Scaler { id: scaler; currentWidth: Screen.width }
     function s(val) { return scaler.s(val) }
 
