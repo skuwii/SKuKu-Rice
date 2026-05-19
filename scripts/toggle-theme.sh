@@ -37,6 +37,8 @@ restart_quickshell() {
     quickshell -p ~/.config/hypr/scripts/quickshell/TopBar.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/Floating.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/LeftPanel.qml &
+    quickshell -p ~/.dotfiles/hypr/scripts/quickshell/OSD.qml &
+    quickshell -p ~/.dotfiles/hypr/scripts/quickshell/AltTab.qml &
 }
 
 if [ "$current" = "str" ]; then

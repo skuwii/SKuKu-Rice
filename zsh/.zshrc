@@ -93,14 +93,9 @@ ZSH_HIGHLIGHT_STYLES[default]='fg=#8a8f98'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#4a4e56'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-# ── zoxide (smart cd) ──
-eval "$(zoxide init zsh)"
 
 # fzf
 source <(fzf --zsh)
-
-# zoxide (smart cd)
-eval "$(zoxide init zsh)"
 alias cd="z"
 
 # eza (better ls)
@@ -130,3 +125,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # brain-sync aliases
 alias brain-pull='~/.dotfiles/scripts/sync-brain.sh pull'
 alias brain-push='~/.dotfiles/scripts/sync-brain.sh push'
+
+# zoxide (smart cd)
+eval "$(zoxide init zsh)"
+alias cd="z"

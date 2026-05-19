@@ -254,7 +254,7 @@ PanelWindow {
             Behavior on opacity { NumberAnimation { duration: 150 } }
             Text {
                 anchors.centerIn: parent
-                text: root.isVideoMode ? "Click Record (Portal handles area selection)" : "Select region to capture"
+                text: root.isVideoMode ? "Select region to record, then press Enter" : "Select region to capture"
                 font.family: "JetBrains Mono"; font.weight: Font.DemiBold; font.pixelSize: s(24); color: _theme.text
             }
         }
@@ -301,7 +301,7 @@ PanelWindow {
     component Handle: Rectangle {
         width: s(20); height: s(20); radius: s(10)
         color: root.handleColor; border.color: root.accentColor; border.width: s(4)
-        visible: (root.hasSelection || root.isSelecting) && !root.isScanningQr && !root.showQrPopup && !root.isVideoMode; z: 10
+        visible: (root.hasSelection || root.isSelecting) && !root.isScanningQr && !root.showQrPopup; z: 10
     }
     Handle { x: root.selX - width / 2; y: root.selY - height / 2 } 
     Handle { x: root.selX + root.selW - width / 2; y: root.selY - height / 2 } 
@@ -337,7 +337,6 @@ PanelWindow {
         }
 
         onPositionChanged: (mouse) => {
-            if (root.isVideoMode) { cursorShape = Qt.ArrowCursor; return; }
             let mode = root.isSelecting ? root.interactionMode : getInteractionMode(mouse.x, mouse.y, mouse.modifiers)
             switch(mode) {
                 case 2: cursorShape = Qt.ClosedHandCursor; break;
@@ -369,7 +368,6 @@ PanelWindow {
 
         onPressed: (mouse) => {
             if (mouse.button === Qt.RightButton) { Qt.quit(); return; }
-            if (root.isVideoMode) return; 
 
             root.isScanningQr = false;
             root.showQrPopup = false;

@@ -15,6 +15,7 @@ PanelWindow {
     exclusionMode: ExclusionMode.Ignore
     focusable:     false
     color:         "transparent"
+    visible:       root.visible_
 
     implicitHeight: root.screen.height
     implicitWidth:  root.screen.width
