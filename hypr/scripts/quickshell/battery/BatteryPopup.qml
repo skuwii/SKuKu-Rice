@@ -58,7 +58,8 @@ Item {
     property int batCapacity: 0
     property string batStatus: "Unknown"
     property string powerProfile: "balanced"
-    
+    property string batTimeRemaining: ""
+
     property int upHours: 0
     property int upMins: 0
 
@@ -149,13 +150,21 @@ Item {
 
     Process {
         id: sysPoller
-        command: ["bash", "-c", 
+        command: ["bash", "-c",
             "cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -n1 || echo '0'; " +
             "cat /sys/class/power_supply/BAT*/status 2>/dev/null | head -n1 || echo 'Unknown'; " +
             "powerprofilesctl get 2>/dev/null || echo 'balanced'; " +
             "awk '{print int($1/3600)\"h \"int(($1%3600)/60)\"m\"}' /proc/uptime 2>/dev/null || echo '0h 0m'; " +
             "wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{print int($2*100), ($3==\"[MUTED]\"?\"off\":\"on\")}' || echo '0 on'; " +
-            "brightnessctl -m 2>/dev/null | awk -F, '{print substr($4, 1, length($4)-1)}' || echo '0'"
+            "brightnessctl -m 2>/dev/null | awk -F, '{print substr($4, 1, length($4)-1)}' || echo '0'; " +
+            "E=$(cat /sys/class/power_supply/BAT*/energy_now 2>/dev/null | head -n1 || echo '0'); " +
+            "P=$(cat /sys/class/power_supply/BAT*/power_now 2>/dev/null | head -n1 || echo '0'); " +
+            "S=$(cat /sys/class/power_supply/BAT*/status 2>/dev/null | head -n1 || echo 'Unknown'); " +
+            "EF=$(cat /sys/class/power_supply/BAT*/energy_full 2>/dev/null | head -n1 || echo '0'); " +
+            "if [ \"$P\" -gt 0 ] 2>/dev/null; then " +
+            "  if [ \"$S\" = 'Charging' ]; then SECS=$(( (EF - E) * 3600 / P )); else SECS=$(( E * 3600 / P )); fi; " +
+            "  echo \"${SECS}\"; " +
+            "else echo '0'; fi"
         ]
         running: true
         stdout: StdioCollector {
@@ -168,7 +177,7 @@ Item {
                     }
                     window.batStatus = lines[1];
                     window.powerProfile = lines[2];
-                    
+
                     let upParts = lines[3].split("h ");
                     if (upParts.length === 2) {
                         window.upHours = parseInt(upParts[0]) || 0;
@@ -180,9 +189,18 @@ Item {
                         window.sysVolume = parseInt(volParts[0]) || 0;
                         window.sysMuted = (volParts[1] === "off");
                     }
-                    
+
                     if (!window.isDraggingBri) {
                         window.sysBrightness = parseInt(lines[5]) || 0;
+                    }
+
+                    let secs = parseInt(lines[6]) || 0;
+                    if (secs > 0) {
+                        let h = Math.floor(secs / 3600);
+                        let m = Math.floor((secs % 3600) / 60);
+                        window.batTimeRemaining = h > 0 ? (h + "h " + m + "m") : (m + "m");
+                    } else {
+                        window.batTimeRemaining = "";
                     }
                 }
             }
@@ -1012,12 +1030,23 @@ Item {
                                     font.family: "JetBrains Mono"
                                     font.weight: Font.Bold
                                     font.pixelSize: window.s(13)
-                                    
-                                    color: window.isCharging 
-                                            ? Qt.tint(window.green, Qt.rgba(1, 1, 1, parent.textPulse * 0.4)) 
+
+                                    color: window.isCharging
+                                            ? Qt.tint(window.green, Qt.rgba(1, 1, 1, parent.textPulse * 0.4))
                                             : (centralCore.isDangerState ? Qt.tint(window.red, Qt.rgba(1, 1, 1, parent.textPulse * 0.3)) : window.subtext0)
-                                            
+
                                     text: window.batStatus.toUpperCase()
+                                    Behavior on color { ColorAnimation { duration: 300 } }
+                                }
+
+                                Text {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    font.family: "JetBrains Mono"
+                                    font.weight: Font.Medium
+                                    font.pixelSize: window.s(11)
+                                    color: window.overlay0
+                                    text: window.batTimeRemaining
+                                    visible: window.batTimeRemaining !== ""
                                     Behavior on color { ColorAnimation { duration: 300 } }
                                 }
                             }

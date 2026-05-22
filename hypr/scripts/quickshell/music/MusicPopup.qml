@@ -977,7 +977,7 @@ Item {
                         transform: Translate { y: root.s(15) * (1 - root.introEqHeader) }
 
                         Text { text: "Equalizer"; color: root.mauve; font.family: "JetBrains Mono"; font.pixelSize: root.s(16); font.bold: true; Layout.fillWidth: true }
-                        
+
                         // Redesigned Apply Button
                         Rectangle {
                             Layout.preferredHeight: root.s(28)
@@ -1409,7 +1409,7 @@ Item {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: root.s(8)
-                        
+
                         opacity: root.introPresets
                         transform: Translate { y: root.s(20) * (1 - root.introPresets) }
 
