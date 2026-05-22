@@ -235,7 +235,11 @@ Variants {
             property string wifiStatus: "Off"
             property string wifiIcon: "󰤮"
             property string wifiSsid: ""
-            
+
+            property var netSpeedHistory: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            property real netSpeedMax: 1
+            property real lastNetBytes: -1
+
             property string btStatus: "Off"
             property string btIcon: "󰂲"
             property string btDevice: ""
@@ -249,6 +253,7 @@ Variants {
             property string batStatus: "Unknown"
             
             property string kbLayout: "us"
+            property int ghNotifCount: 0
             
             ListModel { 
                 id: workspacesModel 
@@ -487,6 +492,50 @@ Variants {
                 }
             }
             Process { id: networkWaiter; command: ["bash", "-c", "~/.config/hypr/scripts/quickshell/watchers/network_wait.sh"]; onExited: { networkPoller.running = false; networkPoller.running = true; } }
+
+            Process {
+                id: netSpeedProc
+                command: ["bash", "-c",
+                    "IFACE=$(ip route show default 2>/dev/null | awk '/default/ {print $5; exit}'); " +
+                    "[ -z \"$IFACE\" ] && echo '0' && exit 0; " +
+                    "awk -v iface=\"${IFACE}:\" '$1==iface {print $2+$10; exit}' /proc/net/dev 2>/dev/null || echo '0'"
+                ]
+                stdout: StdioCollector {
+                    onStreamFinished: {
+                        let bytes = parseFloat(this.text.trim()) || 0;
+                        if (barWindow.lastNetBytes >= 0 && bytes >= barWindow.lastNetBytes) {
+                            let delta = (bytes - barWindow.lastNetBytes) / 2;
+                            let hist = barWindow.netSpeedHistory.slice();
+                            hist.push(delta);
+                            hist.shift();
+                            let maxVal = 1;
+                            for (let i = 0; i < hist.length; i++) { if (hist[i] > maxVal) maxVal = hist[i]; }
+                            barWindow.netSpeedMax = maxVal;
+                            barWindow.netSpeedHistory = hist;
+                        }
+                        barWindow.lastNetBytes = bytes;
+                    }
+                }
+            }
+            Timer {
+                interval: 2000; running: true; repeat: true; triggeredOnStart: true
+                onTriggered: if (!netSpeedProc.running) netSpeedProc.running = true
+            }
+
+            Process {
+                id: ghProc
+                command: ["bash", "-c", "gh api notifications --paginate 2>/dev/null | jq '[.[] | select(.unread == true)] | length' 2>/dev/null || echo '0'"]
+                stdout: StdioCollector {
+                    onStreamFinished: {
+                        let n = parseInt(this.text.trim()) || 0;
+                        barWindow.ghNotifCount = n;
+                    }
+                }
+            }
+            Timer {
+                interval: 300000; running: true; repeat: true; triggeredOnStart: true
+                onTriggered: if (!ghProc.running) ghProc.running = true
+            }
 
             Process {
                 id: btPoller; running: true
@@ -1370,14 +1419,46 @@ Variants {
                                         font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(16);
                                         color: barWindow.showEthernet ? (barWindow.ethStatus === "Connected" ? mocha.base : mocha.subtext0) : (barWindow.isWifiOn ? mocha.base : mocha.subtext0)
                                     }
-                                    Text { 
+                                    Text {
                                         id: wifiText
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: barWindow.showEthernet ? barWindow.ethStatus : ((barWindow.isWifiOn ? (barWindow.wifiSsid !== "" ? barWindow.wifiSsid : "On") : "Off"))
                                         visible: text !== ""
                                         font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(13); font.weight: Font.Black;
                                         color: barWindow.showEthernet ? (barWindow.ethStatus === "Connected" ? mocha.base : mocha.text) : (barWindow.isWifiOn ? mocha.base : mocha.text);
-                                        width: Math.min(implicitWidth, barWindow.s(100)); elide: Text.ElideRight 
+                                        width: Math.min(implicitWidth, barWindow.s(100)); elide: Text.ElideRight
+                                    }
+
+                                    Canvas {
+                                        id: netSparkline
+                                        width: barWindow.s(28)
+                                        height: barWindow.s(10)
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        visible: barWindow.isWifiOn || barWindow.showEthernet
+                                        property color lineColor: (barWindow.isWifiOn || barWindow.ethStatus === "Connected") ? mocha.base : mocha.overlay1
+                                        onLineColorChanged: requestPaint()
+                                        Connections {
+                                            target: barWindow
+                                            function onNetSpeedHistoryChanged() { netSparkline.requestPaint() }
+                                        }
+                                        onPaint: {
+                                            var ctx = getContext("2d");
+                                            ctx.clearRect(0, 0, width, height);
+                                            var data = barWindow.netSpeedHistory;
+                                            var maxVal = barWindow.netSpeedMax > 0 ? barWindow.netSpeedMax : 1;
+                                            var step = width / (data.length - 1);
+                                            ctx.beginPath();
+                                            ctx.strokeStyle = lineColor.toString();
+                                            ctx.lineWidth = barWindow.s(1.2);
+                                            ctx.lineJoin = "round";
+                                            ctx.lineCap = "round";
+                                            for (var i = 0; i < data.length; i++) {
+                                                var x = i * step;
+                                                var y = height - (data[i] / maxVal) * (height * 0.85) - height * 0.07;
+                                                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                                            }
+                                            ctx.stroke();
+                                        }
                                     }
                                 }
                                 MouseArea { id: wifiMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle network wifi"]) }
@@ -1542,8 +1623,46 @@ Variants {
                                     }
                                 }
                                 MouseArea { id: batMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle battery"]) }
-                            }                        
-	         	}
+                            }
+
+                            Rectangle {
+                                property bool isHovered: ghMouse.containsMouse
+                                visible: barWindow.ghNotifCount > 0
+                                color: isHovered ? Qt.rgba(mocha.blue.r, mocha.blue.g, mocha.blue.b, 0.3) : Qt.rgba(mocha.blue.r, mocha.blue.g, mocha.blue.b, 0.15)
+                                radius: barWindow.s(10); height: sysLayout.pillHeight
+                                width: ghLayoutRow.implicitWidth + barWindow.s(20)
+                                Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuint } }
+                                Behavior on color { ColorAnimation { duration: 200 } }
+
+                                scale: isHovered ? 1.05 : 1.0
+                                Behavior on scale { NumberAnimation { duration: 250; easing.type: Easing.OutExpo } }
+
+                                property bool initAnimTrigger: false
+                                Timer { running: rightContent.showLayout && !parent.initAnimTrigger && barWindow.ghNotifCount > 0; interval: 250; onTriggered: parent.initAnimTrigger = true }
+                                opacity: initAnimTrigger ? 1 : 0
+                                transform: Translate { y: parent.initAnimTrigger ? 0 : barWindow.s(15); Behavior on y { NumberAnimation { duration: 500; easing.type: Easing.OutBack } } }
+                                Behavior on opacity { NumberAnimation { duration: 400; easing.type: Easing.OutCubic } }
+
+                                Row {
+                                    id: ghLayoutRow
+                                    anchors.centerIn: parent
+                                    spacing: barWindow.s(6)
+                                    Text {
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        text: ""
+                                        font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(14)
+                                        color: mocha.blue
+                                    }
+                                    Text {
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        text: barWindow.ghNotifCount
+                                        font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(12); font.weight: Font.Bold
+                                        color: mocha.blue
+                                    }
+                                }
+                                MouseArea { id: ghMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["bash", "-c", "xdg-open https://github.com/notifications"]) }
+                            }
+                        }
 		    }
 		    Rectangle {
                         id: recButton
