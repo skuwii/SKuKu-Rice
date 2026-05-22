@@ -1,0 +1,34 @@
+// STR Plymouth theme
+// bg #0e0f11 | azure #2980d4 | dots fade trail spinner
+
+bg_r = 0.055; bg_g = 0.059; bg_b = 0.067;
+Window.SetBackgroundTopColor(bg_r, bg_g, bg_b);
+Window.SetBackgroundBottomColor(bg_r, bg_g, bg_b);
+
+cx = Window.GetWidth()  / 2;
+cy = Window.GetHeight() / 2;
+
+dot_img = Image("dot.png");
+dot_w   = dot_img.GetWidth()  / 2;
+dot_h   = dot_img.GetHeight() / 2;
+
+n       = 10;
+radius  = 48;
+tick    = 0;
+
+for (i = 0; i < n; i++) {
+    dot[i] = Sprite(dot_img);
+    dot[i].SetOpacity(0);
+}
+
+fun refresh() {
+    tick++;
+    for (i = 0; i < n; i++) {
+        angle = (tick / 2.0 + i * (360 / n)) * (Math.Pi / 180);
+        dot[i].SetX(cx + radius * Math.Cos(angle) - dot_w);
+        dot[i].SetY(cy + radius * Math.Sin(angle) - dot_h);
+        dot[i].SetOpacity((i + 1) / n * 0.85);
+    }
+}
+
+Plymouth.SetRefreshFunction(refresh);

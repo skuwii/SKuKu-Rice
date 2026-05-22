@@ -144,6 +144,39 @@ PYEOF
     quickshell -p ~/.config/hypr/scripts/quickshell/LeftPanel.qml &
     quickshell -p ~/.dotfiles/hypr/scripts/quickshell/OSD.qml &
     quickshell -p ~/.dotfiles/hypr/scripts/quickshell/AltTab.qml &
+
+    # Update hyprbars colors from pywal palette
+    python3 - <<'HYPRBARS_EOF'
+import json, subprocess
+
+with open('/home/yousef/.cache/wal/colors.json') as f:
+    wal = json.load(f)
+
+c, sp = wal['colors'], wal['special']
+
+def hx(h):
+    h = h.lstrip('#')
+    return int(h[0:2],16), int(h[2:4],16), int(h[4:6],16)
+
+def lerp(h1, h2, t):
+    r1,g1,b1 = hx(h1); r2,g2,b2 = hx(h2)
+    return '#{:02x}{:02x}{:02x}'.format(int(r1+(r2-r1)*t),int(g1+(g2-g1)*t),int(b1+(b2-b1)*t))
+
+def rgba(h, a):
+    r,g,b = hx(h)
+    return 'rgba({:02x}{:02x}{:02x}{:02x})'.format(r,g,b,int(a*255))
+
+bg, fg, mid = sp['background'], sp['foreground'], c['color8']
+surface0 = lerp(bg, mid, 0.34)
+subtext1 = lerp(mid, fg, 0.90)
+
+kw = lambda k, v: subprocess.run(['hyprctl', 'keyword', k, v], capture_output=True)
+kw('plugin:hyprbars:bar_color',           rgba(surface0,     0.15))
+kw('plugin:hyprbars:col.text',            rgba(subtext1,     0.30))
+kw('plugin:hyprbars:buttons:col.close',   rgba(c['color1'],  0.35))
+kw('plugin:hyprbars:buttons:col.minimize',rgba(mid,          0.22))
+kw('plugin:hyprbars:buttons:col.maximize',rgba(c['color4'],  0.25))
+HYPRBARS_EOF
 }
 
 apply() {
