@@ -1,0 +1,155 @@
+/* STR Theme for Steam — SKuKu Rice
+   Palette: bg #0e0f11 | surface #1c1e21 | azure #2980d4 | text #d6d8dc
+*/
+
+:root {
+    /* Core backgrounds */
+    --gpColor-Background-Base:              #0e0f11 !important;
+    --gpColor-Background-2:                 #131418 !important;
+    --gpColor-Background-3:                 #1c1e21 !important;
+    --gpColor-Background-4:                 #22252a !important;
+    --gpColor-Background-5:                 #2a2d32 !important;
+
+    /* Surface / card */
+    --gpColor-Background-Tertiary:          #1c1e21 !important;
+    --gpColor-Background-Secondary:         #131418 !important;
+    --gpColor-Background-Primary:           #0e0f11 !important;
+
+    /* Accent — azure */
+    --gpColor-Blue-60:                      #2980d4 !important;
+    --gpColor-Blue-50:                      #2471bd !important;
+    --gpColor-Blue-40:                      #1d5e9e !important;
+    --gpColor-Blue-70:                      #3d92e0 !important;
+    --SystemAccentColor:                    #2980d4 !important;
+    --SystemAccentColorDark:                #1d5e9e !important;
+    --SystemAccentColorLight:               #3d92e0 !important;
+
+    /* Text */
+    --gpColor-Text-Primary:                 #d6d8dc !important;
+    --gpColor-Text-Secondary:               #8a8d92 !important;
+    --gpColor-Text-Tertiary:                #4f5258 !important;
+    --gpColor-Text-Disabled:                #4f5258 !important;
+
+    /* Borders */
+    --gpColor-Border-Base:                  #22252a !important;
+    --gpColor-Border-Strong:                #2980d4 !important;
+
+    /* Inputs */
+    --gpColor-Input-Background:             #1c1e21 !important;
+    --gpColor-Input-Border:                 #2a2d32 !important;
+    --gpColor-Input-Border-Focus:           #2980d4 !important;
+
+    /* Status */
+    --gpColor-Green-60:                     #a6e3a1 !important;
+    --gpColor-Yellow-60:                    #f9e2af !important;
+    --gpColor-Red-60:                       #c0392b !important;
+    --gpColor-Orange-60:                    #fab387 !important;
+}
+
+/* Library background */
+.friendsui-container,
+.library_LibraryLayout_2eEHH,
+.basicpage_PagedSettingsDialog_3eAW8 {
+    background-color: #0e0f11 !important;
+}
+
+/* Sidebar */
+.library_SidebarItems_1_f4b,
+[class*="sidebar"],
+[class*="Sidebar"] {
+    background-color: #0e0f11 !important;
+    border-right: 1px solid #1c1e21 !important;
+}
+
+/* Top bar / chrome */
+[class*="Header"],
+[class*="header"],
+.libraryroot_LibraryTopBar_1bOYz {
+    background-color: #0e0f11 !important;
+    border-bottom: 1px solid #1c1e21 !important;
+}
+
+/* Cards and panels */
+[class*="GameListEntry"],
+[class*="gameListEntry"],
+[class*="Panel"],
+[class*="Container"] {
+    background-color: #1c1e21 !important;
+    border-color: #22252a !important;
+}
+
+/* Hover state */
+[class*="GameListEntry"]:hover,
+[class*="gameListEntry"]:hover {
+    background-color: #22252a !important;
+    border-color: #2980d4 !important;
+}
+
+/* Buttons — primary */
+.DialogButton._DialogLayout.Primary,
+[class*="BlueButton"],
+[class*="primaryButton"] {
+    background-color: #2980d4 !important;
+    color: #d6d8dc !important;
+    border: none !important;
+}
+
+.DialogButton._DialogLayout.Primary:hover,
+[class*="BlueButton"]:hover {
+    background-color: #3d92e0 !important;
+}
+
+/* Download bar */
+[class*="DownloadItem"],
+[class*="downloadBar"] {
+    background-color: #1c1e21 !important;
+    border-color: #22252a !important;
+}
+
+[class*="DownloadBar_Progress"],
+[class*="progress"] {
+    background-color: #2980d4 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px !important;
+    height: 4px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #0e0f11 !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2d32 !important;
+    border-radius: 2px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2980d4 !important;
+}
+
+/* Notifications / toasts */
+[class*="Notification"],
+[class*="notification"],
+[class*="Toast"],
+[class*="toast"] {
+    background-color: #1c1e21 !important;
+    border: 1px solid #22252a !important;
+    color: #d6d8dc !important;
+}
+
+/* Context menus */
+[class*="ContextMenu"],
+[class*="contextMenu"],
+.popup_menu {
+    background-color: #1c1e21 !important;
+    border: 1px solid #2a2d32 !important;
+}
+
+[class*="ContextMenu"] [class*="item"]:hover,
+.popup_menu_item:hover {
+    background-color: #2980d4 !important;
+    color: #d6d8dc !important;
+}

@@ -1,0 +1,13 @@
+{
+  "name": "STR Theme",
+  "version": "1.0.0",
+  "description": "STR dark palette — bg #0e0f11, azure #2980d4",
+  "author": "SKuKu",
+  "github": { "owner": "skuwii", "repo_name": "SKuKu-Rice" },
+  "Patches": [
+    {
+      "MatchRegexString": ".*",
+      "TargetCss": "webkit.css"
+    }
+  ]
+}

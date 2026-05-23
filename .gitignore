@@ -12,3 +12,6 @@
 **/qs_widget_state
 **/qs_current_widget
 .cache/
+
+# pywal runtime-generated files
+btop/themes/wal-active.theme
