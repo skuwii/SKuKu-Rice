@@ -20,6 +20,16 @@ PanelWindow {
     implicitHeight: 72
     implicitWidth:  osd.screen.width
 
+    // Only intercept clicks over the actual 320px widget when visible — never the full strip
+    mask: Region {
+        Region {
+            x:      visible_ ? Math.round((osd.screen.width - 320) / 2) : 0
+            y:      0
+            width:  visible_ ? 320 : 0
+            height: visible_ ? 72  : 0
+        }
+    }
+
     // ── State ────────────────────────────────────────────────
     property string osdType:  "volume"   // "volume" | "brightness"
     property int    osdValue: 0          // 0–100
