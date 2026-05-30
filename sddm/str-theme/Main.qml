@@ -134,7 +134,7 @@ Rectangle {
         font.family: "JetBrainsMono Nerd Font"
         font.pixelSize: 9
         color: "#4a4e56"
-        text: "STR TERMINAL v3.0"
+        text: "STR"
         letterSpacing: 2
     }
 

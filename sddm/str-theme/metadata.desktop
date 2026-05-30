@@ -1,8 +1,8 @@
 [SddmGreeterTheme]
 Name=STR
-Description=STR Terminal v3.0 — skuwii
+Description=STR — skuwii
 Author=skuwii
-Version=3.0
+Version=1.0
 Website=
 Screenshot=
 MainScript=Main.qml

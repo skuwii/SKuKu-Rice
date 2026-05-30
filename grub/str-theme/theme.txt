@@ -1,4 +1,4 @@
-# STR TERMINAL v3.0 — GRUB Theme
+# STR GRUB Theme
 
 title-text: ""
 desktop-color: "#050506"
@@ -34,7 +34,7 @@ terminal-font: "JetBrains Mono Regular 12"
     left = 30%
     top = 75%
     width = 40%
-    text = "STR BOOTLOADER · 4303"
+    text = "STR"
     font = "JetBrains Mono Regular 10"
     color = "#4a4e56"
     align = "center"

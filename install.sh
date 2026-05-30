@@ -1,6 +1,6 @@
 #!/bin/bash
 # ╔═══════════════════════════════════════╗
-# ║         STR TERMINAL — skuwii         ║
+# ║         STR         ║
 # ║         install.sh                    ║
 # ╚═══════════════════════════════════════╝
 
@@ -12,7 +12,7 @@ CONFIG="$HOME/.config"
 echo ""
 echo "  ███████╗"
 echo "  ██╔════╝"
-echo "  ███████╗  STR TERMINAL"
+echo "  ███████╗  STR"
 echo "  ╚════██║  installer"
 echo "  ███████║"
 echo "  ╚══════╝"

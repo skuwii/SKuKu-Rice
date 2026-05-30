@@ -1,5 +1,5 @@
 ;; ╔═══════════════════════════════════════╗
-;; ║         STR TERMINAL                  ║
+;; ║         STR                  ║
 ;; ║         eww.yuck — skuwii             ║
 ;; ╚═══════════════════════════════════════╝
 
@@ -76,7 +76,7 @@
 
 (defwidget fetch_card []
   (box :class "card fetch-card" :orientation "v" :space-evenly false :spacing 8
-    (label :class "fetch-header" :text "STR TERMINAL INFO" :halign "start")
+    (label :class "fetch-header" :text "STR INFO" :halign "start")
     (fetch_row :icon "" :title "OS:" :val "Arch Linux")
     (fetch_row :icon "" :title "WM:" :val "Hyprland")
     (fetch_row :icon "󰄛" :title "Term:" :val "Kitty / ZSH")))

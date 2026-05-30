@@ -1,6 +1,6 @@
 # S
 
-### STR TERMINAL — skuwii ·
+### STR — skuwii
 
 > _Arch Linux · Hyprland · Quickshell · JetBrainsMono_
 

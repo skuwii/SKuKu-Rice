@@ -343,7 +343,7 @@ PanelWindow {
                     spacing: 8
 
                     Text {
-                        text: "STR TERMINAL INFO"
+                        text: "SYSTEM"
                         font { family: "JetBrains Mono"; pixelSize: 10; bold: true; letterSpacing: 2 }
                         color: panel.clrMute
                         Layout.bottomMargin: 4
