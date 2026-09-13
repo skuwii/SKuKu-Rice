@@ -87,6 +87,7 @@ link "$DOTFILES/wlogout/style.css"         "$CONFIG/wlogout/style.css"
 # GTK
 link "$DOTFILES/gtk-3.0/settings.ini"     "$CONFIG/gtk-3.0/settings.ini"
 link "$DOTFILES/gtk-4.0/gtk.css"          "$CONFIG/gtk-4.0/gtk.css"
+link "$DOTFILES/gtk-4.0/settings.ini"     "$CONFIG/gtk-4.0/settings.ini"
 
 # fontconfig (pins generic families to JetBrainsMono / Adwaita Sans)
 link "$DOTFILES/fontconfig/fonts.conf"    "$CONFIG/fontconfig/fonts.conf"
@@ -102,6 +103,17 @@ link "$DOTFILES/zathura/zathurarc"        "$CONFIG/zathura/zathurarc"
 
 # lazygit
 link "$DOTFILES/lazygit/config.yml"       "$CONFIG/lazygit/config.yml"
+
+echo ""
+echo "[ FONTS ]"
+echo ""
+# GTK/libadwaita apps name their font through gsettings and ignore the
+# fontconfig generics, so settings.ini alone isn't enough — without this they
+# fall back to Adwaita Sans and end up as the only non-JetBrains UI on screen.
+for key in font-name document-font-name monospace-font-name; do
+    gsettings set org.gnome.desktop.interface "$key" "JetBrainsMono Nerd Font 10"
+    echo "  set  org.gnome.desktop.interface $key"
+done
 
 echo ""
 echo "[ MANUAL STEPS ]"
