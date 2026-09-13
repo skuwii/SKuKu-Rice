@@ -353,7 +353,7 @@ Item {
 
                             Text {
                                 text: "Notifications"
-                                font.family: "JetBrains Mono"
+                                font.family: "JetBrainsMono Nerd Font"
                                 font.weight: Font.Black
                                 font.pixelSize: window.s(18)
                                 color: window.text
@@ -384,7 +384,7 @@ Item {
                                     Text {
                                         id: dndText
                                         text: window.dndEnabled ? "Silent" : "Mute"
-                                        font.family: "JetBrains Mono"
+                                        font.family: "JetBrainsMono Nerd Font"
                                         font.weight: Font.Bold
                                         font.pixelSize: window.s(13)
                                         color: window.dndEnabled ? window.red : window.text
@@ -420,7 +420,7 @@ Item {
                             Layout.fillHeight: true
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
-                            font.family: "JetBrains Mono"
+                            font.family: "JetBrainsMono Nerd Font"
                             font.weight: Font.Medium
                             font.pixelSize: window.s(14)
                             color: window.overlay0
@@ -510,7 +510,7 @@ Item {
 
                                                 Text {
                                                     text: section.toUpperCase()
-                                                    font.family: "JetBrains Mono"
+                                                    font.family: "JetBrainsMono Nerd Font"
                                                     font.weight: Font.Black
                                                     font.pixelSize: window.s(11)
                                                     color: window.text
@@ -601,7 +601,7 @@ Item {
 
                                             Text {
                                                 text: model.summary || "Notification"
-                                                font.family: "JetBrains Mono"
+                                                font.family: "JetBrainsMono Nerd Font"
                                                 font.weight: Font.Bold
                                                 font.pixelSize: window.s(13)
                                                 color: window.text
@@ -638,7 +638,7 @@ Item {
 
                                         Text {
                                             text: model.body || ""
-                                            font.family: "JetBrains Mono"
+                                            font.family: "JetBrainsMono Nerd Font"
                                             font.weight: Font.Medium
                                             font.pixelSize: window.s(11)
                                             color: window.subtext0
@@ -702,13 +702,13 @@ Item {
                                 anchors.centerIn: parent
                                 Text { 
                                     text: window.upHours.toString().padStart(2, '0')
-                                    font.pixelSize: window.s(18); font.family: "JetBrains Mono"; font.weight: Font.Black
+                                    font.pixelSize: window.s(18); font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Black
                                     color: window.ambientPrimary
                                     Behavior on color { ColorAnimation { duration: 1000 } }
                                     anchors.horizontalCenter: parent.horizontalCenter 
                                 }
                                 Text { 
-                                    text: "HR"; font.pixelSize: window.s(8); font.family: "JetBrains Mono"; font.weight: Font.Bold
+                                    text: "HR"; font.pixelSize: window.s(8); font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold
                                     color: window.subtext0; anchors.horizontalCenter: parent.horizontalCenter 
                                 }
                             }
@@ -718,7 +718,7 @@ Item {
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
                             text: ":"
-                            font.pixelSize: window.s(22); font.family: "JetBrains Mono"; font.weight: Font.Black
+                            font.pixelSize: window.s(22); font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Black
                             color: window.ambientPrimary
                             Behavior on color { ColorAnimation { duration: 1000 } }
                             
@@ -741,13 +741,13 @@ Item {
                                 anchors.centerIn: parent
                                 Text { 
                                     text: window.upMins.toString().padStart(2, '0')
-                                    font.pixelSize: window.s(18); font.family: "JetBrains Mono"; font.weight: Font.Black
+                                    font.pixelSize: window.s(18); font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Black
                                     color: window.ambientSecondary
                                     Behavior on color { ColorAnimation { duration: 1000 } }
                                     anchors.horizontalCenter: parent.horizontalCenter 
                                 }
                                 Text { 
-                                    text: "MIN"; font.pixelSize: window.s(8); font.family: "JetBrains Mono"; font.weight: Font.Bold
+                                    text: "MIN"; font.pixelSize: window.s(8); font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold
                                     color: window.subtext0; anchors.horizontalCenter: parent.horizontalCenter 
                                 }
                             }
@@ -781,7 +781,7 @@ Item {
                             Text {
                                 id: usernameText
                                 text: window.currentUserName
-                                font.family: "JetBrains Mono"
+                                font.family: "JetBrainsMono Nerd Font"
                                 font.weight: Font.Bold
                                 font.pixelSize: window.s(14)
                                 color: window.text
@@ -1017,7 +1017,7 @@ Item {
                                     }
                                     
                                     Text {
-                                        font.family: "JetBrains Mono"
+                                        font.family: "JetBrainsMono Nerd Font"
                                         font.weight: Font.Black
                                         font.pixelSize: window.s(54)
                                         color: window.text
@@ -1027,7 +1027,7 @@ Item {
 
                                 Text {
                                     Layout.alignment: Qt.AlignHCenter
-                                    font.family: "JetBrains Mono"
+                                    font.family: "JetBrainsMono Nerd Font"
                                     font.weight: Font.Bold
                                     font.pixelSize: window.s(13)
 
@@ -1041,7 +1041,7 @@ Item {
 
                                 Text {
                                     Layout.alignment: Qt.AlignHCenter
-                                    font.family: "JetBrains Mono"
+                                    font.family: "JetBrainsMono Nerd Font"
                                     font.weight: Font.Medium
                                     font.pixelSize: window.s(11)
                                     color: window.overlay0
@@ -1492,7 +1492,7 @@ Item {
                                                 Behavior on color { ColorAnimation { duration: 200 } }
                                             }
                                             Text {
-                                                font.family: "JetBrains Mono"; font.weight: Font.Black; font.pixelSize: window.s(13)
+                                                font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Black; font.pixelSize: window.s(13)
                                                 color: window.powerProfile === name ? window.crust : (profileMa.containsMouse ? window.text : window.subtext0)
                                                 text: label
                                                 Behavior on color { ColorAnimation { duration: 200 } }

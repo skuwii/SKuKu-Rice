@@ -228,7 +228,7 @@ PanelWindow {
             Text { 
                 id: txt
                 visible: tBtn.label !== ""
-                font.family: "JetBrains Mono"
+                font.family: "JetBrainsMono Nerd Font"
                 font.weight: Font.DemiBold
                 text: tBtn.label
                 color: tBtn.isDanger ? _theme.crust : _theme.text
@@ -255,7 +255,7 @@ PanelWindow {
             Text {
                 anchors.centerIn: parent
                 text: root.isVideoMode ? "Select region to record, then press Enter" : "Select region to capture"
-                font.family: "JetBrains Mono"; font.weight: Font.DemiBold; font.pixelSize: s(24); color: _theme.text
+                font.family: "JetBrainsMono Nerd Font"; font.weight: Font.DemiBold; font.pixelSize: s(24); color: _theme.text
             }
         }
         Item {
@@ -819,7 +819,7 @@ PanelWindow {
                 Text {
                     text: model.qText
                     color: model.qSuccess ? _theme.text : _theme.red
-                    font.family: "JetBrains Mono"
+                    font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: s(13)
                     font.weight: Font.DemiBold
                     Layout.maximumWidth: s(400)

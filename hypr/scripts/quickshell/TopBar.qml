@@ -965,7 +965,7 @@ Variants {
                                 Text {
                                     anchors.centerIn: parent
                                     text: wsName
-                                    font.family: "JetBrains Mono"
+                                    font.family: "JetBrainsMono Nerd Font"
                                     font.pixelSize: barWindow.s(14)
                                     font.weight: stateLabel === "active" ? Font.Black : (stateLabel === "occupied" ? Font.Bold : Font.Medium)
                                     
@@ -1063,7 +1063,7 @@ Variants {
                                         
                                         Text { 
                                             text: barWindow.displayTitle; 
-                                            font.family: "JetBrains Mono"; 
+                                            font.family: "JetBrainsMono Nerd Font"; 
                                             font.weight: Font.Black; 
                                             font.pixelSize: barWindow.s(13); 
                                             color: mocha.text;
@@ -1072,7 +1072,7 @@ Variants {
                                         }
                                         Text { 
                                             text: barWindow.displayTime; 
-                                            font.family: "JetBrains Mono"; 
+                                            font.family: "JetBrainsMono Nerd Font"; 
                                             font.weight: Font.Black; 
                                             font.pixelSize: barWindow.s(10); 
                                             color: mocha.subtext0;
@@ -1179,8 +1179,8 @@ Variants {
 
                         ColumnLayout {
                             spacing: -2
-                            Text { text: barWindow.timeStr; Layout.alignment: Qt.AlignLeft; font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(16); font.weight: Font.Black; color: mocha.blue }
-                            Text { text: barWindow.dateStr; Layout.alignment: Qt.AlignLeft; font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(11); font.weight: Font.Bold; color: mocha.subtext0 }
+                            Text { text: barWindow.timeStr; Layout.alignment: Qt.AlignLeft; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(16); font.weight: Font.Black; color: mocha.blue }
+                            Text { text: barWindow.dateStr; Layout.alignment: Qt.AlignLeft; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(11); font.weight: Font.Bold; color: mocha.subtext0 }
                         }
 
                         RowLayout {
@@ -1195,7 +1195,7 @@ Variants {
                             Text { 
                                 text: barWindow.weatherTemp; 
                                 Layout.alignment: Qt.AlignVCenter;
-                                font.family: "JetBrains Mono"; 
+                                font.family: "JetBrainsMono Nerd Font"; 
                                 font.pixelSize: barWindow.s(17); 
                                 font.weight: Font.Black; 
                                 color: mocha.peach 
@@ -1369,7 +1369,7 @@ Variants {
                                     anchors.leftMargin: barWindow.s(12)
                                     spacing: barWindow.s(8)
                                     Text { anchors.verticalCenter: parent.verticalCenter; text: "󰌌"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(16); color: parent.parent.isHovered ? mocha.text : mocha.overlay2 }
-                                    Text { anchors.verticalCenter: parent.verticalCenter; text: barWindow.kbLayout; font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; color: mocha.text }
+                                    Text { anchors.verticalCenter: parent.verticalCenter; text: barWindow.kbLayout; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; color: mocha.text }
                                 }
                                 MouseArea { id: kbMouse; anchors.fill: parent; hoverEnabled: true; onClicked: Quickshell.execDetached(["hyprctl", "switchxkblayout", "main", "next"]) }
                             }
@@ -1424,7 +1424,7 @@ Variants {
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: barWindow.showEthernet ? barWindow.ethStatus : ((barWindow.isWifiOn ? (barWindow.wifiSsid !== "" ? barWindow.wifiSsid : "On") : "Off"))
                                         visible: text !== ""
-                                        font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(13); font.weight: Font.Black;
+                                        font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(13); font.weight: Font.Black;
                                         color: barWindow.showEthernet ? (barWindow.ethStatus === "Connected" ? mocha.base : mocha.text) : (barWindow.isWifiOn ? mocha.base : mocha.text);
                                         width: Math.min(implicitWidth, barWindow.s(100)); elide: Text.ElideRight
                                     }
@@ -1510,7 +1510,7 @@ Variants {
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: barWindow.btDevice
                                         visible: text !== ""; 
-                                        font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; 
+                                        font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; 
                                         color: barWindow.isBtOn ? mocha.base : mocha.text; 
                                         width: Math.min(implicitWidth, barWindow.s(100)); elide: Text.ElideRight 
                                     }
@@ -1564,7 +1564,7 @@ Variants {
                                     Text { 
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: barWindow.volPercent; 
-                                        font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; 
+                                        font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; 
                                         color: barWindow.isSoundActive ? mocha.base : mocha.text; 
                                     }
                                 }
@@ -1617,7 +1617,7 @@ Variants {
                                     Text { 
                                         anchors.verticalCenter: parent.verticalCenter
                                         visible: !barWindow.isDesktop
-                                        text: barWindow.batPercent; font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; 
+                                        text: barWindow.batPercent; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(13); font.weight: Font.Black; 
                                         color: mocha.base 
                                         Behavior on color { ColorAnimation { duration: 300 } }
                                     }
@@ -1656,7 +1656,7 @@ Variants {
                                     Text {
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: barWindow.ghNotifCount
-                                        font.family: "JetBrains Mono"; font.pixelSize: barWindow.s(12); font.weight: Font.Bold
+                                        font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(12); font.weight: Font.Bold
                                         color: mocha.blue
                                     }
                                 }

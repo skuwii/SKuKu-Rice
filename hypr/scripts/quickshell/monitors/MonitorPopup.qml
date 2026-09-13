@@ -712,7 +712,7 @@ Item {
                                         }
                                         Text { 
                                             Layout.alignment: Qt.AlignHCenter
-                                            font.family: "JetBrains Mono"
+                                            font.family: "JetBrainsMono Nerd Font"
                                             font.weight: Font.Bold
                                             font.pixelSize: window.s(16)
                                             color: window.text
@@ -720,7 +720,7 @@ Item {
                                         }
                                         Text { 
                                             Layout.alignment: Qt.AlignHCenter
-                                            font.family: "JetBrains Mono"
+                                            font.family: "JetBrainsMono Nerd Font"
                                             font.pixelSize: window.s(12)
                                             color: window.subtext0
                                             text: window.currentSimW + "x" + window.currentSimH + " @ " + (monitorsModel.count > 0 ? monitorsModel.get(0).rate : "60") + "Hz" 
@@ -886,7 +886,7 @@ Item {
                                                 }
                                                 Text { 
                                                     Layout.alignment: Qt.AlignHCenter
-                                                    font.family: "JetBrains Mono"
+                                                    font.family: "JetBrainsMono Nerd Font"
                                                     font.weight: Font.Black
                                                     font.pixelSize: window.s(13)
                                                     color: window.text
@@ -894,7 +894,7 @@ Item {
                                                 }
                                                 Text { 
                                                     Layout.alignment: Qt.AlignHCenter
-                                                    font.family: "JetBrains Mono"
+                                                    font.family: "JetBrainsMono Nerd Font"
                                                     font.pixelSize: window.s(10)
                                                     color: window.subtext0
                                                     text: model.resW + "x" + model.resH + " @ " + model.rate + "Hz" 
@@ -1081,7 +1081,7 @@ Item {
                                     spacing: window.s(8)
                                     
                                     Text { 
-                                        font.family: "JetBrains Mono"
+                                        font.family: "JetBrainsMono Nerd Font"
                                         font.weight: isSel ? Font.Black : Font.Bold
                                         font.pixelSize: window.s(15)
                                         color: isSel ? accentColor : window.text
@@ -1092,7 +1092,7 @@ Item {
                                     Item { Layout.fillWidth: true } 
                                     
                                     Text { 
-                                        font.family: "JetBrains Mono"
+                                        font.family: "JetBrainsMono Nerd Font"
                                         font.pixelSize: window.s(11)
                                         color: isSel ? window.text : window.overlay0
                                         text: modelData.w + "x" + modelData.h
@@ -1323,7 +1323,7 @@ Item {
                                 Text { 
                                     anchors.horizontalCenter: parent.horizontalCenter
                                     text: sliderContainer.rates[index]
-                                    font.family: "JetBrains Mono"
+                                    font.family: "JetBrainsMono Nerd Font"
                                     font.pixelSize: window.s(13)
                                     font.weight: sliderContainer.currentIndex === index ? Font.Bold : Font.Normal
                                     color: sliderContainer.currentIndex === index ? window.selectedRateAccent : window.overlay0
@@ -1439,7 +1439,7 @@ Item {
                                 }
                                 
                                 Text { 
-                                    font.family: "JetBrains Mono"
+                                    font.family: "JetBrainsMono Nerd Font"
                                     font.weight: Font.Black
                                     font.pixelSize: window.s(14)
                                     color: window.crust

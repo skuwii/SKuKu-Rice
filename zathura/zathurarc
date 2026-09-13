@@ -2,7 +2,7 @@
 # Colors sourced from pywal cache (toggle with SUPER+SHIFT+T)
 include /home/yousef/.cache/wal/colors-zathura
 
-set font "JetBrains Mono 11"
+set font "JetBrainsMono Nerd Font 11"
 set guioptions none
 set statusbar-h-padding 10
 set statusbar-v-padding 5

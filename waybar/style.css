@@ -34,7 +34,7 @@ window#waybar {
 
 /* Specific Module Styling */
 #custom-launcher {
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 20px;
     padding: 0 10px;
     margin-right: 5px;

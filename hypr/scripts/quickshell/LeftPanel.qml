@@ -159,13 +159,13 @@ PanelWindow {
             Layout.fillWidth: true
             Text {
                 text: label
-                font { family: "JetBrains Mono"; pixelSize: 12; bold: true }
+                font { family: "JetBrainsMono Nerd Font"; pixelSize: 12; bold: true }
                 color: panel.clrText
             }
             Item { Layout.fillWidth: true }
             Text {
                 text: value + "%"
-                font { family: "JetBrains Mono"; pixelSize: 12 }
+                font { family: "JetBrainsMono Nerd Font"; pixelSize: 12 }
                 color: panel.clrDim
             }
         }
@@ -223,12 +223,12 @@ PanelWindow {
                         spacing: 4
                         Text {
                             text: "skuwii"
-                            font { family: "JetBrains Mono"; pixelSize: 15; bold: true }
+                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 15; bold: true }
                             color: panel.clrText
                         }
                         Text {
                             text: "yousef-arch"
-                            font { family: "JetBrains Mono"; pixelSize: 15 }
+                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 15 }
                             color: panel.clrDim
                         }
                     }
@@ -245,17 +245,17 @@ PanelWindow {
                             spacing: 0
                             Text {
                                 text: "M "
-                                font.family: "JetBrains Mono"; font.pixelSize: 18; font.bold: true
+                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: 18; font.bold: true
                                 color: panel.clrText
                             }
                             Text {
                                 text: "♥ "
-                                font.family: "JetBrains Mono"; font.pixelSize: 20
+                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: 20
                                 color: panel.clrPink
                             }
                             Text {
                                 text: "Y"
-                                font.family: "JetBrains Mono"; font.pixelSize: 18; font.bold: true
+                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: 18; font.bold: true
                                 color: panel.clrText
                             }
                         }
@@ -277,12 +277,12 @@ PanelWindow {
                         spacing: 5
                         Text {
                             text: panel.clockTime
-                            font { family: "JetBrains Mono"; pixelSize: 52; weight: Font.Black }
+                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 52; weight: Font.Black }
                             color: panel.clrText
                         }
                         Text {
                             text: panel.clockDate
-                            font { family: "JetBrains Mono"; pixelSize: 18; bold: true }
+                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 18; bold: true }
                             color: panel.clrAzureHi
                         }
                     }
@@ -297,13 +297,13 @@ PanelWindow {
                         }
                         Text {
                             text: "28°C"
-                            font { family: "JetBrains Mono"; pixelSize: 13; bold: true }
+                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 13; bold: true }
                             color: panel.clrText
                             Layout.alignment: Qt.AlignRight
                         }
                         Text {
                             text: "Jeddah, SA"
-                            font { family: "JetBrains Mono"; pixelSize: 10 }
+                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 10 }
                             color: panel.clrDim
                             Layout.alignment: Qt.AlignRight
                         }
@@ -344,7 +344,7 @@ PanelWindow {
 
                     Text {
                         text: "SYSTEM"
-                        font { family: "JetBrains Mono"; pixelSize: 10; bold: true; letterSpacing: 2 }
+                        font { family: "JetBrainsMono Nerd Font"; pixelSize: 10; bold: true; letterSpacing: 2 }
                         color: panel.clrMute
                         Layout.bottomMargin: 4
                     }
@@ -366,12 +366,12 @@ PanelWindow {
                             }
                             Text {
                                 text: modelData.title
-                                font { family: "JetBrains Mono"; pixelSize: 12 }
+                                font { family: "JetBrainsMono Nerd Font"; pixelSize: 12 }
                                 color: panel.clrDim
                             }
                             Text {
                                 text: modelData.val
-                                font { family: "JetBrains Mono"; pixelSize: 12 }
+                                font { family: "JetBrainsMono Nerd Font"; pixelSize: 12 }
                                 color: panel.clrText
                             }
                         }
@@ -421,14 +421,14 @@ PanelWindow {
                             Text {
                                 Layout.fillWidth: true
                                 text: panel.mediaTitle
-                                font { family: "JetBrains Mono"; pixelSize: 13; bold: true }
+                                font { family: "JetBrainsMono Nerd Font"; pixelSize: 13; bold: true }
                                 color: panel.clrText
                                 elide: Text.ElideRight
                             }
                             Text {
                                 Layout.fillWidth: true
                                 text: panel.mediaArtist
-                                font { family: "JetBrains Mono"; pixelSize: 11 }
+                                font { family: "JetBrainsMono Nerd Font"; pixelSize: 11 }
                                 color: panel.clrDim
                                 elide: Text.ElideRight
                             }
@@ -526,14 +526,14 @@ PanelWindow {
                     Text {
                         Layout.alignment: Qt.AlignHCenter
                         text: panel.loveDays.toString()
-                        font { family: "JetBrains Mono"; pixelSize: 38; bold: true }
+                        font { family: "JetBrainsMono Nerd Font"; pixelSize: 38; bold: true }
                         color: panel.clrLove
                     }
 
                     Text {
                         Layout.alignment: Qt.AlignHCenter
                         text: "DAYS TOGETHER"
-                        font { family: "JetBrains Mono"; pixelSize: 8; bold: true; letterSpacing: 4 }
+                        font { family: "JetBrainsMono Nerd Font"; pixelSize: 8; bold: true; letterSpacing: 4 }
                         color: Qt.rgba(0.83, 0.38, 0.54, 0.5)
                     }
 
@@ -543,7 +543,7 @@ PanelWindow {
                         Item { Layout.fillWidth: true }
                         Text {
                             text: "M · Y"
-                            font { family: "JetBrains Mono"; pixelSize: 7 }
+                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 7 }
                             color: Qt.rgba(0.75, 0.08, 0.48, 0.12)
                         }
                     }

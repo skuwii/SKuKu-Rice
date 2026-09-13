@@ -1021,14 +1021,14 @@ Item {
                                 spacing: root.s(3)
                                 Text {
                                     text: "Guide on startup"
-                                    font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                    font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                     color: box0.isActive ? root.base : root.text
                                     Layout.fillWidth: true
                                     Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                 }
                                 Text {
                                     text: "Launch on login"
-                                    font.family: "Inter"; font.pixelSize: root.s(11)
+                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                     color: box0.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7)
                                     Layout.fillWidth: true
                                     Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
@@ -1094,12 +1094,12 @@ Item {
                             ColumnLayout {
                                 Layout.fillWidth: true; Layout.alignment: Qt.AlignVCenter; spacing: root.s(3)
                                 Text {
-                                    text: "Help icon"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                    text: "Help icon"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                     color: box1.isActive ? root.base : root.text; Layout.fillWidth: true
                                     Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                 }
                                 Text {
-                                    text: "Show button in topbar"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                    text: "Show button in topbar"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                     color: box1.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                     Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                 }
@@ -1159,12 +1159,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; Layout.alignment: Qt.AlignVCenter; spacing: root.s(3)
                                     Text {
-                                        text: "UI Scale"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                        text: "UI Scale"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                         color: box2.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "Base size scalar"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "Base size scalar"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: box2.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -1183,7 +1183,7 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 200 } }
                                         Text {
                                             anchors.centerIn: parent; text: "-"
-                                            font.family: "JetBrains Mono"; font.weight: Font.Medium; font.pixelSize: root.s(15)
+                                            font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(15)
                                             color: box2.isActive ? root.base : root.sapphire
                                             Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                         }
@@ -1191,7 +1191,7 @@ Item {
                                     }
                                     Text { 
                                         text: Config.uiScale.toFixed(1) + "x"
-                                        font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(13)
+                                        font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(13)
                                         color: box2.isActive ? root.base : root.sapphire
                                         Layout.minimumWidth: root.s(36); horizontalAlignment: Text.AlignHCenter
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
@@ -1206,7 +1206,7 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 200 } }
                                         Text {
                                             anchors.centerIn: parent; text: "+"
-                                            font.family: "JetBrains Mono"; font.weight: Font.Medium; font.pixelSize: root.s(15)
+                                            font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(15)
                                             color: box2.isActive ? root.base : root.sapphire
                                             Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                         }
@@ -1250,12 +1250,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; Layout.alignment: Qt.AlignTop; spacing: root.s(3)
                                     Text {
-                                        text: "Keyboard layouts"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                        text: "Keyboard layouts"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                         color: box3.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "Matches hyprland.conf. Click ✖ to remove."; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "Matches hyprland.conf. Click ✖ to remove."; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: box3.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -1274,12 +1274,12 @@ Item {
                                                 RowLayout {
                                                     id: langChipLayout; anchors.centerIn: parent; spacing: root.s(6)
                                                     Text {
-                                                        text: modelData; font.family: "JetBrains Mono"; font.weight: Font.Medium; font.pixelSize: root.s(11)
+                                                        text: modelData; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(11)
                                                         color: chipMa.containsMouse ? root.red : (box3.isActive ? root.base : root.text)
                                                         Behavior on color { ColorAnimation { duration: 150 } }
                                                     }
                                                     Text {
-                                                        text: "✖"; font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                                        text: "✖"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                                         color: chipMa.containsMouse ? root.red : (box3.isActive ? Qt.alpha(root.base, 0.6) : root.subtext0)
                                                         Behavior on color { ColorAnimation { duration: 150 } }
                                                     }
@@ -1311,7 +1311,7 @@ Item {
                                     id: langInput
                                     anchors.fill: parent; anchors.margins: root.s(9)
                                     verticalAlignment: TextInput.AlignVCenter
-                                    font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                     color: box3.isActive ? root.base : root.text; clip: true; selectByMouse: true
                                     Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     Keys.onPressed: (event) => {
@@ -1368,8 +1368,8 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 150 } }
                                         RowLayout {
                                             anchors.fill: parent; anchors.leftMargin: root.s(8); anchors.rightMargin: root.s(8); spacing: root.s(8)
-                                            Text { text: model.code; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(11); color: box3.isActive ? root.base : root.text; Behavior on color { ColorAnimation { duration: 150 } } }
-                                            Text { text: model.name; font.family: "Inter"; font.pixelSize: root.s(11); color: box3.isActive ? Qt.alpha(root.base, 0.7) : Qt.alpha(root.subtext0, 0.7); elide: Text.ElideRight; Layout.fillWidth: true; Behavior on color { ColorAnimation { duration: 150 } } }
+                                            Text { text: model.code; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(11); color: box3.isActive ? root.base : root.text; Behavior on color { ColorAnimation { duration: 150 } } }
+                                            Text { text: model.name; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11); color: box3.isActive ? Qt.alpha(root.base, 0.7) : Qt.alpha(root.subtext0, 0.7); elide: Text.ElideRight; Layout.fillWidth: true; Behavior on color { ColorAnimation { duration: 150 } } }
                                         }
                                         MouseArea {
                                             id: sMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
@@ -1418,12 +1418,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; Layout.alignment: Qt.AlignTop; spacing: root.s(3)
                                     Text {
-                                        text: "Layout shortcut"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                        text: "Layout shortcut"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                         color: box4.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "Toggle combination"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "Toggle combination"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: box4.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -1441,7 +1441,7 @@ Item {
                                             anchors.fill: parent; anchors.margins: root.s(9)
                                             Text {
                                                 text: root.getKbToggleLabel(Config.kbOptions)
-                                                font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                                 color: box4.isActive ? root.base : root.text; Layout.fillWidth: true
                                                 Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                             }
@@ -1490,7 +1490,7 @@ Item {
                                                 RowLayout {
                                                     anchors.fill: parent; anchors.leftMargin: root.s(8); anchors.rightMargin: root.s(8)
                                                     Text {
-                                                        text: modelData.label; font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                                        text: modelData.label; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                                         color: Config.kbOptions === modelData.val
                                                             ? (box4.isActive ? root.base : root.teal)
                                                             : (box4.isActive ? Qt.alpha(root.base, 0.8) : root.text)
@@ -1539,12 +1539,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; Layout.alignment: Qt.AlignTop; spacing: root.s(3)
                                     Text {
-                                        text: "Wallpaper directory"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                        text: "Wallpaper directory"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                         color: box5.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "Absolute source path"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "Absolute source path"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: box5.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -1563,7 +1563,7 @@ Item {
                                             anchors.fill: parent; anchors.margins: root.s(9)
                                             verticalAlignment: TextInput.AlignVCenter
                                             text: Config.wallpaperDir
-                                            font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                            font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                             color: box5.isActive ? root.base : root.text; clip: true; selectByMouse: true
                                             Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                             Keys.onPressed: (event) => {
@@ -1621,7 +1621,7 @@ Item {
                                                 Behavior on color { ColorAnimation { duration: 150 } }
                                                 Text {
                                                     anchors.verticalCenter: parent.verticalCenter; x: root.s(8)
-                                                    text: model.path; font.family: "JetBrains Mono"; font.pixelSize: root.s(10)
+                                                    text: model.path; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10)
                                                     color: box5.isActive ? root.base : root.text
                                                     elide: Text.ElideMiddle; width: parent.width - root.s(16)
                                                     Behavior on color { ColorAnimation { duration: 150 } }
@@ -1666,12 +1666,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; Layout.alignment: Qt.AlignVCenter; spacing: root.s(3)
                                     Text {
-                                        text: "Workspaces"; font.family: "Inter"; font.weight: Font.Bold; font.pixelSize: root.s(14)
+                                        text: "Workspaces"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(14)
                                         color: box6.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "Static count in topbar"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "Static count in topbar"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: box6.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -1686,7 +1686,7 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 200 } }
                                         Text {
                                             anchors.centerIn: parent; text: "-"
-                                            font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(15)
+                                            font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(15)
                                             color: box6.isActive ? root.base : root.red
                                             Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                         }
@@ -1694,7 +1694,7 @@ Item {
                                     }
                                     Text { 
                                         text: Config.workspaceCount.toString()
-                                        font.family: "JetBrains Mono"; font.weight: Font.Black; font.pixelSize: root.s(14)
+                                        font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Black; font.pixelSize: root.s(14)
                                         color: box6.isActive ? root.base : root.red
                                         Layout.minimumWidth: root.s(36); horizontalAlignment: Text.AlignHCenter
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
@@ -1707,7 +1707,7 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 200 } }
                                         Text {
                                             anchors.centerIn: parent; text: "+"
-                                            font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(15)
+                                            font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(15)
                                             color: box6.isActive ? root.base : root.red
                                             Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                         }
@@ -1795,7 +1795,7 @@ Item {
                             anchors.top: parent.top; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: root.s(14)
                             spacing: root.s(10)
                             Text {
-                                text: "Weather Widget Setup"; font.family: "Inter"; font.weight: Font.Bold; font.pixelSize: root.s(15)
+                                text: "Weather Widget Setup"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(15)
                                 color: wBox0.isActive ? root.base : root.text; Layout.bottomMargin: root.s(2)
                                 Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                             }
@@ -1806,10 +1806,10 @@ Item {
                                     color: wBox0.isActive ? Qt.alpha(root.base, 0.25) : Qt.alpha(root.blue, 0.2)
                                     border.color: wBox0.isActive ? Qt.alpha(root.base, 0.5) : root.blue; border.width: 1
                                     Behavior on color { ColorAnimation { duration: 220 } }
-                                    Text { anchors.centerIn: parent; text: "1"; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(11); color: wBox0.isActive ? root.base : root.blue; Behavior on color { ColorAnimation { duration: 220 } } }
+                                    Text { anchors.centerIn: parent; text: "1"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(11); color: wBox0.isActive ? root.base : root.blue; Behavior on color { ColorAnimation { duration: 220 } } }
                                 }
                                 Text {
-                                    text: "Get an API Key"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(13)
+                                    text: "Get an API Key"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(13)
                                     color: wBox0.isActive ? root.base : root.text; Layout.fillWidth: true
                                     Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                 }
@@ -1837,7 +1837,7 @@ Item {
                                             Behavior on border.color { ColorAnimation { duration: 220 } }
                                             RowLayout { anchors.fill: parent; anchors.margins: root.s(7); spacing: root.s(7)
                                                 Text { text: "󰄾"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12); color: wBox0.isActive ? Qt.alpha(root.base, 0.6) : root.overlay0; Behavior on color { ColorAnimation { duration: 220 } } }
-                                                Text { text: modelData; font.family: "Inter"; font.pixelSize: root.s(11); color: wBox0.isActive ? Qt.alpha(root.base, 0.85) : root.subtext1; Layout.fillWidth: true; Behavior on color { ColorAnimation { duration: 220 } } }
+                                                Text { text: modelData; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11); color: wBox0.isActive ? Qt.alpha(root.base, 0.85) : root.subtext1; Layout.fillWidth: true; Behavior on color { ColorAnimation { duration: 220 } } }
                                             }
                                         }
                                     }
@@ -1850,10 +1850,10 @@ Item {
                                     color: wBox0.isActive ? Qt.alpha(root.base, 0.25) : Qt.alpha(root.peach, 0.2)
                                     border.color: wBox0.isActive ? Qt.alpha(root.base, 0.5) : root.peach; border.width: 1
                                     Behavior on color { ColorAnimation { duration: 220 } }
-                                    Text { anchors.centerIn: parent; text: "2"; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(11); color: wBox0.isActive ? root.base : root.peach; Behavior on color { ColorAnimation { duration: 220 } } }
+                                    Text { anchors.centerIn: parent; text: "2"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(11); color: wBox0.isActive ? root.base : root.peach; Behavior on color { ColorAnimation { duration: 220 } } }
                                 }
                                 Text {
-                                    text: "Find your City ID"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(13)
+                                    text: "Find your City ID"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(13)
                                     color: wBox0.isActive ? root.base : root.text; Layout.fillWidth: true
                                     Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                 }
@@ -1885,14 +1885,14 @@ Item {
                                             Behavior on border.color { ColorAnimation { duration: 220 } }
                                             RowLayout { anchors.fill: parent; anchors.margins: root.s(7); spacing: root.s(7)
                                                 Text { text: "󰄾"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12); color: wBox0.isActive ? Qt.alpha(root.base, 0.6) : root.overlay0; Behavior on color { ColorAnimation { duration: 220 } } }
-                                                Text { text: modelData; font.family: "Inter"; font.pixelSize: root.s(11); color: wBox0.isActive ? Qt.alpha(root.base, 0.85) : root.subtext1; Layout.fillWidth: true; Behavior on color { ColorAnimation { duration: 220 } } }
+                                                Text { text: modelData; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11); color: wBox0.isActive ? Qt.alpha(root.base, 0.85) : root.subtext1; Layout.fillWidth: true; Behavior on color { ColorAnimation { duration: 220 } } }
                                             }
                                         }
                                     }
                                 }
                             }
                             Text {
-                                text: "* Note: New API keys may take a few hours to activate."; font.family: "Inter"; font.pixelSize: root.s(10)
+                                text: "* Note: New API keys may take a few hours to activate."; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10)
                                 color: wBox0.isActive ? Qt.alpha(root.base, 0.7) : root.yellow; font.italic: true; Layout.topMargin: root.s(2)
                                 Behavior on color { ColorAnimation { duration: 220 } }
                             }
@@ -1931,12 +1931,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: root.s(3)
                                     Text {
-                                        text: "API Key"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                        text: "API Key"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                         color: wBox1.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "OpenWeather API key"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "OpenWeather API key"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: wBox1.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -1963,7 +1963,7 @@ Item {
                                         id: apiKeyInput
                                         Layout.fillWidth: true; Layout.fillHeight: true
                                         verticalAlignment: TextInput.AlignVCenter
-                                        font.family: "JetBrains Mono"; font.pixelSize: root.s(12)
+                                        font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12)
                                         color: wBox1.isActive ? root.base : root.text; clip: true; selectByMouse: true
                                         echoMode: weatherTabRoot.apiKeyVisible ? TextInput.Normal : TextInput.Password
                                         passwordCharacter: "•"
@@ -2023,12 +2023,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: root.s(3)
                                     Text {
-                                        text: "City ID"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                        text: "City ID"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                         color: wBox2.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "OpenWeather city ID"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "OpenWeather city ID"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: wBox2.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -2048,7 +2048,7 @@ Item {
                                     id: cityIdInput
                                     anchors.fill: parent; anchors.margins: root.s(10)
                                     verticalAlignment: TextInput.AlignVCenter
-                                    font.family: "JetBrains Mono"; font.pixelSize: root.s(12)
+                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12)
                                     color: wBox2.isActive ? root.base : root.text; clip: true; selectByMouse: true
                                     onTextChanged: Config.weatherCityId = text
                                     Behavior on color { ColorAnimation { duration: 220 } }
@@ -2094,12 +2094,12 @@ Item {
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: root.s(3)
                                     Text {
-                                        text: "Temperature Unit"; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(14)
+                                        text: "Temperature Unit"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(14)
                                         color: wBox3.isActive ? root.base : root.text; Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "Celsius / Fahrenheit / Kelvin"; font.family: "Inter"; font.pixelSize: root.s(11)
+                                        text: "Celsius / Fahrenheit / Kelvin"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: wBox3.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -2124,7 +2124,7 @@ Item {
                                         Behavior on border.color { ColorAnimation { duration: 150 } }
                                         Text {
                                             anchors.centerIn: parent; text: modelData.label
-                                            font.family: "JetBrains Mono"; font.pixelSize: root.s(10); font.capitalization: Font.Capitalize
+                                            font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10); font.capitalization: Font.Capitalize
                                             color: isSelected
                                                 ? (parentActive ? root.base : root.base)
                                                 : (parentActive ? Qt.alpha(root.base, 0.6) : root.subtext0)
@@ -2192,7 +2192,7 @@ Item {
                             id: wsCol
                             anchors.top: parent.top; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: root.s(16)
                             spacing: root.s(10)
-                            Text { text: "Workspaces (SUPER + 1-9)"; font.family: "JetBrains Mono"; font.weight: Font.Medium; font.pixelSize: root.s(12); color: root.text; Layout.alignment: Qt.AlignVCenter }
+                            Text { text: "Workspaces (SUPER + 1-9)"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(12); color: root.text; Layout.alignment: Qt.AlignVCenter }
                             Flow {
                                 Layout.fillWidth: true; spacing: root.s(7)
                                 Repeater {
@@ -2205,7 +2205,7 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 150 } }
                                         Text {
                                             anchors.centerIn: parent; text: parent.wsNum
-                                            font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(11)
+                                            font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(11)
                                             color: wsMa.containsMouse ? root.base : root.peach
                                             Behavior on color { ColorAnimation { duration: 150 } }
                                         }
@@ -2272,12 +2272,12 @@ Item {
                                             visible: model.mods !== ""
                                             Text {
                                                 id: k1Text; anchors.centerIn: parent; text: model.mods
-                                                font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(9)
+                                                font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(9)
                                                 color: root.peach
                                             }
                                         }
                                         Text {
-                                            text: "+"; font.family: "JetBrains Mono"; font.pixelSize: root.s(10)
+                                            text: "+"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10)
                                             color: root.overlay0
                                             visible: model.mods !== "" && model.key !== ""; anchors.verticalCenter: parent.verticalCenter
                                         }
@@ -2288,7 +2288,7 @@ Item {
                                             visible: model.key !== ""
                                             Text {
                                                 id: k2Text; anchors.centerIn: parent; text: model.key
-                                                font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(9)
+                                                font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(9)
                                                 color: root.peach
                                             }
                                         }
@@ -2313,7 +2313,7 @@ Item {
                                         Text {
                                             anchors.centerIn: parent
                                             text: model.isEditing ? "▴" : "󰏫"
-                                            font.family: model.isEditing ? "Inter" : "JetBrainsMono Nerd Font"
+                                            font.family: model.isEditing ? "JetBrainsMono Nerd Font" : "JetBrainsMono Nerd Font"
                                             font.pixelSize: root.s(13)
                                             color: model.isEditing
                                                 ? root.base
@@ -2354,7 +2354,7 @@ Item {
                                                 anchors.right: cmdClipRect.shouldMarquee ? undefined : parent.right
                                                 Text {
                                                     id: cmdTextMain; text: (model.dispatcher + " " + model.command).trim()
-                                                    font.family: "JetBrains Mono"; font.pixelSize: root.s(10)
+                                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10)
                                                     color: root.subtext0
                                                 }
                                                 Text {
@@ -2409,7 +2409,7 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 150 } }
                                         Behavior on border.color { ColorAnimation { duration: 150 } }
                                         Text {
-                                            anchors.centerIn: parent; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(11)
+                                            anchors.centerIn: parent; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(11)
                                             color: captureTrap.activeFocus ? root.red : root.text
                                             Behavior on color { ColorAnimation { duration: 150 } }
                                             text: captureTrap.activeFocus ? "Press Keys (Esc to confirm)..." : (model.mods ? model.mods + " + " : "") + (model.key || "[Click to Record Shortcut]")
@@ -2503,7 +2503,7 @@ Item {
                                                 RowLayout {
                                                     anchors.fill: parent; anchors.margins: root.s(7)
                                                     Text {
-                                                        text: model.type; font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                                        text: model.type; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                                         color: kbRowRect.isTypeOpen ? root.peach : root.text; Layout.fillWidth: true
                                                         Behavior on color { ColorAnimation { duration: 200 } }
                                                     }
@@ -2530,7 +2530,7 @@ Item {
                                                         Behavior on color { ColorAnimation { duration: 120 } }
                                                         Text {
                                                             anchors.verticalCenter: parent.verticalCenter; x: root.s(8); text: modelData
-                                                            font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                                            font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                                             color: model.type === modelData ? root.peach : root.text
                                                         }
                                                         MouseArea { id: typeItemMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: { dynamicKeybindsModel.setProperty(outerIndex, "type", modelData); kbRowRect.isTypeOpen = false; } }
@@ -2556,7 +2556,7 @@ Item {
                                                 RowLayout {
                                                     anchors.fill: parent; anchors.margins: root.s(7)
                                                     Text {
-                                                        text: model.dispatcher; font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                                        text: model.dispatcher; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                                         color: kbRowRect.isDispOpen ? root.peach : root.text; Layout.fillWidth: true
                                                         Behavior on color { ColorAnimation { duration: 200 } }
                                                     }
@@ -2584,7 +2584,7 @@ Item {
                                                         Behavior on color { ColorAnimation { duration: 120 } }
                                                         Text {
                                                             anchors.verticalCenter: parent.verticalCenter; x: root.s(8); text: modelData
-                                                            font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                                            font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                                             color: model.dispatcher === modelData ? root.peach : root.text
                                                         }
                                                         MouseArea { id: dispItemMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: { dynamicKeybindsModel.setProperty(outerIndex, "dispatcher", modelData); kbRowRect.isDispOpen = false; } }
@@ -2608,7 +2608,7 @@ Item {
                                             anchors.fill: parent; anchors.margins: root.s(9)
                                             verticalAlignment: TextInput.AlignVCenter
                                             text: model.command
-                                            font.family: "JetBrains Mono"; font.pixelSize: root.s(11)
+                                            font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                             color: root.text; clip: true; selectByMouse: true
                                             onTextChanged: dynamicKeybindsModel.setProperty(outerIndex, "command", text)
                                             Text {
@@ -2637,7 +2637,7 @@ Item {
                                                     Behavior on color { ColorAnimation { duration: 180 } }
                                                 }
                                                 Text {
-                                                    text: "Delete"; font.family: "JetBrains Mono"; font.pixelSize: root.s(10); font.weight: Font.Medium
+                                                    text: "Delete"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10); font.weight: Font.Medium
                                                     color: delMa.containsMouse ? root.base : root.red
                                                     Behavior on color { ColorAnimation { duration: 180 } }
                                                 }
@@ -2667,7 +2667,7 @@ Item {
                                                     Behavior on color { ColorAnimation { duration: 180 } }
                                                 }
                                                 Text {
-                                                    text: "Save"; font.family: "JetBrains Mono"; font.pixelSize: root.s(10); font.weight: Font.Medium
+                                                    text: "Save"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10); font.weight: Font.Medium
                                                     color: rowSaveMa.containsMouse ? root.base : root.green
                                                     Behavior on color { ColorAnimation { duration: 180 } }
                                                 }
@@ -2732,7 +2732,7 @@ Item {
                     spacing: root.s(10)
 
                     Text { 
-                        text: "Settings"; font.family: "Inter"; font.weight: Font.Bold; font.pixelSize: root.s(24)
+                        text: "Settings"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(24)
                         color: root.text; Layout.alignment: Qt.AlignVCenter 
                     }
 
@@ -2744,7 +2744,7 @@ Item {
                         opacity: root.isSearchMode ? 1.0 : 0.0
                         Behavior on opacity { NumberAnimation { duration: 200 } }
                         Behavior on color { ColorAnimation { duration: 150 } }
-                        Text { anchors.centerIn: parent; text: "✕"; font.family: "Inter"; font.pixelSize: root.s(12); color: closeSearchMa.containsMouse ? root.red : root.subtext0; Behavior on color { ColorAnimation { duration: 150 } } }
+                        Text { anchors.centerIn: parent; text: "✕"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12); color: closeSearchMa.containsMouse ? root.red : root.subtext0; Behavior on color { ColorAnimation { duration: 150 } } }
                         MouseArea {
                             id: closeSearchMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                             onClicked: { root.isSearchMode = false; root.globalSearchQuery = ""; globalSearchInput.text = ""; root.searchHighlightIndex = -1; }
@@ -2789,7 +2789,7 @@ Item {
                             }
                             Text { 
                                 text: "Save"
-                                font.family: "JetBrains Mono"
+                                font.family: "JetBrainsMono Nerd Font"
                                 font.weight: Font.Bold
                                 font.pixelSize: root.s(12)
                                 color: headerSaveMa.containsMouse ? root.base : root.text
@@ -2838,7 +2838,7 @@ Item {
                             spacing: root.s(7)
                             Text { 
                                 text: "+"
-                                font.family: "JetBrains Mono"
+                                font.family: "JetBrainsMono Nerd Font"
                                 font.weight: Font.Bold
                                 font.pixelSize: root.s(15)
                                 color: headerAddMa.containsMouse ? root.base : root.peach
@@ -2846,7 +2846,7 @@ Item {
                             }
                             Text { 
                                 text: "Add"
-                                font.family: "JetBrains Mono"
+                                font.family: "JetBrainsMono Nerd Font"
                                 font.weight: Font.Bold
                                 font.pixelSize: root.s(12)
                                 color: headerAddMa.containsMouse ? root.base : root.text
@@ -2895,13 +2895,13 @@ Item {
                         TextInput {
                             id: globalSearchInput
                             Layout.fillWidth: true; Layout.fillHeight: true; verticalAlignment: TextInput.AlignVCenter
-                            font.family: "JetBrains Mono"; font.pixelSize: root.s(12); color: root.text; clip: true; selectByMouse: true
+                            font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12); color: root.text; clip: true; selectByMouse: true
                             Text {
                                 anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter
                                 text: root.isSearchMode ? "Search settings & keybinds..." : "Search"
                                 color: Qt.alpha(root.subtext0, 0.45)
                                 visible: !globalSearchInput.text && !globalSearchInput.activeFocus
-                                font.family: "JetBrains Mono"; font.pixelSize: root.s(12)
+                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12)
                             }
                             onActiveFocusChanged: { if (activeFocus && !root.isSearchMode) root.isSearchMode = true; }
                             onTextChanged: { root.globalSearchQuery = text; if (!root.isSearchMode && text.length > 0) root.isSearchMode = true; }
@@ -3086,7 +3086,7 @@ Item {
                                         }
                                         Text {
                                             text: root.tabNames[index]
-                                            font.family: "JetBrains Mono"
+                                            font.family: "JetBrainsMono Nerd Font"
                                             font.weight: isActive ? Font.Bold : Font.Medium
                                             font.pixelSize: root.s(12)
                                             color: isActive ? root.base : root.subtext0
@@ -3131,7 +3131,7 @@ Item {
                                 ColumnLayout {
                                     anchors.centerIn: parent; spacing: root.s(8)
                                     Text { Layout.alignment: Qt.AlignHCenter; text: ""; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(30); color: Qt.alpha(root.subtext0, 0.25) }
-                                    Text { Layout.alignment: Qt.AlignHCenter; text: "Type to search settings & keybinds..."; font.family: "JetBrains Mono"; font.pixelSize: root.s(12); color: Qt.alpha(root.subtext0, 0.35) }
+                                    Text { Layout.alignment: Qt.AlignHCenter; text: "Type to search settings & keybinds..."; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12); color: Qt.alpha(root.subtext0, 0.35) }
                                 }
                             }
 
@@ -3179,12 +3179,12 @@ Item {
                                             ColumnLayout {
                                                 Layout.fillWidth: true; spacing: root.s(2)
                                                 Text {
-                                                    text: card.label; font.family: "Inter"; font.weight: Font.Medium; font.pixelSize: root.s(13)
+                                                    text: card.label; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Medium; font.pixelSize: root.s(13)
                                                     color: isSearchHighlighted ? root[card.color] : root.text; Layout.fillWidth: true
                                                     Behavior on color { ColorAnimation { duration: 200 } }
                                                 }
                                                 Text {
-                                                    text: card.desc; font.family: "Inter"; font.pixelSize: root.s(10)
+                                                    text: card.desc; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10)
                                                     color: Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                                 }
                                             }
@@ -3194,12 +3194,12 @@ Item {
                                                 border.color: Qt.alpha(root[root.tabColors[card.tab]], 0.4); border.width: 1
                                                 Text {
                                                     id: tabBadgeText; anchors.centerIn: parent; text: root.tabNames[card.tab]
-                                                    font.family: "JetBrains Mono"; font.pixelSize: root.s(9)
+                                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(9)
                                                     color: root[root.tabColors[card.tab]]
                                                 }
                                             }
                                             Text {
-                                                text: "›"; font.family: "Inter"; font.pixelSize: root.s(18)
+                                                text: "›"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(18)
                                                 color: isSearchHighlighted ? root[card.color] : (searchCardMa.containsMouse ? root[card.color] : root.subtext0)
                                                 Behavior on color { ColorAnimation { duration: 150 } }
                                             }
@@ -3234,7 +3234,7 @@ Item {
                                 RowLayout {
                                     anchors.fill: parent; anchors.leftMargin: root.s(4); spacing: root.s(8)
                                     Rectangle { width: root.s(3); height: root.s(12); radius: root.s(2); color: root.peach }
-                                    Text { text: "Keybinds (" + root.matchingKeybindIndices.length + " match" + (root.matchingKeybindIndices.length !== 1 ? "es" : "") + ")"; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(10); color: root.peach }
+                                    Text { text: "Keybinds (" + root.matchingKeybindIndices.length + " match" + (root.matchingKeybindIndices.length !== 1 ? "es" : "") + ")"; font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(10); color: root.peach }
                                 }
                             }
 
@@ -3288,12 +3288,12 @@ Item {
                                                         visible: kbItem && kbItem.mods !== ""
                                                         Text {
                                                             id: modsT; anchors.centerIn: parent; text: kbItem ? kbItem.mods : ""
-                                                            font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(8)
+                                                            font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(8)
                                                             color: root.peach
                                                         }
                                                     }
                                                     Text {
-                                                        text: "+"; font.family: "JetBrains Mono"; font.pixelSize: root.s(9)
+                                                        text: "+"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(9)
                                                         color: root.overlay0
                                                         visible: kbItem && kbItem.mods !== "" && kbItem.key !== ""; anchors.verticalCenter: parent.verticalCenter
                                                     }
@@ -3304,14 +3304,14 @@ Item {
                                                         visible: kbItem && kbItem.key !== ""
                                                         Text {
                                                             id: keyT; anchors.centerIn: parent; text: kbItem ? kbItem.key : ""
-                                                            font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: root.s(8)
+                                                            font.family: "JetBrainsMono Nerd Font"; font.weight: Font.Bold; font.pixelSize: root.s(8)
                                                             color: root.peach
                                                         }
                                                     }
                                                 }
                                                 Text {
                                                     text: kbItem ? (kbItem.dispatcher + " " + kbItem.command).trim() : ""
-                                                    font.family: "JetBrains Mono"; font.pixelSize: root.s(9)
+                                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(9)
                                                     color: isSearchHighlighted ? root.peach : Qt.alpha(root.subtext0, 0.7)
                                                     elide: Text.ElideRight; Layout.fillWidth: true
                                                     Behavior on color { ColorAnimation { duration: 200 } }
@@ -3323,12 +3323,12 @@ Item {
                                                 border.color: Qt.alpha(root.peach, 0.35); border.width: 1
                                                 Text {
                                                     id: kbBadgeText; anchors.centerIn: parent; text: "Keybinds"
-                                                    font.family: "JetBrains Mono"; font.pixelSize: root.s(9)
+                                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(9)
                                                     color: root.peach
                                                 }
                                             }
                                             Text {
-                                                text: "›"; font.family: "Inter"; font.pixelSize: root.s(18)
+                                                text: "›"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(18)
                                                 color: isSearchHighlighted ? root.peach : (kbResultMa.containsMouse ? root.peach : root.subtext0)
                                                 Behavior on color { ColorAnimation { duration: 150 } }
                                             }
@@ -3511,7 +3511,7 @@ Item {
                                         Text {
                                             anchors.centerIn: parent
                                             text: model.isEditing ? "▴" : "󰏫"
-                                            font.family: model.isEditing ? "Inter" : "JetBrainsMono Nerd Font"
+                                            font.family: model.isEditing ? "JetBrainsMono Nerd Font" : "JetBrainsMono Nerd Font"
                                             font.pixelSize: root.s(13)
                                             color: model.isEditing
                                                 ? root.base
@@ -3535,7 +3535,7 @@ Item {
                                         Text {
                                             anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter
                                             text: model.command !== "" ? model.command : "(empty command)"
-                                            font.family: "JetBrains Mono"; font.pixelSize: root.s(10)
+                                            font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10)
                                             color: model.command !== "" ? root.text : root.overlay0
                                             elide: Text.ElideRight; width: parent.width
                                         }
@@ -3564,7 +3564,7 @@ Item {
                                                 TextInput {
                                                     id: cmdInputFocus
                                                     Layout.fillWidth: true; Layout.fillHeight: true; verticalAlignment: TextInput.AlignVCenter
-                                                    font.family: "JetBrains Mono"; font.pixelSize: root.s(10); color: root.text; clip: true; selectByMouse: true
+                                                    font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10); color: root.text; clip: true; selectByMouse: true
                                                     text: model.command
                                                     onTextChanged: dynamicStartupModel.setProperty(outerIndex, "command", text)
                                                     Keys.onEscapePressed: { dynamicStartupModel.setProperty(outerIndex, "isEditing", false); root.forceActiveFocus(); }
@@ -3572,7 +3572,7 @@ Item {
                                                         anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter
                                                         text: "e.g. waybar, dunst, nm-applet"
                                                         color: Qt.alpha(root.subtext0, 0.45); visible: !parent.text && !parent.activeFocus
-                                                        font.family: "JetBrains Mono"; font.pixelSize: root.s(10)
+                                                        font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10)
                                                     }
                                                 }
                                             }
@@ -3590,7 +3590,7 @@ Item {
                                                 RowLayout {
                                                     id: startupDelRow; anchors.centerIn: parent; spacing: root.s(5)
                                                     Text { text: "󰆴"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12); color: startupDelMa.containsMouse ? root.base : root.red; Behavior on color { ColorAnimation { duration: 150 } } }
-                                                    Text { text: "Delete"; font.family: "JetBrains Mono"; font.pixelSize: root.s(10); color: startupDelMa.containsMouse ? root.base : root.red; Behavior on color { ColorAnimation { duration: 150 } } }
+                                                    Text { text: "Delete"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10); color: startupDelMa.containsMouse ? root.base : root.red; Behavior on color { ColorAnimation { duration: 150 } } }
                                                 }
                                                 MouseArea { id: startupDelMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: { dynamicStartupModel.remove(outerIndex); root.saveAllStartup(); } }
                                             }
@@ -3604,7 +3604,7 @@ Item {
                                                 RowLayout {
                                                     id: startupDoneRow; anchors.centerIn: parent; spacing: root.s(5)
                                                     Text { text: "󰸞"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(12); color: startupDoneMa.containsMouse ? root.base : root.green; Behavior on color { ColorAnimation { duration: 150 } } }
-                                                    Text { text: "Done"; font.family: "JetBrains Mono"; font.pixelSize: root.s(10); color: startupDoneMa.containsMouse ? root.base : root.green; Behavior on color { ColorAnimation { duration: 150 } } }
+                                                    Text { text: "Done"; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(10); color: startupDoneMa.containsMouse ? root.base : root.green; Behavior on color { ColorAnimation { duration: 150 } } }
                                                 }
                                                 MouseArea {
                                                     id: startupDoneMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
