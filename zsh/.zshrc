@@ -23,6 +23,7 @@ export VISUAL="nvim"
 export TERMINAL="kitty"
 export BROWSER="brave"
 export PATH="$HOME/.local/bin:$PATH"
+export SUDO_ASKPASS="$HOME/.dotfiles/scripts/rofi-askpass.sh"
 
 # ── STR Prompt ──
 # S❯ in azure, directory in bright, git branch in dim

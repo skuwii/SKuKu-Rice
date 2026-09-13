@@ -85,6 +85,9 @@ link "$DOTFILES/wlogout/style.css"         "$CONFIG/wlogout/style.css"
 link "$DOTFILES/gtk-3.0/settings.ini"     "$CONFIG/gtk-3.0/settings.ini"
 link "$DOTFILES/gtk-4.0/gtk.css"          "$CONFIG/gtk-4.0/gtk.css"
 
+# fontconfig (pins generic families to JetBrainsMono / Adwaita Sans)
+link "$DOTFILES/fontconfig/fonts.conf"    "$CONFIG/fontconfig/fonts.conf"
+
 # btop
 link "$DOTFILES/btop/btop.conf"           "$CONFIG/btop/btop.conf"
 
@@ -100,10 +103,12 @@ link "$DOTFILES/lazygit/config.yml"       "$CONFIG/lazygit/config.yml"
 echo ""
 echo "[ MANUAL STEPS ]"
 echo ""
-echo "  1. Hyprland plugins:"
+echo "  1. Hyprland plugins (hyprpm is a separate package as of 0.56):"
+echo "     sudo pacman -S hyprpm"
+echo "     hyprpm update"
 echo "     hyprpm add https://github.com/hyprwm/hyprland-plugins"
 echo "     hyprpm add https://github.com/VirtCode/hypr-dynamic-cursors"
-echo "     hyprpm enable hyprexpo"
+echo "     hyprpm enable hyprbars"
 echo "     hyprpm enable dynamic-cursors"
 echo ""
 echo "  2. SDDM theme:"

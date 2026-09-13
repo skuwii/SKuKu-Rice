@@ -15,3 +15,7 @@
 
 # pywal runtime-generated files
 btop/themes/wal-active.theme
+
+# Local config backups
+*.bak
+*.bak-*
