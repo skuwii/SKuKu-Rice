@@ -19,3 +19,6 @@ btop/themes/wal-active.theme
 # Local config backups
 *.bak
 *.bak-*
+
+# Brave regenerates this from manifest.json on load
+brave/STR-theme/Cached Theme.pak
