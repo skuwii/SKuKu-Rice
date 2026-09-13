@@ -57,6 +57,9 @@ link_dir "$DOTFILES/hypr/scripts"          "$CONFIG/hypr/scripts"
 # Kitty
 link "$DOTFILES/kitty/kitty.conf"          "$CONFIG/kitty/kitty.conf"
 
+# Neovim
+link_dir "$DOTFILES/nvim"                  "$CONFIG/nvim"
+
 # ZSH
 link "$DOTFILES/zsh/.zshrc"                "$HOME/.zshrc"
 
