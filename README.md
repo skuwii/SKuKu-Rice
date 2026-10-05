@@ -22,15 +22,14 @@
 | Fastfetch     | System info — custom layout                                      |
 | Cava          | Audio visualizer → Quickshell bar renderer                       |
 | wlogout       | Power menu — STR styled, Honda Red on shutdown                   |
-| SDDM          | Login screen — QML theme                                         |
+| SDDM          | Login screen — sddm-astronaut-theme, STR variant (`str.conf`)    |
 | GRUB          | Boot menu — minimal S mark theme                                 |
 | Plymouth      | Boot splash — STR theme, azure spinner                           |
 | GTK 3/4       | Dark theme for Thunar, file pickers                              |
-| Rofi          | Legacy launcher (kept, superseded by Quickshell applauncher)     |
-| eww           | Legacy panel (kept as rollback for LeftPanel)                    |
+| Rofi          | `sudo` askpass prompt only (launcher is Quickshell)              |
+| pywal         | STR ↔ wal palette toggle — templates for tmux, btop, rofi, zathura |
+| btop / lazygit / zathura | Monitor, git TUI, PDF viewer — STR themed             |
 | Brave         | Browser — STR unpacked theme extension                           |
-| Steam         | Gaming — Millennium STR skin                                     |
-| MangoHud      | Game overlay — STR palette, `$mod+SHIFT+F12` toggle             |
 
 ## Quickshell Layout
 
@@ -39,11 +38,13 @@ Main.qml          — full-screen overlay host: notifications, popups
 TopBar.qml        — identity, workspaces, music, clock, system tray, net speed, GitHub badge
 LeftPanel.qml     — profile, clock, sys stats, fetch, media+cava
 Floating.qml      — bottom sidebar: quick actions, system usage
+OSD.qml           — volume / brightness on-screen display
+RecordingIndicator.qml — screen recording pill
 ```
 
-Widgets under `quickshell/widgets/`: applauncher, audio mixer, battery, calendar, clipboard,
-focustime, music, network/bluetooth, notifications, OSD, screenshot overlay, recording indicator,
-settings, updater, volume, wallpaper.
+Widget folders under `hypr/scripts/quickshell/`: applauncher, battery, calendar, clipboard,
+focustime, guide, monitors, movies, music, network, notifications, quickactions, settings,
+stewart, sysmon, updater, volume, wallpaper.
 
 IPC: `~/.config/hypr/scripts/qs_manager.sh toggle <widget>` writes to `/tmp/qs_widget_state`.
 
@@ -58,9 +59,7 @@ IPC: `~/.config/hypr/scripts/qs_manager.sh toggle <widget>` writes to `/tmp/qs_w
 | `$mod+A` | Audio mixer |
 | `$mod+B` | Clipboard history |
 | `$mod+N` | Network / bluetooth |
-| `$mod+SHIFT+G` | Game mode toggle |
 | `$mod+SHIFT+T` | Palette toggle (STR ↔ wal) |
-| `$mod+SHIFT+F12` | MangoHud overlay |
 
 ## Palette
 
@@ -115,11 +114,11 @@ yay -S awww matugen python-pywal
 # Terminal / Shell / Editor
 yay -S kitty zsh oh-my-zsh-git zsh-autosuggestions zsh-syntax-highlighting tmux neovim yazi
 
-# Bar / UI deps
-yay -S wlogout rofi-wayland swappy wf-recorder
+# UI deps (power menu, askpass, screenshots, recording)
+yay -S wlogout rofi swappy wf-recorder
 
 # Utilities
-yay -S fastfetch cava eza bat brightnessctl grim grimblast slurp wl-clipboard cliphist jq playerctl gamemoded
+yay -S fastfetch cava eza bat brightnessctl grim grimblast slurp wl-clipboard cliphist jq playerctl
 
 # Audio
 yay -S pipewire pipewire-pulse easyeffects
@@ -137,10 +136,7 @@ yay -S networkmanager
 yay -S nwg-look
 
 # Login / Boot
-yay -S sddm qt6-declarative plymouth
-
-# Gaming
-yay -S steam gamescope mangohud
+yay -S sddm qt6-declarative qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg plymouth
 ```
 
 ## Manual Steps After Install
@@ -154,10 +150,13 @@ hyprpm enable hyprbars
 hyprpm enable dynamic-cursors
 ```
 
-**2. SDDM theme**
+**2. SDDM theme** (sddm-astronaut-theme + STR variant)
 ```bash
-sudo cp -r ~/.dotfiles/sddm/str-theme /usr/share/sddm/themes/
-# Set Current=str-theme in /etc/sddm.conf
+sudo git clone https://github.com/Keyitdev/sddm-astronaut-theme /usr/share/sddm/themes/sddm-astronaut-theme
+sudo cp ~/.dotfiles/sddm/astronaut/str.conf /usr/share/sddm/themes/sddm-astronaut-theme/Themes/
+sudo cp ~/media/wallpapers/firewatch.jpg /usr/share/sddm/themes/sddm-astronaut-theme/Backgrounds/str.jpg
+# /etc/sddm.conf → [Theme] Current=sddm-astronaut-theme
+# metadata.desktop → ConfigFile=Themes/str.conf
 ```
 
 **3. GRUB theme**
@@ -169,8 +168,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 **4. Plymouth**
 ```bash
-sudo cp -r ~/.dotfiles/plymouth/str-theme /usr/share/plymouth/themes/
-sudo plymouth-set-default-theme str-theme -R
+bash ~/.dotfiles/plymouth/str/install.sh   # generates assets, installs, sets default
 # Add 'plymouth' to HOOKS in /etc/mkinitcpio.conf, then:
 sudo mkinitcpio -P
 ```
@@ -179,15 +177,11 @@ sudo mkinitcpio -P
 
 Open `brave://extensions` → enable Developer mode → Load unpacked → select `~/.dotfiles/brave/STR-theme/`
 
-**6. Steam / Millennium**
-
-Install [Millennium](https://steambrew.app), then symlink or copy `~/.dotfiles/steam/millennium/STR-Theme/` into `~/.local/share/Steam/millennium/themes/`.
-
-**7. Wallpaper**
+**6. Wallpaper**
 
 Place wallpaper at `~/media/wallpapers/` — awww picks it up. Default: `firewatch.jpg`.
 
-**8. Cursor**
+**7. Cursor**
 ```bash
 gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
 ```

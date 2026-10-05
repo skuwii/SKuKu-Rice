@@ -63,8 +63,6 @@ alias gd="git diff"
 
 # STR
 alias rice="cd ~/.dotfiles"
-alias eww-reload="eww kill && eww daemon && eww open left-panel && eww open right-panel && eww open bottom-bar"
-alias waybar-reload="killall waybar; waybar &"
 
 # ── History ──
 HISTSIZE=10000
