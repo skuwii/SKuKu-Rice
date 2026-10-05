@@ -22,7 +22,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="kitty"
 export BROWSER="brave"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 export SUDO_ASKPASS="$HOME/.dotfiles/scripts/rofi-askpass.sh"
 
 # ── STR Prompt ──
