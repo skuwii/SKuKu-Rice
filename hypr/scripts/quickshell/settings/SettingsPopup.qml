@@ -844,7 +844,7 @@ Item {
         { tab: 0, boxIndex: 0, label: "Guide on startup",  desc: "Launch on login",        icon: "󰑊", color: "peach" },
         { tab: 0, boxIndex: 1, label: "Help icon",         desc: "Show button in topbar",  icon: "󰋖", color: "blue" },
         { tab: 0, boxIndex: 2, label: "UI Scale",          desc: "Base size scalar",       icon: "󰁦", color: "sapphire" },
-        { tab: 0, boxIndex: 3, label: "Keyboard layouts",  desc: "Matches hyprland.conf",  icon: "󰌌", color: "green" },
+        { tab: 0, boxIndex: 3, label: "Keyboard layouts",  desc: "Matches hyprland.lua",  icon: "󰌌", color: "green" },
         { tab: 0, boxIndex: 4, label: "Layout shortcut",   desc: "Toggle combination",     icon: "󰯍", color: "teal" },
         { tab: 0, boxIndex: 5, label: "Wallpaper directory",desc: "Absolute source path",  icon: "󰋩", color: "mauve" },
         { tab: 0, boxIndex: 6, label: "Workspaces",        desc: "Static count in topbar", icon: "󰽿", color: "red" },
@@ -925,7 +925,7 @@ Item {
         }
         ScriptAction { 
             script: {
-                Quickshell.execDetached(["hyprctl", "dispatch", "submap", "reset"]);
+                Quickshell.execDetached(["hyprctl", "dispatch", 'hl.dsp.submap("reset")']);
                 Quickshell.execDetached(["bash", Quickshell.env("HOME") + "/.config/hypr/scripts/qs_manager.sh", "close"]);
             } 
         }    
@@ -1255,7 +1255,7 @@ Item {
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
                                     Text {
-                                        text: "Matches hyprland.conf. Click ✖ to remove."; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
+                                        text: "Matches hyprland.lua. Click ✖ to remove."; font.family: "JetBrainsMono Nerd Font"; font.pixelSize: root.s(11)
                                         color: box3.isActive ? Qt.alpha(root.base, 0.75) : Qt.alpha(root.subtext0, 0.7); Layout.fillWidth: true
                                         Behavior on color { ColorAnimation { duration: 220; easing.type: Easing.OutExpo } }
                                     }
@@ -2477,8 +2477,8 @@ Item {
                                                 dynamicKeybindsModel.setProperty(outerIndex, "key", k);
                                             }
                                             onActiveFocusChanged: {
-                                                if (!activeFocus) { accumulatedMods = []; accumulatedKey = ""; Quickshell.execDetached(["hyprctl", "dispatch", "submap", "reset"]); }
-                                                else { Quickshell.execDetached(["hyprctl", "dispatch", "submap", "passthru"]); }
+                                                if (!activeFocus) { accumulatedMods = []; accumulatedKey = ""; Quickshell.execDetached(["hyprctl", "dispatch", 'hl.dsp.submap("reset")']); }
+                                                else { Quickshell.execDetached(["hyprctl", "dispatch", 'hl.dsp.submap("passthru")']); }
                                             }
                                         }
                                     }

@@ -46,7 +46,7 @@ echo "[ LINKING ]"
 echo ""
 
 # Hyprland
-link "$DOTFILES/hypr/hyprland.conf"        "$CONFIG/hypr/hyprland.conf"
+link "$DOTFILES/hypr/hyprland.lua"         "$CONFIG/hypr/hyprland.lua"
 link "$DOTFILES/hypr/hyprlock.conf"        "$CONFIG/hypr/hyprlock.conf"
 link "$DOTFILES/hypr/hypridle.conf"        "$CONFIG/hypr/hypridle.conf"
 link_dir "$DOTFILES/hypr/scripts"          "$CONFIG/hypr/scripts"

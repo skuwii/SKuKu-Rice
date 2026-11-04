@@ -207,7 +207,7 @@ Item {
 
     Process {
         id: hyprLangReader
-        command: ["bash", "-c", `grep -m1 '^ *kb_layout *=' "${config.hyprDir}/hyprland.conf" | cut -d'=' -f2 | tr -d ' '`]
+        command: ["bash", "-c", `grep -m1 '^ *kb_layout *=' "${config.hyprDir}/hyprland.lua" | cut -d'=' -f2 | tr -d ' ",'`]
         running: false
         stdout: StdioCollector {
             onStreamFinished: {

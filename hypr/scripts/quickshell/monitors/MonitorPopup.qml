@@ -375,10 +375,7 @@ Item {
 
         if (monitorsModel.count === 1) {
             let m = monitorsModel.get(0);
-            let monitorStr = m.name + "," + m.resW + "x" + m.resH + "@" + m.rate + ",0x0," + m.sysScale;
-            if (m.transform !== 0) {
-                monitorStr += ",transform," + m.transform;
-            }
+            let monitorLua = 'hl.monitor({output="' + m.name + '",mode="' + m.resW + 'x' + m.resH + '@' + m.rate + '",position="0x0",scale=' + m.sysScale + ',transform=' + m.transform + '})';
 
             let jsonMonitorsArray = [{
                 name: m.name, resW: m.resW, resH: m.resH, rate: parseInt(m.rate),
@@ -389,7 +386,7 @@ Item {
             let postReloadCmd = "swww kill ; sleep 0.2 ; swww-daemon &";
 
             Quickshell.execDetached(["notify-send", "Display Update", "Applied & Saved: " + m.resW + "x" + m.resH + " @ " + m.rate + "Hz"]);
-            Quickshell.execDetached(["sh", "-c", "hyprctl keyword monitor " + monitorStr + " ; " + jsonCmd + " ; " + postReloadCmd]);
+            Quickshell.execDetached(["sh", "-c", "hyprctl eval '" + monitorLua + "' ; " + jsonCmd + " ; " + postReloadCmd]);
             
             window.debugLog("Executed single monitor apply.");
         } else {
@@ -467,12 +464,7 @@ Item {
                 r.x = Math.round(r.x - finalMinX);
                 r.y = Math.round(r.y - finalMinY);
                 
-                let monitorStr = r.name + "," + r.resW + "x" + r.resH + "@" + r.rate + "," + r.x + "x" + r.y + "," + r.sysScale;
-                if (r.transform !== 0) {
-                    monitorStr += ",transform," + r.transform;
-                }
-                
-                batchCmds.push("keyword monitor " + monitorStr);
+                batchCmds.push('hl.monitor({output="' + r.name + '",mode="' + r.resW + 'x' + r.resH + '@' + r.rate + '",position="' + r.x + 'x' + r.y + '",scale=' + r.sysScale + ',transform=' + r.transform + '})');
                 summaryString += r.name + " ";
 
                 jsonMonitorsArray.push({
@@ -481,7 +473,7 @@ Item {
                 });
             }
             
-            let fullHyprCmd = "hyprctl --batch '" + batchCmds.join(" ; ") + "'";
+            let fullHyprCmd = "hyprctl eval '" + batchCmds.join(" ") + "'";
             let safeJson = JSON.stringify(jsonMonitorsArray).replace(/'/g, "'\\''");
             let jsonCmd = "jq '.monitors = " + safeJson + "' ~/.config/hypr/settings.json > ~/.config/hypr/settings.json.tmp && mv ~/.config/hypr/settings.json.tmp ~/.config/hypr/settings.json";
             let postReloadCmd = "swww kill ; sleep 0.2 ; swww-daemon &";

@@ -136,13 +136,14 @@ PYEOF
     cp ~/.cache/wal/colors-btop.theme ~/.config/btop/themes/wal-active.theme 2>/dev/null
 
     # Restart Quickshell to pick up new MatugenColors.qml
-    pkill -f "quickshell" 2>/dev/null
+    pkill -x quickshell 2>/dev/null
     sleep 0.4
     quickshell -p ~/.config/hypr/scripts/quickshell/Main.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/TopBar.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/Floating.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/LeftPanel.qml &
     quickshell -p ~/.dotfiles/hypr/scripts/quickshell/OSD.qml &
+    quickshell -p ~/.dotfiles/hypr/scripts/quickshell/RecordingIndicator.qml &
 
     # Update hyprbars colors from pywal palette
     python3 - <<'HYPRBARS_EOF'
@@ -169,12 +170,16 @@ bg, fg, mid = sp['background'], sp['foreground'], c['color8']
 surface0 = lerp(bg, mid, 0.34)
 subtext1 = lerp(mid, fg, 0.90)
 
-kw = lambda k, v: subprocess.run(['hyprctl', 'keyword', k, v], capture_output=True)
-kw('plugin:hyprbars:bar_color',           rgba(surface0,     0.15))
-kw('plugin:hyprbars:col.text',            rgba(subtext1,     0.30))
-kw('plugin:hyprbars:buttons:col.close',   rgba(c['color1'],  0.35))
-kw('plugin:hyprbars:buttons:col.minimize',rgba(mid,          0.22))
-kw('plugin:hyprbars:buttons:col.maximize',rgba(c['color4'],  0.25))
+hyprbars = {
+    'bar_color': rgba(surface0, 0.15),
+    'text': rgba(subtext1, 0.30),
+    'close': rgba(c['color1'], 0.35),
+    'minimize': rgba(mid, 0.22),
+    'maximize': rgba(c['color4'], 0.25),
+}
+lua = ('hl.config({{plugin={{hyprbars={{bar_color="{bar_color}",col={{text="{text}"}},'
+       'buttons={{col={{close="{close}",minimize="{minimize}",maximize="{maximize}"}}}}}}}}}})').format(**hyprbars)
+subprocess.run(['hyprctl', 'eval', lua], capture_output=True)
 HYPRBARS_EOF
 }
 

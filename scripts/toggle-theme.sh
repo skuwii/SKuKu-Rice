@@ -31,13 +31,14 @@ apply_all() {
 }
 
 restart_quickshell() {
-    pkill -f "quickshell" 2>/dev/null
+    pkill -x quickshell 2>/dev/null
     sleep 0.4
     quickshell -p ~/.config/hypr/scripts/quickshell/Main.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/TopBar.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/Floating.qml &
     quickshell -p ~/.config/hypr/scripts/quickshell/LeftPanel.qml &
     quickshell -p ~/.dotfiles/hypr/scripts/quickshell/OSD.qml &
+    quickshell -p ~/.dotfiles/hypr/scripts/quickshell/RecordingIndicator.qml &
 }
 
 if [ "$current" = "str" ]; then
