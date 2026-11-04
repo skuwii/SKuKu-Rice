@@ -254,7 +254,7 @@ PanelWindow {
                                 color: panel.clrPink
                             }
                             Text {
-                                text: "Y"
+                                text: " Y"
                                 font.family: "JetBrainsMono Nerd Font"; font.pixelSize: 18; font.bold: true
                                 color: panel.clrText
                             }
