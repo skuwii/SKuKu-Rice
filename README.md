@@ -77,7 +77,7 @@ IPC: `~/.config/hypr/scripts/qs_manager.sh toggle <widget>` writes to `/tmp/qs_w
 Semantic warm (icon-level only):
 #fab387   peach            (sun / warm states)
 #f9e2af   yellow           (moon / idle)
-#ffb8c6   pink             (love counter)
+#ffb8c6   pink             (icon accents)
 #a6e3a1   green            (charging / online)
 ```
 

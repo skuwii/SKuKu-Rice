@@ -8,6 +8,7 @@
 **/*token*
 
 # Local quickshell state / runtime caches
+hypr/scripts/quickshell/local/
 **/qs_workspaces.json
 **/qs_widget_state
 **/qs_current_widget

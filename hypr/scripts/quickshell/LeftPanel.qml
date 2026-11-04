@@ -32,7 +32,6 @@ PanelWindow {
     readonly property color clrAzure:   _theme.blue
     readonly property color clrAzureHi: _theme.sapphire
     readonly property color clrPink:    _theme.pink
-    readonly property color clrLove:    _theme.pink
 
     readonly property color cardBg: _theme.baseGlass
 
@@ -47,11 +46,6 @@ PanelWindow {
             panel.clockDate = Qt.formatDate(new Date(), "ddd, MMM d").toUpperCase();
         }
     }
-
-    // ── LOVE COUNTER ─────────────────────────────────────────────────────
-    readonly property int loveDays: Math.floor(
-        (Date.now() - new Date("2025-04-02").getTime()) / 86400000
-    )
 
     // ── SYSTEM DATA ──────────────────────────────────────────────────────
     property int sysCpu:  0
@@ -233,33 +227,7 @@ PanelWindow {
                         }
                     }
 
-                    // M ♥ Y chip
-                    Rectangle {
-                        implicitWidth: eggRow.implicitWidth + 24
-                        height: 32; radius: 30
-                        color: Qt.rgba(37/255, 39/255, 42/255, 0.95)
-                        border { color: Qt.rgba(255/255, 184/255, 198/255, 0.25); width: 1 }
-                        RowLayout {
-                            id: eggRow
-                            anchors.centerIn: parent
-                            spacing: 0
-                            Text {
-                                text: "M "
-                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: 18; font.bold: true
-                                color: panel.clrText
-                            }
-                            Text {
-                                text: "♥ "
-                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: 20
-                                color: panel.clrPink
-                            }
-                            Text {
-                                text: " Y"
-                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: 18; font.bold: true
-                                color: panel.clrText
-                            }
-                        }
-                    }
+                    Loader { source: Qt.resolvedUrl("local/ProfileChip.qml") }
                 }
             }
 
@@ -492,62 +460,10 @@ PanelWindow {
                 }
             }
 
-            // ── 6. LOVE ──────────────────────────────────────────────────
-            Rectangle {
+            // Optional machine-local card; absent on a fresh clone
+            Loader {
                 Layout.fillWidth: true
-                height: 100
-                radius: 14
-                color: panel.cardBg
-                border { color: Qt.rgba(0.75, 0.08, 0.48, 0.15); width: 1 }
-
-                // Subtle pink top highlight instead of white
-                Rectangle {
-                    anchors { top: parent.top; left: parent.left; right: parent.right }
-                    height: 1; radius: parent.radius
-                    color: Qt.rgba(192/255, 57/255, 122/255, 0.18)
-                    z: 10
-                }
-
-                ColumnLayout {
-                    anchors {
-                        fill: parent
-                        topMargin: 10; bottomMargin: 10
-                        leftMargin: 14; rightMargin: 14
-                    }
-                    spacing: 0
-
-                    RowLayout {
-                        Layout.fillWidth: true
-                        Text { text: "♥"; font.pixelSize: 10; color: Qt.rgba(0.75, 0.08, 0.48, 0.22) }
-                        Item { Layout.fillWidth: true }
-                        Text { text: "♥"; font.pixelSize: 10; color: Qt.rgba(0.75, 0.08, 0.48, 0.22) }
-                    }
-
-                    Text {
-                        Layout.alignment: Qt.AlignHCenter
-                        text: panel.loveDays.toString()
-                        font { family: "JetBrainsMono Nerd Font"; pixelSize: 38; bold: true }
-                        color: panel.clrLove
-                    }
-
-                    Text {
-                        Layout.alignment: Qt.AlignHCenter
-                        text: "DAYS TOGETHER"
-                        font { family: "JetBrainsMono Nerd Font"; pixelSize: 8; bold: true; letterSpacing: 4 }
-                        color: Qt.rgba(0.83, 0.38, 0.54, 0.5)
-                    }
-
-                    RowLayout {
-                        Layout.fillWidth: true
-                        Text { text: "♥"; font.pixelSize: 10; color: Qt.rgba(0.75, 0.08, 0.48, 0.22) }
-                        Item { Layout.fillWidth: true }
-                        Text {
-                            text: "M · Y"
-                            font { family: "JetBrainsMono Nerd Font"; pixelSize: 7 }
-                            color: Qt.rgba(0.75, 0.08, 0.48, 0.12)
-                        }
-                    }
-                }
+                source: Qt.resolvedUrl("local/ExtraCard.qml")
             }
 
             Item { implicitHeight: 8 }
