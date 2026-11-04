@@ -27,6 +27,15 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1, mirr
 -- The Intel GPU drives the display. Don't set GBM_BACKEND, __GLX_VENDOR_LIBRARY_NAME
 -- or LIBVA_DRIVER_NAME to nvidia here: every client then loads NVIDIA's EGL against
 -- an Intel render node. Use prime-run for apps that need the dGPU.
+-- Keep Hyprland off the dGPU so it can runtime-suspend. dri/igpu comes from a udev rule
+-- because cardN numbering isn't stable here. Only set it if the node exists: pointing
+-- Aquamarine at a missing device would stop the session from starting.
+local igpu = io.open("/dev/dri/igpu", "r")
+if igpu then
+    igpu:close()
+    hl.env("AQ_DRM_DEVICES", "/dev/dri/igpu")
+end
+
 hl.env("WALLPAPER_DIR", home .. "/media/wallpapers")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
