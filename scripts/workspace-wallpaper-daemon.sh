@@ -173,12 +173,10 @@ subtext1 = lerp(mid, fg, 0.90)
 hyprbars = {
     'bar_color': rgba(surface0, 0.15),
     'text': rgba(subtext1, 0.30),
-    'close': rgba(c['color1'], 0.35),
-    'minimize': rgba(mid, 0.22),
-    'maximize': rgba(c['color4'], 0.25),
 }
-lua = ('hl.config({{plugin={{hyprbars={{bar_color="{bar_color}",col={{text="{text}"}},'
-       'buttons={{col={{close="{close}",minimize="{minimize}",maximize="{maximize}"}}}}}}}}}})').format(**hyprbars)
+# The daemon can run before hyprpm has loaded the plugin
+lua = ('if hl.plugin.hyprbars then hl.config({{plugin={{hyprbars={{'
+       'bar_color="{bar_color}",col={{text="{text}"}}}}}}}}) end').format(**hyprbars)
 subprocess.run(['hyprctl', 'eval', lua], capture_output=True)
 HYPRBARS_EOF
 }

@@ -299,14 +299,6 @@ if pluginLoaded("hyprbars") then
                 bar_padding = 4,
                 bar_button_padding = 5,
                 bar_precedence_over_border = true,
-                buttons = {
-                    button_size = 8,
-                    col = {
-                        close = "rgba(c0392b66)",
-                        minimize = "rgba(8a8d9244)",
-                        maximize = "rgba(2980d444)",
-                    },
-                },
             },
         },
     })
@@ -315,19 +307,18 @@ end
 if pluginLoaded("dynamic-cursors") then
     hl.config({
         plugin = {
-            ["dynamic-cursors"] = {
+            -- Lua exposes this plugin with an underscore; the hyphenated key is rejected
+            dynamic_cursors = {
                 enabled = true,
                 mode = "tilt",
                 threshold = 2,
                 tilt = {
                     limit = 5000,
-                    ["function"] = "negative_quadratic",
+                    activation = "negative_quadratic",
                 },
                 shake = {
                     enabled = true,
                     threshold = 6.0,
-                    factor = 1.5,
-                    expand_effect = true,
                 },
             },
         },
