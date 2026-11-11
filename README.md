@@ -84,6 +84,17 @@ Semantic warm (icon-level only):
 
 Font: `JetBrainsMono Nerd Font`
 
+## Notes
+
+- `hypr/scripts/quickshell/MatugenColors.qml` is generated (the palette toggle and the
+  wallpaper daemon rewrite it) and is gitignored. `MatugenColors-str.qml` is the tracked
+  STR palette; `install.sh` seeds the live file from it.
+- `fontconfig/fonts.conf` pins every generic family to JetBrainsMono, with one exception:
+  LibreOffice (`soffice.bin`) falls back to Arial / Times New Roman for fonts that aren't
+  installed, and common Windows fonts map to the closest installed match. Without that,
+  documents made on Windows reflow.
+- `hypr/scripts/quickshell/local/` is for machine-local widgets and is gitignored.
+
 ## Hyprland Plugins
 
 Managed via `hyprpm`:
@@ -113,6 +124,9 @@ yay -S awww matugen python-pywal
 
 # Terminal / Shell / Editor
 yay -S kitty zsh oh-my-zsh-git zsh-autosuggestions zsh-syntax-highlighting tmux neovim yazi
+
+# Desktop basics (GUI password prompts, USB automount, image viewer)
+yay -S hyprpolkitagent udisks2 udiskie gvfs imv
 
 # UI deps (power menu, askpass, screenshots, recording)
 yay -S wlogout rofi swappy wf-recorder
