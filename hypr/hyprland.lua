@@ -71,6 +71,9 @@ hl.on("hyprland.start", function()
     hl.exec_cmd(home .. "/.dotfiles/hypr/battery-alert.sh")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("easyeffects --gapplication-service")
+    -- Password prompts for GUI apps, and USB drive automount (both no-ops until installed)
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("command -v udiskie >/dev/null && udiskie --no-tray")
     -- Plugin options only exist once the plugin is loaded, so reload after hyprpm finishes
     hl.exec_cmd("hyprpm reload -n && hyprctl reload config-only")
     hl.exec_cmd(dotScripts .. "/workspace-wallpaper-daemon.sh")
@@ -173,7 +176,7 @@ hl.bind(mod .. " + 8", hl.dsp.workspace.toggle_special("notes"))
 hl.bind(mod .. " + 9", hl.dsp.workspace.toggle_special("calc"))
 hl.bind(mod .. " + grave", hl.dsp.workspace.toggle_special("dropdown"))
 
-hl.bind(mod .. " + SHIFT + R", hl.dsp.reload_config())
+hl.bind(mod .. " + CTRL + R", hl.dsp.reload_config())
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd(dotScripts .. "/recording-stop.sh"))
 
 -- Focus
@@ -205,6 +208,10 @@ hl.bind("SHIFT + Print", hl.dsp.exec_cmd(
 
 hl.bind("SUPER + C", hl.dsp.exec_cmd("hyprpicker -a"))
 
+-- Presenting: cycle the external display between mirror and extend, and pause idle lock/sleep
+hl.bind(mod .. " + P", hl.dsp.exec_cmd(dotScripts .. "/display-mode.sh"))
+hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(dotScripts .. "/present-mode.sh"))
+
 -- Quickshell widgets
 hl.bind("SUPER + B", qsToggle("clipboard"))
 hl.bind("SUPER + A", qsToggle("volume"))
@@ -213,7 +220,7 @@ hl.bind(mod .. " + W", qsToggle("wallpaper"))
 hl.bind(mod .. " + N", qsToggle("network"))
 hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd(dotScripts .. "/toggle-theme.sh"))
 
--- Lock: hyprlock (Lock.qml exists but is retired; security-critical, keep the battle-tested one)
+-- Lock: hyprlock
 hl.bind(mod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Media keys, routed through osd-trigger.sh to show the OSD overlay
