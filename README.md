@@ -44,7 +44,7 @@ RecordingIndicator.qml — screen recording pill
 
 Widget folders under `hypr/scripts/quickshell/`: applauncher, battery, calendar, clipboard,
 focustime, guide, monitors, movies, music, network, notifications, quickactions, settings,
-stewart, sysmon, updater, volume, wallpaper.
+sysmon, updater, volume, wallpaper.
 
 IPC: `~/.config/hypr/scripts/qs_manager.sh toggle <widget>` writes to `/tmp/qs_widget_state`.
 
@@ -53,13 +53,14 @@ IPC: `~/.config/hypr/scripts/qs_manager.sh toggle <widget>` writes to `/tmp/qs_w
 | Bind | Action |
 | ---- | ------ |
 | `$mod+SPACE` | App launcher |
-| `$mod+TAB` | Workspace overview (hyprexpo) |
 | `$mod+grave` | Quake dropdown terminal |
 | `$mod+7/8/9` | Scratchpad: music / notes / calc |
 | `$mod+A` | Audio mixer |
 | `$mod+B` | Clipboard history |
 | `$mod+N` | Network / bluetooth |
 | `$mod+SHIFT+T` | Palette toggle (STR ↔ wal) |
+| `$mod+P` | External display: mirror ↔ extend |
+| `$mod+SHIFT+P` | Presentation mode (no dim / lock / sleep) |
 
 ## Palette
 
@@ -86,7 +87,6 @@ Font: `JetBrainsMono Nerd Font`
 ## Hyprland Plugins
 
 Managed via `hyprpm`:
-- `hyprexpo` — workspace overview (`$mod+TAB`, 3 cols)
 - `hyprbars` — ultra-subtle transparent title bars, pywal-synced
 - `hypr-dynamic-cursors` — tilt + shake-to-find cursor effect
 
@@ -145,7 +145,6 @@ yay -S sddm qt6-declarative qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg pl
 ```bash
 hyprpm add https://github.com/hyprwm/hyprland-plugins
 hyprpm add https://github.com/VirtCode/hypr-dynamic-cursors
-hyprpm enable hyprexpo
 hyprpm enable hyprbars
 hyprpm enable dynamic-cursors
 ```

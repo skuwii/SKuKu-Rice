@@ -16,6 +16,9 @@ hypr/scripts/quickshell/local/
 
 # pywal runtime-generated files
 btop/themes/wal-active.theme
+# Live palette: rewritten by toggle-theme.sh and the wallpaper daemon.
+# The tracked source is MatugenColors-str.qml; install.sh seeds this file from it.
+hypr/scripts/quickshell/MatugenColors.qml
 
 # Local config backups
 *.bak

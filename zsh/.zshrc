@@ -1,5 +1,5 @@
 # ╔═══════════════════════════════════════╗
-# ║         STR             ║
+# ║         STR                           ║
 # ║         .zshrc — skuwii               ║
 # ╚═══════════════════════════════════════╝
 
@@ -22,7 +22,8 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="kitty"
 export BROWSER="brave"
-export PATH="$HOME/.local/bin:$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$HOME/.local/bin:$BUN_INSTALL/bin:$HOME/.local/share/JetBrains/Toolbox/scripts:$HOME/.spicetify:$PATH"
 export SUDO_ASKPASS="$HOME/.dotfiles/scripts/rofi-askpass.sh"
 
 # ── STR Prompt ──
@@ -40,7 +41,7 @@ RPROMPT='%(?..%F{red}✗ %?%f)'
 alias ls="eza --icons --group-directories-first"
 alias ll="eza -la --icons --group-directories-first"
 alias lt="eza --tree --icons --level=2"
-alias cat="bat --theme=base16"
+alias cat="bat --style=plain --paging=never"
 alias grep="grep --color=auto"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -63,6 +64,9 @@ alias gd="git diff"
 
 # STR
 alias rice="cd ~/.dotfiles"
+alias brain-pull='~/.dotfiles/scripts/sync-brain.sh pull'
+alias brain-push='~/.dotfiles/scripts/sync-brain.sh push'
+alias ai="cd ~/ai && source ~/ai/env/bin/activate && jupyter lab --notebook-dir=$HOME/ai/notebooks"
 
 # ── History ──
 HISTSIZE=10000
@@ -93,38 +97,14 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#4a4e56'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 
-# fzf
+# ── Tools ──
 source <(fzf --zsh)
-alias cd="z"
-
-# eza (better ls)
-alias ls="eza --icons --group-directories-first"
-alias ll="eza -la --icons --group-directories-first"
-alias lt="eza --tree --icons --level=2"
-
-# bat (better cat)
-alias cat="bat --style=plain --paging=never"
-
-
-export PATH=$PATH:/home/yousef/.spicetify
-alias ai="cd ~/ai && source ~/ai/env/bin/activate && jupyter lab --notebook-dir=/home/yousef/ai/notebooks"
-
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
-
-# bun completions
-[ -s "/home/yousef/.bun/_bun" ] && source "/home/yousef/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# brain-sync aliases
-alias brain-pull='~/.dotfiles/scripts/sync-brain.sh pull'
-alias brain-push='~/.dotfiles/scripts/sync-brain.sh push'
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 # zoxide (smart cd)
 eval "$(zoxide init zsh)"
 alias cd="z"
+
+# ── pywal palette ──
+# Re-apply the active palette to this terminal. `command cat` skips the bat alias.
+(command cat ~/.cache/wal/sequences 2>/dev/null &)

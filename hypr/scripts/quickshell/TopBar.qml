@@ -747,37 +747,6 @@ Variants {
                             }
                         }
 
-                        /* Stewart AI button — disabled (no AI)
-
-                        Rectangle {
-                            // STR: Settings (gear) replaced with Stewart (system-info dashboard)
-                            // — original Settings popup wrote to ~/.config/hypr/settings.json which
-                            // doesn't drive the user's actual hyprland.conf, so it was a no-op.
-                            property bool isHovered: stewartMouse.containsMouse
-                            color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.6) : "transparent"
-                            radius: barWindow.s(10)
-                            height: parent.pillHeight; width: barWindow.s(34)
-                            
-                            Behavior on color { ColorAnimation { duration: 200 } }
-                            
-                            Text {
-                                anchors.centerIn: parent
-                                text: ""
-                                font.family: "JetBrainsMono Nerd Font"; font.pixelSize: barWindow.s(22)
-                                color: parent.isHovered ? mocha.blue : mocha.text
-                                Behavior on color { ColorAnimation { duration: 200 } }
-                                scale: parent.isHovered ? 1.15 : 1.0
-                                Behavior on scale { NumberAnimation { duration: 250; easing.type: Easing.OutExpo } }
-                            }
-                            MouseArea {
-                                id: stewartMouse
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle stewart"])
-                            }
-                        }
-                        */
-
                         Rectangle {
                             id: updateButton
                             property bool isHovered: updateMouse.containsMouse

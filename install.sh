@@ -54,6 +54,13 @@ link_dir "$DOTFILES/hypr/scripts"          "$CONFIG/hypr/scripts"
 # Quickshell (lives inside hypr/scripts/quickshell — symlinked above via scripts dir)
 # No separate link needed.
 
+# The live palette file is generated at runtime and untracked; seed it with STR
+QS_COLORS="$DOTFILES/hypr/scripts/quickshell/MatugenColors.qml"
+if [ ! -e "$QS_COLORS" ]; then
+    cp "$DOTFILES/hypr/scripts/quickshell/MatugenColors-str.qml" "$QS_COLORS"
+    echo "  seed: MatugenColors.qml (STR palette)"
+fi
+
 # Kitty
 link "$DOTFILES/kitty/kitty.conf"          "$CONFIG/kitty/kitty.conf"
 
